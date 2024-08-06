@@ -1,0 +1,17 @@
+###
+POST http://localhost:3100/api/users/register
+Content-Type: application/json
+
+{
+    "firstName":"John",
+    "lastName":"Doe",
+    "surName":"",
+    "userName":"jid4",
+    "gender":"",
+    "emailAddress":"jd@examplee.com",
+    "usrPassword":"1234",
+    "phoneNumber":"0782354732"
+}
+
+###
+GET http://localhost:3100/api/users/all
