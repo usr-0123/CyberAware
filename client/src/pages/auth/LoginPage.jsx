@@ -1,8 +1,9 @@
 import React from 'react';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Checkbox, Form, Input } from 'antd';
-const loginPage = () => {
+const LoginPage = () => {
     const onFinish = (values) => {
+
         console.log('Received values of form: ', values);
     };
     return (
@@ -42,16 +43,12 @@ const loginPage = () => {
                     />
                 </Form.Item>
                 <Form.Item>
-                    <Form.Item name="remember" valuePropName="checked" noStyle>
-                        <Checkbox>Remember me</Checkbox>
-                    </Form.Item>
-
                     <a className="login-form-forgot" href="">
                         Forgot password
                     </a>
                 </Form.Item>
 
-                <Form.Item style={{display: 'flex', justifyContent: 'center'}}>
+                <Form.Item style={{ display: 'flex', justifyContent: 'center' }}>
                     <Button type="primary" htmlType="submit" className="login-form-button">
                         Log in
                     </Button>
@@ -63,4 +60,4 @@ const loginPage = () => {
         </div>
     );
 };
-export default loginPage;
+export default LoginPage;

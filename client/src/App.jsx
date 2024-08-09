@@ -1,14 +1,16 @@
 import './App.css'
 
-import Register from './pages/registerPage'
-import Login from './pages/loginPage'
+import Register from './pages/auth/RegisterPage'
+import Login from './pages/auth/LoginPage'
+import ForgotPassword from './pages/auth/ForgotPassword'
 
 function App() {
 
   return (
     <>
-    <Register />
-    {/* <Login /> */}
+      {/* <Register /> */}
+      {/* <Login /> */}
+      <ForgotPassword />
     </>
   )
 }

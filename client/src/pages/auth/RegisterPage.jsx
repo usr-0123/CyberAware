@@ -1,17 +1,7 @@
 import React from 'react';
 import './authStyles.scss'
 
-import {
-    Button,
-    Cascader,
-    DatePicker,
-    Form,
-    Input,
-    InputNumber,
-    Mentions,
-    Select,
-    TreeSelect,
-} from 'antd';
+import { Button, Cascader, DatePicker, Form, Input, InputNumber, Mentions, Select, TreeSelect, } from 'antd';
 const { RangePicker } = DatePicker;
 const formItemLayout = {
     labelCol: {
@@ -31,7 +21,7 @@ const formItemLayout = {
         },
     },
 };
-const registerPage = () => (
+const RegisterPage = () => (
     <div className='mainLayout'>
         <Form
             {...formItemLayout}
@@ -175,4 +165,4 @@ const registerPage = () => (
     </div>
 )
 
-export default registerPage;
+export default RegisterPage;

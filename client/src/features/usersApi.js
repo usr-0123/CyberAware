@@ -12,47 +12,60 @@ export const userApi = createApi({
         }),
 
         getUserByEmail: builder.query({
-            query: (Email_address) => `employee/fetchByEmail/${Email_address}`,
-            providesTags: ["Employee"],
+            query: (Email_address) => `esers/fetchByEmail/${Email_address}`,
+            providesTags: ["Users"],
         }),
 
         getUserById: builder.query({
-            query: (userID) => `user/id/:userID`
+            query: (userID) => `user/id/${userID}`
+        }),
+
+        sendOTP: builder.query({
+            query: (Email_address) => ({
+                url: `user/sendOtp/${Email_address}`,
+                method: "POST",
+                body: Users,
+            }),
+            invalidatesTags: ["Users"],
         }),
 
         registerUser: builder.mutation({
-            query: (employee) => ({
-                url: "employee/register",
+            query: (Users) => ({
+                url: "users/register",
                 method: "POST",
-                body: employee,
+                body: Users,
             }),
-            invalidatesTags: ["Employee"],
+            invalidatesTags: ["Users"],
         }),
 
         loginUser: builder.mutation({
-            query: (employee) => ({
-                url: "employee/loginEmployee",
+            query: (Users) => ({
+                url: "users/loginEmployee",
                 method: "POST",
-                body: employee,
+                body: Users,
             }),
-            invalidatesTags: ["Employee"],
+            invalidatesTags: ["Users"],
         }),
 
         updateUser: builder.mutation({
-            query: (employee) => ({
-                url: `employees/update/${employee.EmployeeID}`,
+            query: (Users) => ({
+                url: `users/update/${Users.EmployeeID}`,
                 method: "PUT",
-                body: employee,
+                body: Users,
             }),
-            invalidatesTags: ["Employee"],
+            invalidatesTags: ["Users"],
         }),
 
         deleteUser: builder.mutation({
             query: (Email_address) => ({
-                url: `employee/deleteByEmail/${Email_address}`,
+                url: `users/deleteByEmail/${Email_address}`,
                 method: "DELETE",
             }),
-            invalidatesTags: ["Employee"],
+            invalidatesTags: ["Users"],
         }),
     }),
-})
+});
+
+export const {
+    useGetAllUsersQuery, useGetUserByEmailQuery, useGetUserByIdQuery, useSendOTPQuery, useRegisterUserMutation, useLoginUserMutation, useUpdateUserMutation, useDeleteUserMutation
+} = userApi;
