@@ -8,7 +8,7 @@ const usersRouter = Router()
 
 usersRouter.post('/users/register', registerUserController)
 usersRouter.post('/user/login', loginUserController)
-usersRouter.post('/user/sendOtp/:email', sendOTP)
+usersRouter.post('/user/sendOtp/email', sendOTP)
 usersRouter.get('/users/all', fetchUsersController)
 usersRouter.get('/user/id/:userID', fetchUserByIdController)
 usersRouter.get('/user/email/:email', fetchUsersByEmailController)

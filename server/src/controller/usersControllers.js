@@ -111,7 +111,8 @@ export const loginUserController = async (req, res) => {
 }
 
 export const sendOTP = async (req, res) => {
-    const email = req.params.email;
+    
+    const email = req.body.emailAddress;
     const otp = (Math.random() + 1).toString(36).substring(7)
 
     try {
@@ -122,7 +123,7 @@ export const sendOTP = async (req, res) => {
             otpCode: otp
         }
         
-        sendMail(res, mailOptions)
+        await sendMail(res, mailOptions)
         
         return dataFound(res, otp, `Otp code sent to the email address ${email}`)
 

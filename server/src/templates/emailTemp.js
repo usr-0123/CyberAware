@@ -342,7 +342,6 @@ export const sendMail = async (res, params) => {
 
     try {
         await transporter.sendMail(mailOptions)
-        return successMessage(res, 'Email sent successfully')
     } catch (error) {
         return sendBadRequest(error)
     }

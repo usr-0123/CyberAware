@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-export const userApi = createApi({
+export const usersApi = createApi({
     reducerPath: "userApi",
     baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3100/api/" }),
     tagTypes: ["Users"],
@@ -12,7 +12,7 @@ export const userApi = createApi({
         }),
 
         getUserByEmail: builder.query({
-            query: (Email_address) => `esers/fetchByEmail/${Email_address}`,
+            query: (Email_address) => `users/fetchByEmail/${Email_address}`,
             providesTags: ["Users"],
         }),
 
@@ -20,9 +20,9 @@ export const userApi = createApi({
             query: (userID) => `user/id/${userID}`
         }),
 
-        sendOTP: builder.query({
-            query: (Email_address) => ({
-                url: `user/sendOtp/${Email_address}`,
+        sendOTP: builder.mutation({
+            query: (Users) => ({
+                url: `user/sendOtp/email`,
                 method: "POST",
                 body: Users,
             }),
@@ -67,5 +67,5 @@ export const userApi = createApi({
 });
 
 export const {
-    useGetAllUsersQuery, useGetUserByEmailQuery, useGetUserByIdQuery, useSendOTPQuery, useRegisterUserMutation, useLoginUserMutation, useUpdateUserMutation, useDeleteUserMutation
-} = userApi;
+    useGetAllUsersQuery, useGetUserByEmailQuery, useGetUserByIdQuery, useSendOTPMutation, useRegisterUserMutation, useLoginUserMutation, useUpdateUserMutation, useDeleteUserMutation
+} = usersApi;
