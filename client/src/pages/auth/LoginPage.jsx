@@ -3,14 +3,21 @@ import './authStyles.scss'
 import { Button, Form, Input } from 'antd';
 import { validatePasswordPattern } from '../../helpers/validator';
 import { authenticate } from '../../services/userServices';
+import barner from '../../assets/post1.jpg'
+import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
+    const navigate = useNavigate()
 
     return (
         <div className='mainLayout'>
+            <div className='image' style={{borderRadius:"10px 0 0 10px"}}>
+                <img src={barner} alt="barner" />
+            </div>
             <Form
                 onFinish={(e) => authenticate(e)}
                 className="authForm"
+                style={{borderRadius:"0 10px 10px 0"}}
                 initialValues={{
                     remember: true,
                 }}
@@ -45,9 +52,7 @@ const LoginPage = () => {
                 <Form.Item
                     className='formItem'
                 >
-                    <a className="login-form-forgot" href="">
-                        Forgot password
-                    </a>
+                    <a href="" onClick={()=>navigate("/forgot-password",{replace: true})}> Forgot password </a>
                 </Form.Item>
 
                 <Form.Item className='formButton' >
@@ -58,7 +63,7 @@ const LoginPage = () => {
                 <Form.Item
                     className='formItem'
                 >
-                    Or <a href="">register now!</a>
+                    Or <a href="" onClick={()=>navigate("/register",{replace: true})}> register an account </a>
                 </Form.Item>
             </Form>
         </div>

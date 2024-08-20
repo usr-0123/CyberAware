@@ -1,10 +1,13 @@
 import { Button, Form, Input } from "antd";
 import { MailOutlined } from '@ant-design/icons';
 import { useSendOTPMutation } from "../../services/usersApi";
+import './authStyles.scss'
+import { useNavigate } from "react-router-dom";
 
 const ForgotPassword = () => {
     const [forgetPassword, { isLoading }] = useSendOTPMutation()
-    const onFinish = async(e) => {
+    const navigate = useNavigate();
+    const onFinish = async (e) => {
         try {
             if (e) {
                 const response = await forgetPassword(e)
@@ -23,7 +26,8 @@ const ForgotPassword = () => {
         <div className='mainLayout'>
             <Form
                 name="normal_login"
-                className="login-form"
+                className="authForm"
+                style={{borderRadius:"10px"}}
                 initialValues={{
                     remember: true,
                 }}
@@ -31,6 +35,7 @@ const ForgotPassword = () => {
             >
                 <Form.Item
                     name="emailAddress"
+                    className='formItem'
                     rules={[
                         {
                             required: true,
@@ -38,10 +43,15 @@ const ForgotPassword = () => {
                         },
                     ]}
                 >
-                    <Input style={{ display: 'flex', alignItems: 'center' }} prefix={<MailOutlined className="site-form-item-icon" />} placeholder="Email address e.g. user@example.com" />
+                    <Input style={{ display: 'flex', alignItems: 'center' }} prefix={<MailOutlined />} placeholder="Email address e.g. user@example.com" className='formInput' />
                 </Form.Item>
-                <Form.Item style={{ display: 'flex', justifyContent: 'center' }}>
-                    <Button type="primary" htmlType="submit" className="login-form-button" disabled={isLoading} loading={isLoading} > {isLoading ? 'Please wait...' : 'Log in'} </Button>
+                <Form.Item className='formButton'>
+                    <Button type="primary" htmlType="submit" className="submitButton" disabled={isLoading} loading={isLoading} > {isLoading ? 'Please wait...' : 'Submit'} </Button>
+                </Form.Item>
+                <Form.Item
+                    className='formItem'
+                >
+                    Or <a href="" onClick={()=>navigate("/login",{replace: true})}>login</a>
                 </Form.Item>
             </Form>
         </div>

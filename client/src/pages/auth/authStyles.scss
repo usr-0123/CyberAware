@@ -1,28 +1,36 @@
-.mainLayout {
+.master {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-items: center;
-    width: 100%;
+    justify-content: center;
+    height: 97vh;
+}
 
+.mainLayout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    
     .authForm {
-        width: fit-content;
+        background-color: #d1d1d1;
+        border-radius: 10px 0 0 10px;
+        width: 30%;
+        height: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        border: 1px solid;
-        border-radius: 10px;
         padding: 20px;
         align-self: center;
 
-        .formItem{
+        .formItem {
             width: 400px;
             display: flex;
             align-items: center;
             justify-content: center;
-            
-            .formInput{
+
+            .formInput {
                 width: 400px;
             }
         }
@@ -33,6 +41,22 @@
             display: flex;
             align-items: center;
             justify-content: center;
+        }
+    }
+
+    .image {
+        width: 30%;
+        height: 100%;
+        background-color: #d1d1d1;
+        border-radius: 0 10px 10px 0;
+
+        img {
+            max-width: 100%;
+            height: 100%;
+            border-radius: 0 10px 10px 0;
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px 0 0 10px;
         }
     }
 }
