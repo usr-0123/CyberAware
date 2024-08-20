@@ -111,21 +111,27 @@ export const loginUserController = async (req, res) => {
 }
 
 export const sendOTP = async (req, res) => {
-    
-    const email = req.body.emailAddress;
-    const otp = (Math.random() + 1).toString(36).substring(7)
 
     try {
-        const mailOptions = {
-            option: 'otp',
-            Email_address: email,
-            date: formatDate(new Date()),
-            otpCode: otp
+        const email = req.body.emailAddress;
+        const result = await fetchUsersService(email)
+
+        if (result.rowsAffected < 0) {
+            const otp = (Math.random() + 1).toString(36).substring(7)
+
+            const mailOptions = {
+                option: 'otp',
+                Email_address: email,
+                date: formatDate(new Date()),
+                otpCode: otp
+            }
+
+            await sendMail(res, mailOptions)
+
+            return dataFound(res, otp, `Otp code sent to the email address ${email}`)
+        } else {
+            return sendNotFound(res, `No user registered with the email address ${email}.`)
         }
-        
-        await sendMail(res, mailOptions)
-        
-        return dataFound(res, otp, `Otp code sent to the email address ${email}`)
 
     } catch (error) {
         return sendServerError(res, error.message)
@@ -145,7 +151,6 @@ export const fetchUsersController = async (req, res) => {
     } catch (error) {
         sendServerError(res, error)
     }
-
 }
 
 export const fetchUserByIdController = async (req, res) => {

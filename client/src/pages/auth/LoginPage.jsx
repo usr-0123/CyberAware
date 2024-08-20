@@ -1,59 +1,63 @@
 import React from 'react';
-import { LockOutlined, UserOutlined } from '@ant-design/icons';
-import { Button, Checkbox, Form, Input } from 'antd';
-const LoginPage = () => {
-    const onFinish = (values) => {
+import './authStyles.scss'
+import { Button, Form, Input } from 'antd';
+import { validatePasswordPattern } from '../../helpers/validator';
+import { authenticate } from '../../services/userServices';
 
-        console.log('Received values of form: ', values);
-    };
+const LoginPage = () => {
+
     return (
         <div className='mainLayout'>
             <Form
-                name="normal_login"
-                className="login-form"
+                onFinish={(e) => authenticate(e)}
+                className="authForm"
                 initialValues={{
                     remember: true,
                 }}
-                onFinish={onFinish}
             >
                 <Form.Item
-                    name="username"
+                    name="emailAddress"
+                    className='formItem'
                     rules={[
                         {
                             required: true,
-                            message: 'Please input your Username!',
+                            type: 'email',
+                            message: 'Please enter a valid email address!',
                         },
                     ]}
                 >
-                    <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
+                    <Input placeholder='Enter your email' className='formInput' />
                 </Form.Item>
+
                 <Form.Item
                     name="password"
+                    className='formItem'
                     rules={[
                         {
                             required: true,
-                            message: 'Please input your Password!',
+                            validator: validatePasswordPattern,
                         },
                     ]}
                 >
-                    <Input
-                        prefix={<LockOutlined className="site-form-item-icon" />}
-                        type="password"
-                        placeholder="Password"
-                    />
+                    <Input.Password placeholder='Enter password' className='formInput' />
                 </Form.Item>
-                <Form.Item>
+
+                <Form.Item
+                    className='formItem'
+                >
                     <a className="login-form-forgot" href="">
                         Forgot password
                     </a>
                 </Form.Item>
 
-                <Form.Item style={{ display: 'flex', justifyContent: 'center' }}>
-                    <Button type="primary" htmlType="submit" className="login-form-button">
+                <Form.Item className='formButton' >
+                    <Button type="primary" className='submitButton' htmlType="submit" >
                         Log in
                     </Button>
                 </Form.Item>
-                <Form.Item>
+                <Form.Item
+                    className='formItem'
+                >
                     Or <a href="">register now!</a>
                 </Form.Item>
             </Form>

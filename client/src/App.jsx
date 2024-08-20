@@ -1,16 +1,11 @@
 import './App.css'
-
-import Register from './pages/auth/RegisterPage'
-import Login from './pages/auth/LoginPage'
-import ForgotPassword from './pages/auth/ForgotPassword'
+import AuthRoutes from './pages/auth/AuthRoutes.jsx'
 
 function App() {
 
   return (
     <>
-      {/* <Register /> */}
-      {/* <Login /> */}
-      <ForgotPassword />
+      <AuthRoutes />
     </>
   )
 }

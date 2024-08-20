@@ -1,6 +1,6 @@
 import { Button, Form, Input } from "antd";
 import { MailOutlined } from '@ant-design/icons';
-import { useSendOTPMutation } from "../../features/usersApi";
+import { useSendOTPMutation } from "../../services/usersApi";
 
 const ForgotPassword = () => {
     const [forgetPassword, { isLoading }] = useSendOTPMutation()

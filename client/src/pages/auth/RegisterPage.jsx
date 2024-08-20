@@ -1,165 +1,105 @@
 import React from 'react';
 import './authStyles.scss'
+import { Button, Form, Input, Select, } from 'antd';
+import { validateNameLength, validatePasswordPattern } from '../../helpers/validator';
+import { register } from '../../services/userServices';
 
-import { Button, Cascader, DatePicker, Form, Input, InputNumber, Mentions, Select, TreeSelect, } from 'antd';
-const { RangePicker } = DatePicker;
-const formItemLayout = {
-    labelCol: {
-        xs: {
-            span: 24,
-        },
-        sm: {
-            span: 6,
-        },
-    },
-    wrapperCol: {
-        xs: {
-            span: 24,
-        },
-        sm: {
-            span: 14,
-        },
-    },
-};
+const genderOptions = [
+    { label: 'Male', value: 'male' },
+    { label: 'Female', value: 'feMale' }
+]
+
 const RegisterPage = () => (
     <div className='mainLayout'>
         <Form
-            {...formItemLayout}
-            variant="filled"
-            style={{
-                maxWidth: 600,
+            onFinish={(e) => register(e)}
+            className='authForm'
+            initialValues={{
+                remember: true,
             }}
         >
             <Form.Item
-                label="Input"
-                name="Input"
+                name="firstName"
+                className='formItem'
                 rules={[
                     {
                         required: true,
-                        message: 'Please input!',
+                        validator: validateNameLength,
                     },
                 ]}
             >
-                <Input />
+                <Input placeholder='Enter your first name' className='formInput' />
             </Form.Item>
 
             <Form.Item
-                label="InputNumber"
-                name="InputNumber"
+                name="lastName"
+                className='formItem'
                 rules={[
                     {
                         required: true,
-                        message: 'Please input!',
+                        validator: validateNameLength,
                     },
                 ]}
             >
-                <InputNumber
-                    style={{
-                        width: '100%',
-                    }}
-                />
+                <Input placeholder='Enter your last name' className='formInput' />
             </Form.Item>
 
             <Form.Item
-                label="TextArea"
-                name="TextArea"
+                name="surName"
+                className='formItem'
+                rules={[
+                    {
+                        required: false,
+                    },
+                ]}
+            >
+                <Input placeholder='Enter your surname (Optional)' className='formInput' />
+            </Form.Item>
+
+            <Form.Item
+                name="emailAddress"
+                className='formItem'
                 rules={[
                     {
                         required: true,
-                        message: 'Please input!',
+                        type: 'email',
+                        message: 'Please enter a valid email address!',
                     },
                 ]}
             >
-                <Input.TextArea />
+                <Input placeholder='Enter your email' className='formInput' />
             </Form.Item>
 
             <Form.Item
-                label="Mentions"
-                name="Mentions"
+                name="gender"
+                className='formItem'
                 rules={[
                     {
                         required: true,
-                        message: 'Please input!',
+                        message: 'Please select your gender option!',
                     },
                 ]}
             >
-                <Mentions />
+                <Select placeholder='Select gender' options={genderOptions} className='formInput' />
             </Form.Item>
 
             <Form.Item
-                label="Select"
-                name="Select"
+                name="password"
+                className='formItem'
                 rules={[
                     {
                         required: true,
-                        message: 'Please input!',
+                        validator: validatePasswordPattern,
                     },
                 ]}
             >
-                <Select />
+                <Input.Password placeholder='Enter password' className='formInput' />
             </Form.Item>
 
             <Form.Item
-                label="Cascader"
-                name="Cascader"
-                rules={[
-                    {
-                        required: true,
-                        message: 'Please input!',
-                    },
-                ]}
+                className='formButton'
             >
-                <Cascader />
-            </Form.Item>
-
-            <Form.Item
-                label="TreeSelect"
-                name="TreeSelect"
-                rules={[
-                    {
-                        required: true,
-                        message: 'Please input!',
-                    },
-                ]}
-            >
-                <TreeSelect />
-            </Form.Item>
-
-            <Form.Item
-                label="DatePicker"
-                name="DatePicker"
-                rules={[
-                    {
-                        required: true,
-                        message: 'Please input!',
-                    },
-                ]}
-            >
-                <DatePicker />
-            </Form.Item>
-
-            <Form.Item
-                label="RangePicker"
-                name="RangePicker"
-                rules={[
-                    {
-                        required: true,
-                        message: 'Please input!',
-                    },
-                ]}
-            >
-                <RangePicker />
-            </Form.Item>
-
-            <Form.Item
-                wrapperCol={{
-                    offset: 6,
-                    span: 16,
-                }}
-            >
-                <Button type="primary" htmlType="submit">
-                    Submit
-                </Button>
+                <Button type="primary" className='submitButton' htmlType="submit"> Sign Up </Button>
             </Form.Item>
         </Form>
     </div>
