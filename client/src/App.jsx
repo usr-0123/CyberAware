@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom'
 import './App.css'
 import AuthRoutes from './pages/auth/AuthRoutes.jsx'
 import Dashboard from './layout/Dashboard.jsx'
+import { message } from 'antd'
 
 function App() {
 
@@ -12,7 +13,7 @@ function App() {
         <Route path='/*' element={<AuthRoutes />} />
         <Route path='/dashboard' element={<Dashboard />} />
       </Routes>
-      
+
     </>
   )
 }

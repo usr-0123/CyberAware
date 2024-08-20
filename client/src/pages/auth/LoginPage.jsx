@@ -12,7 +12,7 @@ const LoginPage = () => {
     return (
         <div className='mainLayout'>
             <div className='image' style={{borderRadius:"10px 0 0 10px"}}>
-                <img src={barner} alt="barner" />
+                <img src={barner} alt="barner" style={{ borderRadius: "10px 0 0 10px"}} />
             </div>
             <Form
                 onFinish={(e) => authenticate(e)}

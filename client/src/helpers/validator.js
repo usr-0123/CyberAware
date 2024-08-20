@@ -46,3 +46,15 @@ export const validatePasswordPattern = (_, password) => {
       return Promise.reject(`${field} is too short.`);
     }
   };
+
+  export const validateUserNameLength = (rule, value) => {
+    if (!value) {
+      return Promise.reject(`Please enter username`);
+    }
+    
+    if (value.length >= 3) {
+      return Promise.resolve();
+    } else {
+      return Promise.reject(`Username should be atleast 3 characters.`);
+    }
+  }

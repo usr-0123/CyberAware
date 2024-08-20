@@ -1,33 +1,43 @@
-import { Button, Form, Input } from "antd";
+import { Button, Form, Input, message } from "antd";
 import { MailOutlined } from '@ant-design/icons';
 import { useSendOTPMutation } from "../../services/usersApi";
 import './authStyles.scss'
 import { useNavigate } from "react-router-dom";
 
 const ForgotPassword = () => {
+    const [messageApi, contextHolder] = message.useMessage();
     const [forgetPassword, { isLoading }] = useSendOTPMutation()
     const navigate = useNavigate();
+
     const onFinish = async (e) => {
         try {
             if (e) {
                 const response = await forgetPassword(e)
-                if (response && response.data) {
+                if (!response) {
+                    messageApi.error('An error occured. Please try again.');
+                    return;
+                }
+
+                if (response.data) {
                     console.log(response.data);
+
+                    messageApi.success(`${response.data.Message}`);
                 } else {
-                    console.log(response);
+                    messageApi.error(`${response.error.data.Message}`);
                 }
             }
         } catch (error) {
-            console.log(error);
+            messageApi.error('An error occured. Please try again.');
         }
     }
 
     return (
         <div className='mainLayout'>
+            {contextHolder}
             <Form
                 name="normal_login"
                 className="authForm"
-                style={{borderRadius:"10px"}}
+                style={{ borderRadius: "10px" }}
                 initialValues={{
                     remember: true,
                 }}
@@ -51,7 +61,7 @@ const ForgotPassword = () => {
                 <Form.Item
                     className='formItem'
                 >
-                    Or <a href="" onClick={()=>navigate("/login",{replace: true})}>login</a>
+                    Or <a href="" onClick={() => navigate("/login", { replace: true })}>login</a>
                 </Form.Item>
             </Form>
         </div>

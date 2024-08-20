@@ -11,21 +11,21 @@ import { sendMail } from '../templates/emailTemp.js';
 import { formatDate } from '../helpers/formatDate.js';
 
 export const registerUserController = async (req, res) => {
-
+    
     try {
         const { firstName, lastName, surName, userName, gender, emailAddress, usrPassword, phoneNumber } = req.body;
 
         const validation = userValidator({ firstName, lastName, surName, userName, gender, emailAddress, usrPassword, phoneNumber })
-
+        
         if (validation.error) {
             return sendServerError(res, validation.error.message)
         } else {
             const usernameExist = await fetchUsersService({ userName: req.body.userName })
             const emailExist = await fetchUsersService({ emailAddress: req.body.emailAddress })
-
-            if (+usernameExist.recordset.length !== 0) {
+            
+            if (usernameExist.recordset && +usernameExist.recordset.length !== 0) {
                 return conflict(res, 'Username already exists')
-            } else if (+emailExist.recordset !== 0) {
+            } else if (usernameExist.recordset && +emailExist.recordset !== 0) {
                 return conflict(res, 'Email address already exists')
             } else {
                 const id = v4()
@@ -114,7 +114,7 @@ export const sendOTP = async (req, res) => {
 
     try {
         const email = req.body.emailAddress;
-        const result = await fetchUsersService(email)
+        const result = await fetchUsersService(req.body)
 
         if (result.rowsAffected < 0) {
             const otp = (Math.random() + 1).toString(36).substring(7)

@@ -6,10 +6,10 @@ Content-Type: application/json
     "firstName":"John",
     "lastName":"Doe",
     "surName":"",
-    "userName":"jid4",
-    "gender":"",
-    "emailAddress":"jd@examplee.com",
-    "usrPassword":"1234",
+    "userName":"jid45",
+    "gender":1,
+    "emailAddress":"fixedzone365@gmail.com",
+    "usrPassword":"12345678",
     "phoneNumber":"0782354732"
 }
 
