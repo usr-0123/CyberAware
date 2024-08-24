@@ -19,9 +19,9 @@ const ForgotPassword = () => {
                 }
 
                 if (response.data) {
-                    console.log(response.data);
-
                     messageApi.success(`${response.data.Message}`);
+
+                    setTimeout(() => navigate("/reset-password", { replace: true }), 3000);
                 } else {
                     messageApi.error(`${response.error.data.Message}`);
                 }

@@ -1,23 +1,50 @@
 import React from 'react';
 import './authStyles.scss'
-import { Button, Form, Input } from 'antd';
+import { Button, Form, Input, message } from 'antd';
 import { validatePasswordPattern } from '../../helpers/validator';
 import { authenticate } from '../../services/userServices';
 import barner from '../../assets/post1.jpg'
 import { useNavigate } from 'react-router-dom';
+import { useLoginUserMutation } from '../../services/usersApi';
 
 const LoginPage = () => {
-    const navigate = useNavigate()
+    const [messageApi, contextHolder] = message.useMessage();
+    const navigate = useNavigate();
+    const [login, { isLoading }] = useLoginUserMutation();
+
+    const onFinish = async(params) => {
+        try {
+            if (params) {
+                const response = await login(params)
+                
+                if (!response) {
+                    messageApi.error('An error occured. Please try again.');
+                    return;
+                }
+
+                if (response.data) {
+                    messageApi.success(`${response.data.Message}`);
+
+                    setTimeout(() => navigate("/dashboard", { replace: true }), 3000);
+                } else {
+                    messageApi.error(`${response.error.data.Message}`);
+                }
+            }
+        } catch (error) {
+            messageApi.error('An error occured. Please try again.');
+        }
+    }
 
     return (
         <div className='mainLayout'>
-            <div className='image' style={{borderRadius:"10px 0 0 10px"}}>
-                <img src={barner} alt="barner" style={{ borderRadius: "10px 0 0 10px"}} />
+            {contextHolder}
+            <div className='image' style={{ borderRadius: "10px 0 0 10px" }}>
+                <img src={barner} alt="barner" style={{ borderRadius: "10px 0 0 10px" }} />
             </div>
             <Form
-                onFinish={(e) => authenticate(e)}
+                onFinish={(e) => onFinish(e)}
                 className="authForm"
-                style={{borderRadius:"0 10px 10px 0"}}
+                style={{ borderRadius: "0 10px 10px 0" }}
                 initialValues={{
                     remember: true,
                 }}
@@ -37,7 +64,7 @@ const LoginPage = () => {
                 </Form.Item>
 
                 <Form.Item
-                    name="password"
+                    name="usrPassword"
                     className='formItem'
                     rules={[
                         {
@@ -52,7 +79,7 @@ const LoginPage = () => {
                 <Form.Item
                     className='formItem'
                 >
-                    <a href="" onClick={()=>navigate("/forgot-password",{replace: true})}> Forgot password </a>
+                    <a href="" onClick={() => navigate("/forgot-password", { replace: true })}> Forgot password </a>
                 </Form.Item>
 
                 <Form.Item className='formButton' >
@@ -63,7 +90,7 @@ const LoginPage = () => {
                 <Form.Item
                     className='formItem'
                 >
-                    Or <a href="" onClick={()=>navigate("/register",{replace: true})}> register an account </a>
+                    Or <a href="" onClick={() => navigate("/register", { replace: true })}> register an account </a>
                 </Form.Item>
             </Form>
         </div>

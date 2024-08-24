@@ -40,7 +40,7 @@ export const usersApi = createApi({
 
         loginUser: builder.mutation({
             query: (Users) => ({
-                url: "users/loginEmployee",
+                url: "/user/login",
                 method: "POST",
                 body: Users,
             }),

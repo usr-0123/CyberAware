@@ -230,7 +230,7 @@ export const deleteTemplate = (name) => {
 }
 
 export const otpTemplate = (params) => {
-    
+
     const template = `
     <!DOCTYPE html>
     <html>
@@ -307,8 +307,8 @@ export const otpTemplate = (params) => {
     return template;
 }
 
-export const sendMail = async (res, params) => {
-    
+export const sendMail = async (params) => {
+
     let transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -330,7 +330,7 @@ export const sendMail = async (res, params) => {
             case 'otp':
                 return otpTemplate(params)
             default:
-                return sendBadRequest(res, 'Email confirmation was not sent');
+                return;
         }
     }
 
@@ -341,8 +341,10 @@ export const sendMail = async (res, params) => {
     }
 
     try {
+        logger.info("Sending email...")
         await transporter.sendMail(mailOptions)
+        logger.info("Email sent successfully!")
     } catch (error) {
-        return sendBadRequest(error)
+        logger.error('Email confirmation was not sent')
     }
 }

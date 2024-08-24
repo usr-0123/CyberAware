@@ -1,5 +1,3 @@
-// import { query } from "mssql"
-
 export const registerUserQuery = `INSERT INTO tbl_Users ( userID, firstName, lastName, surName, userName, gender, emailAddress, usrPassword, phoneNumber, dateOfBirth, street)
 VALUES ( @userID, @firstName, @lastName, @surName, @userName, @gender, @emailAddress, @usrPassword, @phoneNumber, @dateOfBirth, @street)`
 

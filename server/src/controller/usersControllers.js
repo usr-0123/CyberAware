@@ -61,7 +61,8 @@ export const registerUserController = async (req, res) => {
                             data: `${registerUser.firstName} ${registerUser.lastName}`
                         }
 
-                        sendMail(res, mailOptions)
+                        await sendMail(mailOptions)
+                        
                         sendCreated(res, 'Employee created successfully')
                     }
                 }
@@ -114,9 +115,10 @@ export const sendOTP = async (req, res) => {
 
     try {
         const email = req.body.emailAddress;
+        
         const result = await fetchUsersService(req.body)
 
-        if (result.rowsAffected < 0) {
+        if (result.rowsAffected > 0) {
             const otp = (Math.random() + 1).toString(36).substring(7)
 
             const mailOptions = {

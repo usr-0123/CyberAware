@@ -14,22 +14,26 @@ const genderOptions = [
 const RegisterPage = () => {
     const [messageApi, contextHolder] = message.useMessage();
     const navigate = useNavigate();
-    const [register, { isLoading }] = useRegisterUserMutation()
+    const [register, { isLoading }] = useRegisterUserMutation();
     const onFinish = async (params) => {
 
         const response = await register(params);
 
+        console.log(response);
+        
+
         if (!response) {
             messageApi.error('An error occured. Please try again.');
             return;
-        }
+        };
 
         if (response && response.data) {
             messageApi.success(`${response.data.Message}`);
+            setTimeout(() => navigate("/login", { replace: true }), 3000);
         } else {
             messageApi.error(`${response.error.data.Message}`);
-        }
-    }
+        };
+    };
 
     return (
         <div className='mainLayout'>
