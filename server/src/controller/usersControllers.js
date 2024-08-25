@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken'
 
 import { deleteUserService, fetchUsersService, registerUserService, updateUserService } from "../services/userServices.js";
 
-import { conflict, dataFound, sendCreated, sendDeleteSuccess, sendNotFound, sendServerError, successMessage } from "../helpers/helperFunctions.js";
+import { conflict, dataFound, sendBadRequest, sendCreated, sendDeleteSuccess, sendNotFound, sendServerError, successMessage } from "../helpers/helperFunctions.js";
 
 import { userValidator } from "../validators/usersValidators.js";
 import { sendMail } from '../templates/emailTemp.js';
@@ -114,29 +114,75 @@ export const loginUserController = async (req, res) => {
 export const sendOTP = async (req, res) => {
 
     try {
-        const email = req.body.emailAddress;
-        
         const result = await fetchUsersService(req.body)
+          
+          if (result.rowsAffected > 0) {
+              const otp = (Math.random() + 1).toString(36).substring(7)
+              
+              const mailOptions = {
+                  option: 'otp',
+                  Email_address: req.body.emailAddress,
+                  date: formatDate(new Date()),
+                  otpCode: otp
+                }
+                
+                const mailer = await sendMail(mailOptions)
+                
+                if (mailer.info) {
+                    const response = await updateUserService(result.recordset[0].userID, {usrPassword:otp})
+        
+                    if (response.rowsAffected < 0) {
+                        return sendServerError(res, 'A problem occured. Please retry.')
+                    }
 
-        if (result.rowsAffected > 0) {
-            const otp = (Math.random() + 1).toString(36).substring(7)
-
-            const mailOptions = {
-                option: 'otp',
-                Email_address: email,
-                date: formatDate(new Date()),
-                otpCode: otp
-            }
-
-            await sendMail(res, mailOptions)
-
-            return dataFound(res, otp, `Otp code sent to the email address ${email}`)
+                    return successMessage(res, `Otp code sent to the email address ${req.body.emailAddress}`)
+                } else {
+                    return sendServerError(res, 'Otp code not sent. This server is offline. Please retry.')
+                }
+                
         } else {
-            return sendNotFound(res, `No user registered with the email address ${email}.`)
+            return sendNotFound(res, `No user registered with the email address ${req.body.emailAddress}.`)
         }
 
     } catch (error) {
         return sendServerError(res, error.message)
+    }
+}
+
+export const resetPasswordController = async (req, res) => {
+
+    const { emailAddress, password, otp } = req.body
+
+    try {
+        const user = await fetchUsersService(req.body)
+        if (+user.recordset.length == 0) {
+            return sendNotFound(res, 'No user found with the details')
+        } else {
+            if (otp === user.recordset[0].usrPassword ) {
+                const usrPassword = await bcrypt.hash(password, 8)
+                const result = await updateUserService(user.recordset[0].userID, { emailAddress, usrPassword })
+
+                if (result.rowsAffected > 0) {
+
+                    const mailOptions = {
+                        option: 'update',
+                        Email_address: user.recordset[0].emailAddress,
+                        data: `${user.recordset[0].firstName} ${user.recordset[0].lastName}`
+                    }
+    
+                    sendMail(res, mailOptions)
+
+                    return successMessage(res, `Password updated successfully.`)
+                } else {
+                    return sendBadRequest(res, 'Unable to update the new password. Please retry.')
+                }
+            } else {
+                return sendBadRequest(res, 'Otp code appears to be wrong or has expired.')
+            }
+        }
+
+    } catch (error) {
+        sendServerError(res, `Error: ${error.message}`)
     }
 }
 
@@ -236,7 +282,7 @@ export const updateUserDetailsController = async (req, res) => {
                 sendMail(res, mailOptions)
                 return dataFound(res, result.recordset, `User record updated successfully`)
             } else {
-                return successMessage(res, `Details not updated!`)
+                return sendBadRequest(res, `Details not updated!`)
             }
 
         } catch (error) {

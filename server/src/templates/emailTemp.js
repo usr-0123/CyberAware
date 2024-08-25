@@ -342,9 +342,9 @@ export const sendMail = async (params) => {
 
     try {
         logger.info("Sending email...")
-        await transporter.sendMail(mailOptions)
-        logger.info("Email sent successfully!")
+        let info = await transporter.sendMail(mailOptions)
+        return {info}
     } catch (error) {
-        logger.error('Email confirmation was not sent')
+        return {error}
     }
 }

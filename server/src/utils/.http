@@ -23,3 +23,13 @@ Content-Type: application/json
 {
     "emailAddress":"kemboilewis6@gmail.com"
 }
+
+###
+PATCH http://localhost:3100/api/user/reset
+Content-Type: application/json
+
+{
+    "emailAddress":"kemboilewis6@gmail.com",
+    "password":"@Usr0123",
+    "otp":"@Usr0123"
+}
