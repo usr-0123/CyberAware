@@ -38,6 +38,15 @@ export const usersApi = createApi({
             invalidatesTags: ["Users"],
         }),
 
+        getOTP:builder.mutation({
+            query: (users) => ({
+                url: 'users/getOtp',
+                method: "POST",
+                body: users,
+            }),
+            invalidatesTags: ["Users"],
+        }),
+
         registerUser: builder.mutation({
             query: (Users) => ({
                 url: "users/register",
@@ -76,5 +85,5 @@ export const usersApi = createApi({
 });
 
 export const {
-    useGetAllUsersQuery, useGetUserByEmailQuery, useGetUserByIdQuery, useSendOTPMutation, useResetPasswordMutation, useRegisterUserMutation, useLoginUserMutation, useUpdateUserMutation, useDeleteUserMutation
+    useGetAllUsersQuery, useGetUserByEmailQuery, useGetUserByIdQuery, useGetOTPMutation, useSendOTPMutation, useResetPasswordMutation, useRegisterUserMutation, useLoginUserMutation, useUpdateUserMutation, useDeleteUserMutation
 } = usersApi;

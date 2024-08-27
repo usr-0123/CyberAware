@@ -11,18 +11,18 @@ import { sendMail } from '../templates/emailTemp.js';
 import { formatDate } from '../helpers/formatDate.js';
 
 export const registerUserController = async (req, res) => {
-    
+
     try {
         const { firstName, lastName, surName, userName, gender, emailAddress, usrPassword, phoneNumber } = req.body;
 
         const validation = userValidator({ firstName, lastName, surName, userName, gender, emailAddress, usrPassword, phoneNumber })
-        
+
         if (validation.error) {
             return sendServerError(res, validation.error.message)
         } else {
             const usernameExist = await fetchUsersService({ userName: req.body.userName })
             const emailExist = await fetchUsersService({ emailAddress: req.body.emailAddress })
-            
+
             if (usernameExist.recordset && +usernameExist.recordset.length !== 0) {
                 return conflict(res, 'Username already exists')
             } else if (usernameExist.recordset && +emailExist.recordset !== 0) {
@@ -62,7 +62,7 @@ export const registerUserController = async (req, res) => {
                         }
 
                         await sendMail(mailOptions)
-                        
+
                         sendCreated(res, 'Employee created successfully')
                     }
                 }
@@ -98,7 +98,7 @@ export const loginUserController = async (req, res) => {
                     data: `${user.recordset[0].firstName} ${user.recordset[0].lastName}`
                 }
 
-                sendMail(res, mailOptions)
+                sendMail(mailOptions)
 
                 return dataFound(res, token, 'Login successful')
             } else {
@@ -115,31 +115,31 @@ export const sendOTP = async (req, res) => {
 
     try {
         const result = await fetchUsersService(req.body)
-          
-          if (result.rowsAffected > 0) {
-              const otp = (Math.random() + 1).toString(36).substring(7)
-              
-              const mailOptions = {
-                  option: 'otp',
-                  Email_address: req.body.emailAddress,
-                  date: formatDate(new Date()),
-                  otpCode: otp
-                }
-                
-                const mailer = await sendMail(mailOptions)
-                
-                if (mailer.info) {
-                    const response = await updateUserService(result.recordset[0].userID, {usrPassword:otp})
-        
-                    if (response.rowsAffected < 0) {
-                        return sendServerError(res, 'A problem occured. Please retry.')
-                    }
 
-                    return successMessage(res, `Otp code sent to the email address ${req.body.emailAddress}`)
-                } else {
-                    return sendServerError(res, 'Otp code not sent. This server is offline. Please retry.')
+        if (result.rowsAffected > 0) {
+            const otp = (Math.random() + 1).toString(36).substring(7)
+
+            const mailOptions = {
+                option: 'otp',
+                Email_address: req.body.emailAddress,
+                date: formatDate(new Date()),
+                otpCode: otp
+            }
+
+            const mailer = await sendMail(mailOptions)
+
+            if (mailer.info) {
+                const response = await updateUserService(result.recordset[0].userID, { usrPassword: otp })
+
+                if (response.rowsAffected < 0) {
+                    return sendServerError(res, 'A problem occured. Please retry.')
                 }
-                
+
+                return successMessage(res, `Otp code sent to the email address ${req.body.emailAddress}`)
+            } else {
+                return sendServerError(res, 'Otp code not sent. This server is offline. Please retry.')
+            }
+
         } else {
             return sendNotFound(res, `No user registered with the email address ${req.body.emailAddress}.`)
         }
@@ -149,35 +149,42 @@ export const sendOTP = async (req, res) => {
     }
 }
 
+export const getOTP = async (req, res) => {
+
+    try {
+        const result = await fetchUsersService(req.body)
+        const valid = result.recordset.some(obj => obj.usrPassword === req.body.otp);
+        return successMessage(res, valid)
+    } catch (error) {
+        return sendNotFound(res, false)
+    }
+};
+
 export const resetPasswordController = async (req, res) => {
 
-    const { emailAddress, password, otp } = req.body
+    const { emailAddress, password } = req.body
 
     try {
         const user = await fetchUsersService(req.body)
         if (+user.recordset.length == 0) {
             return sendNotFound(res, 'No user found with the details')
         } else {
-            if (otp === user.recordset[0].usrPassword ) {
-                const usrPassword = await bcrypt.hash(password, 8)
-                const result = await updateUserService(user.recordset[0].userID, { emailAddress, usrPassword })
+            const usrPassword = await bcrypt.hash(password, 8)
+            const result = await updateUserService(user.recordset[0].userID, { emailAddress, usrPassword })
 
-                if (result.rowsAffected > 0) {
+            if (result.rowsAffected > 0) {
 
-                    const mailOptions = {
-                        option: 'update',
-                        Email_address: user.recordset[0].emailAddress,
-                        data: `${user.recordset[0].firstName} ${user.recordset[0].lastName}`
-                    }
-    
-                    sendMail(res, mailOptions)
-
-                    return successMessage(res, `Password updated successfully.`)
-                } else {
-                    return sendBadRequest(res, 'Unable to update the new password. Please retry.')
+                const mailOptions = {
+                    option: 'update',
+                    Email_address: user.recordset[0].emailAddress,
+                    data: `${user.recordset[0].firstName} ${user.recordset[0].lastName}`
                 }
+
+                sendMail(mailOptions)
+
+                return successMessage(res, `Password updated successfully.`)
             } else {
-                return sendBadRequest(res, 'Otp code appears to be wrong or has expired.')
+                return sendBadRequest(res, 'Unable to update the new password. Please retry.')
             }
         }
 
@@ -279,7 +286,7 @@ export const updateUserDetailsController = async (req, res) => {
                     data: `${available_entry.recordset[0].firstName} ${available_entry.recordset[0].lastName}`
                 }
 
-                sendMail(res, mailOptions)
+                sendMail(mailOptions)
                 return dataFound(res, result.recordset, `User record updated successfully`)
             } else {
                 return sendBadRequest(res, `Details not updated!`)
@@ -318,7 +325,7 @@ export const deleteUserController = async (req, res) => {
                     data: `${available_entry.recordset[0].firstName} ${available_entry.recordset[0].lastName}`
                 }
 
-                sendMail(res, mailOptions)
+                sendMail(mailOptions)
                 return sendDeleteSuccess(res, 'Entry deleted successfully')
             } else {
                 return sendServerError(res, 'There was a problem occurred while deleting record')

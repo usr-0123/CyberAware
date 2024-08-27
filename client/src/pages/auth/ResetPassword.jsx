@@ -1,26 +1,36 @@
 import { useNavigate } from "react-router-dom";
 import { Button, Form, Input, message } from 'antd';
-import { useResetPasswordMutation } from "../../services/usersApi";
+import { useGetOTPMutation, useResetPasswordMutation } from "../../services/usersApi";
 import { validatePasswordPattern } from "../../helpers/validator";
 import { useState } from "react";
 
 const ResetPassword = () => {
+    const [email, setEmail] = useState(false);
+    const [password, setPassword] = useState(false);
+    const [valid, setValid] = useState(false);
     const [messageApi, contextHolder] = message.useMessage();
     const [reset, { isLoading }] = useResetPasswordMutation();
+    const [fetchOtp, { isOTPLoading }] = useGetOTPMutation();
     const navigate = useNavigate();
 
+    const validateOtp = async (params) => {
+        
+        const isValid = await fetchOtp({ emailAddress: email, otp: params.target.value })
+
+        if (isValid.data) {
+            setValid(isValid.data.Message)
+            return isValid.data.Message
+        } else {
+            return message('Please enter otp');
+        }
+    }
+
     const onFinish = async (params) => {
-        console.log('params:', params);
-        // params: {
-        //     "emailAddress": "kemboilewis6@gmail.com",
-        //     "confirmPassword": "@Usr0123",
-        //     "otpCode": "440fi",
-        //     "newPassword": "@Usr0123"
-        // }
         
         try {
+            const { emailAddress, confirmPassword } = params;
             if (params) {
-                // const response = await reset(params)
+                const response = await reset({ emailAddress, password:confirmPassword })
 
                 if (!response) {
                     messageApi.error('An error occured. Please try again.');
@@ -62,23 +72,29 @@ const ResetPassword = () => {
                         },
                     ]}
                 >
-                    <Input placeholder='Enter your email' className='formInput' />
+                    <Input placeholder='Enter your email' onChange={(e) => setEmail(e.target.value)} className='formInput' />
                 </Form.Item>
 
-                <Form.Item
+                {email && <Form.Item
                     name="otpCode"
                     className='formItem'
                     rules={[
-                        {
-                            required: true,
-                            message: 'Please enter otp code',
-                        },
+                            () => ({
+                                validator(_, value) {
+                                    
+                                    if (value) {
+                                        return Promise.resolve();
+                                    } else {
+                                        return Promise.reject(new Error('Please enter otp'));
+                                    }
+                                }
+                            })
                     ]}
                 >
-                    <Input placeholder='Enter otp code' className='formInput' />
-                </Form.Item>
+                    <Input placeholder='Enter otp code' disabled={!email} onChange={(e) => validateOtp(e)} className='formInput' />
+                </Form.Item>}
 
-                <Form.Item
+                {valid && <Form.Item
                     name="newPassword"
                     className='formItem'
                     rules={[
@@ -88,10 +104,10 @@ const ResetPassword = () => {
                         },
                     ]}
                 >
-                    <Input.Password placeholder='Enter new password' className='formInput' />
-                </Form.Item>
+                    <Input.Password placeholder='Enter new password' disabled={!email || !valid} className='formInput' />
+                </Form.Item>}
 
-                <Form.Item
+                {valid && <Form.Item
                     name="confirmPassword"
                     className='formItem'
                     rules={[
@@ -99,14 +115,26 @@ const ResetPassword = () => {
                             required: true,
                             validator: validatePasswordPattern,
                         },
+                        ({ getFieldValue }) => ({
+                            validator(_, value) {
+
+                                if (!value || getFieldValue('newPassword') === value) {
+                                    setPassword(true);
+                                    return Promise.resolve();
+                                } else {
+                                    setPassword(false)
+                                    return Promise.reject(new Error('Passwords do not match!'));
+                                }
+                            },
+                        }),
                     ]}
                 >
-                    <Input.Password placeholder='Confirm new password' className='formInput' />
-                </Form.Item>
+                    <Input.Password placeholder='Confirm new password' disabled={!email || !valid} className='formInput' />
+                </Form.Item>}
 
-                <Form.Item className='formButton' >
-                    <Button type="primary" className='submitButton' htmlType={"submit"} > Reset Password </Button>
-                </Form.Item>
+                {valid && <Form.Item className='formButton' >
+                    <Button disabled={!email || !password} type="primary" className='submitButton' htmlType={"submit"} > Reset Password </Button>
+                </Form.Item>}
 
                 <Form.Item className='formItem' >
                     Or <a href="" onClick={() => navigate("/login", { replace: true })}> Back to login </a>

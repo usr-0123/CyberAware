@@ -1,15 +1,16 @@
-export const validatePasswordPattern = (_, password) => {
+export const validatePasswordPattern = (rule, password) => {
+
   if (!password) {
     return Promise.reject('Please enter password');
   }
-  
+
   return new Promise((resolve, reject) => {
     const minLength = 8;
     const hasUpperCase = /[A-Z]/;
     const hasLowerCase = /[a-z]/;
     const hasDigit = /\d/;
     const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/;
-    
+
     const result = {
       minLength: password.length >= minLength,
       upperCase: hasUpperCase.test(password),
@@ -34,8 +35,14 @@ export const validatePasswordPattern = (_, password) => {
     } else {
       reject(unmetRequirements.join(', '));
     }
-  });
+  })
 };
+
+export const validatePasswordMatch = (password) => {
+  if (!password) {
+    return Promise.reject('Please re-enter your password');
+  }
+}
 
 export const validateNameLength = (rule, value) => {
   const fieldName = rule.field;

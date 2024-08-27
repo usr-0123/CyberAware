@@ -31,5 +31,13 @@ Content-Type: application/json
 {
     "emailAddress":"kemboilewis6@gmail.com",
     "password":"@Usr0123",
-    "otp":"@Usr0123"
+}
+
+###
+POST http://localhost:3100/api/users/getOtp
+Content-Type: application/json
+
+{
+    "emailAddress":"kemboilewis6@gmail.com",
+    "otp":"zep8n"
 }

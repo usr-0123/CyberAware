@@ -334,9 +334,27 @@ export const sendMail = async (params) => {
         }
     }
 
+    const subject = () => {
+        switch (params.option) {
+            case 'register':
+                return 'Account registration';
+            case 'login':
+                return 'Login success';
+            case 'update':
+                return 'Update successful';
+            case 'delete':
+                return 'Delete successful';
+            case 'otp':
+                return 'OTP code request successful';
+            default:
+                return 'Email System Notification';
+        }
+    }
+
     const mailOptions = {
         from: process.env.Email,
         to: params.Email_address,
+        subject: subject(),
         html: temp(),
     }
 
