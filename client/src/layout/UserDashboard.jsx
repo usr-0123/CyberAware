@@ -1,11 +1,12 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
+import UsersList from '../pages/admin/UsersList';
 
 function UserDashboard() {
     return (
-        <>User
+        <>
             <Routes>
-                {/* <Route path="dashboard" element={<UserDashboard />} /> */}
+                {/* <Route path="all-users" element={<UsersList />} /> */}
                 {/* <Route path="settings" element={<UserSettings />} /> */}
             </Routes>
         </>

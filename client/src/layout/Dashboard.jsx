@@ -16,17 +16,17 @@ function Dashboard() {
         }
     }, [navigate]);
 
-    const user = decodeToken();
-
     useEffect(() => {
+        const user = decodeToken();
+
         if (!user) {
-            navigate("/not-found", { replace: true });
+            navigate("/", { replace: true });
         } else if (user.usrRole === 'User') {
             navigate("/dashboard/user/*", { replace: true });
         } else if (user.usrRole === 'Admin') {
-            navigate("/dashboard/admin/*", { replace: true });
+            navigate("/dashboard/admin", { replace: true });
         }
-    }, [user, navigate]);
+    }, [navigate]);
 
     return (
         <div>

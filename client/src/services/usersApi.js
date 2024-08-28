@@ -7,8 +7,9 @@ export const usersApi = createApi({
     endpoints: (builder) => ({
 
         getAllUsers: builder.query({
-            query: () => "users/all",
+            query: () => 'users/all',
             providesTags: ["Users"],
+            method: "GET",
         }),
 
         getUserByEmail: builder.query({
@@ -85,5 +86,5 @@ export const usersApi = createApi({
 });
 
 export const {
-    useGetAllUsersQuery, useGetUserByEmailQuery, useGetUserByIdQuery, useGetOTPMutation, useSendOTPMutation, useResetPasswordMutation, useRegisterUserMutation, useLoginUserMutation, useUpdateUserMutation, useDeleteUserMutation
+    useGetAllUsersQuery ,useGetUserByEmailQuery, useGetUserByIdQuery, useGetOTPMutation, useSendOTPMutation, useResetPasswordMutation, useRegisterUserMutation, useLoginUserMutation, useUpdateUserMutation, useDeleteUserMutation
 } = usersApi;

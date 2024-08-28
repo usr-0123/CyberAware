@@ -28,5 +28,5 @@ app.use(cors(corsOptions))
 app.use('/api', usersRouter)
 
 app.listen(PORT, () => {
-    logger(`The server is running on port ${PORT}`);
+    logger.info(`The server is running on port ${PORT}`);
 })
