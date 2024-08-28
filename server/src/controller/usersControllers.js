@@ -90,7 +90,7 @@ export const loginUserController = async (req, res) => {
                     userID: user.recordset[0].userID,
                     emailAddress: user.recordset[0].emailAddress,
                     userName: user.recordset[0].userName
-                }, process.env.JWT_SECRET, { expiresIn: "24h" })
+                }, process.env.JWT_SECRET, { expiresIn: "6h" })
 
                 const mailOptions = {
                     option: 'login',

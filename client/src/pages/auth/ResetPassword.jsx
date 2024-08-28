@@ -1,14 +1,16 @@
 import { useNavigate } from "react-router-dom";
-import { Button, Form, Input, message } from 'antd';
+import { Button, Form, Input } from 'antd';
 import { useGetOTPMutation, useResetPasswordMutation } from "../../services/usersApi";
 import { validatePasswordPattern } from "../../helpers/validator";
 import { useState } from "react";
+import { alertService } from "../../service/alertService";
+
+const { showAlert } = alertService();
 
 const ResetPassword = () => {
     const [email, setEmail] = useState(false);
     const [password, setPassword] = useState(false);
     const [valid, setValid] = useState(false);
-    const [messageApi, contextHolder] = message.useMessage();
     const [reset, { isLoading }] = useResetPasswordMutation();
     const [fetchOtp, { isOTPLoading }] = useGetOTPMutation();
     const navigate = useNavigate();
@@ -30,29 +32,28 @@ const ResetPassword = () => {
         try {
             const { emailAddress, confirmPassword } = params;
             if (params) {
-                const response = await reset({ emailAddress, password:confirmPassword })
+                const response = await reset({ emailAddress, password:confirmPassword });
 
                 if (!response) {
-                    messageApi.error('An error occured. Please try again.');
+                    showAlert('error', 'An error occured. Please try again.', 'error', 3);
                     return;
                 }
 
                 if (response.data) {
-                    messageApi.success(`${response.data.Message}`);
+                    showAlert('success', `${response.data.Message}`, 'success', 3);
 
                     setTimeout(() => navigate("/login", { replace: true }), 3000);
                 } else {
-                    messageApi.error(`${response.error.data.Message}`);
+                    showAlert('error', `${response.error.data.Message}`, 'error', 3);
                 }
             }
         } catch (error) {
-            messageApi.error('An error occured. Please try again.');
+            showAlert('error', 'An error occured. Please try again.', 'error', 3)
         }
     }
 
     return (
         <div className='mainLayout'>
-            {contextHolder}
             <Form
                 onFinish={(e) => onFinish(e)}
                 className="authForm"

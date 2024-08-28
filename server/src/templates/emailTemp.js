@@ -1,6 +1,5 @@
 import nodemailer from 'nodemailer'
 import { logger } from '../utils/logger.js'
-import { sendBadRequest, sendServerError, successMessage } from '../helpers/helperFunctions.js'
 
 const company = {
     name: 'Luwi'
@@ -361,8 +360,8 @@ export const sendMail = async (params) => {
     try {
         logger.info("Sending email...")
         let info = await transporter.sendMail(mailOptions)
-        return {info}
+        return { info }
     } catch (error) {
-        return {error}
+        return { error }
     }
 }

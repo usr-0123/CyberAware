@@ -1,14 +1,16 @@
 import React from 'react';
 import './authStyles.scss'
-import { Button, Form, Input, message } from 'antd';
+import { Button, Form, Input } from 'antd';
 import { validatePasswordPattern } from '../../helpers/validator';
-import { authenticate } from '../../services/userServices';
 import barner from '../../assets/post1.jpg'
 import { useNavigate } from 'react-router-dom';
 import { useLoginUserMutation } from '../../services/usersApi';
+import { setToken } from '../../helpers/token';
+import { alertService } from '../../service/alertService';
+
+const { showAlert } = alertService();
 
 const LoginPage = () => {
-    const [messageApi, contextHolder] = message.useMessage();
     const navigate = useNavigate();
     const [login, { isLoading }] = useLoginUserMutation();
 
@@ -18,26 +20,27 @@ const LoginPage = () => {
                 const response = await login(params)
                 
                 if (!response) {
-                    messageApi.error('An error occured. Please try again.');
+                    showAlert('error', 'An error occured. Please try again.', 'error', 3)
                     return;
                 }
 
                 if (response.data) {
-                    messageApi.success(`${response.data.Message}`);
+                    showAlert('success', `${response.data.Message}`, 'success', 3);
 
+                    setToken(response.data.data)
+                    
                     setTimeout(() => navigate("/dashboard", { replace: true }), 3000);
                 } else {
-                    messageApi.error(`${response.error.data.Message}`);
+                    showAlert('error', `${response.error.data.Message}`, 'error', 3)
                 }
             }
         } catch (error) {
-            messageApi.error('An error occured. Please try again.');
+            showAlert('error', 'An error occured. Please try again.', 'error', 3)
         }
     }
 
     return (
         <div className='mainLayout'>
-            {contextHolder}
             <div className='image' style={{ borderRadius: "10px 0 0 10px" }}>
                 <img src={barner} alt="barner" style={{ borderRadius: "10px 0 0 10px" }} />
             </div>

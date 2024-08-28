@@ -1,11 +1,13 @@
-import { Button, Form, Input, message } from "antd";
+import { Button, Form, Input } from "antd";
 import { MailOutlined } from '@ant-design/icons';
 import { useSendOTPMutation } from "../../services/usersApi";
 import './authStyles.scss'
 import { useNavigate } from "react-router-dom";
+import { alertService } from "../../service/alertService";
+
+const { showAlert } = alertService();
 
 const ForgotPassword = () => {
-    const [messageApi, contextHolder] = message.useMessage();
     const [forgetPassword, { isLoading }] = useSendOTPMutation()
     const navigate = useNavigate();
 
@@ -14,26 +16,25 @@ const ForgotPassword = () => {
             if (e) {
                 const response = await forgetPassword(e)
                 if (!response) {
-                    messageApi.error('An error occured. Please try again.');
+                    showAlert('error', 'An error occured. Please try again.', 'error', 3);
                     return;
                 }
 
                 if (response.data) {
-                    messageApi.success(`${response.data.Message}`);
+                    showAlert('success', response.data.Message, 'success', 3);
 
                     setTimeout(() => navigate("/reset-password", { replace: true }), 3000);
                 } else {
-                    messageApi.error(`${response.error.data.Message}`);
+                    showAlert('error', response.error.data.Message, 'error', 3);
                 }
             }
         } catch (error) {
-            messageApi.error('An error occured. Please try again.');
+            showAlert('error', 'An error occured. Please try again.', 'error', 3);
         }
     }
 
     return (
         <div className='mainLayout'>
-            {contextHolder}
             <Form
                 name="normal_login"
                 className="authForm"

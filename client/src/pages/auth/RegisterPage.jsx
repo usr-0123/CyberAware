@@ -1,10 +1,13 @@
 import React from 'react';
 import './authStyles.scss';
-import { Button, Form, Input, message, Select, } from 'antd';
+import { Button, Form, Input, Select, } from 'antd';
 import { validateNameLength, validatePasswordPattern, validateUserNameLength } from '../../helpers/validator';
 import barner from '../../assets/post1.jpg';
 import { useNavigate } from 'react-router-dom';
 import { useRegisterUserMutation } from '../../services/usersApi';
+import { alertService } from '../../service/alertService';
+
+const { showAlert } = alertService();
 
 const genderOptions = [
     { label: 'Male', value: 0 },
@@ -12,32 +15,27 @@ const genderOptions = [
 ];
 
 const RegisterPage = () => {
-    const [messageApi, contextHolder] = message.useMessage();
     const navigate = useNavigate();
     const [register, { isLoading }] = useRegisterUserMutation();
     const onFinish = async (params) => {
 
         const response = await register(params);
 
-        console.log(response);
-        
-
         if (!response) {
-            messageApi.error('An error occured. Please try again.');
+            showAlert('error', 'An error occured. Please try again.', 'error', 3)
             return;
         };
 
         if (response && response.data) {
-            messageApi.success(`${response.data.Message}`);
+            showAlert('success', response.data.Message, 'success', 3)
             setTimeout(() => navigate("/login", { replace: true }), 3000);
         } else {
-            messageApi.error(`${response.error.data.Message}`);
+            showAlert('error', response.error.data.Message, 'error', 3)
         };
     };
 
     return (
         <div className='mainLayout'>
-            {contextHolder}
             <Form
                 onFinish={(e) => onFinish(e)}
                 className='authForm'
