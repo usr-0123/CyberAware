@@ -1,4 +1,4 @@
-import {jwtDecode} from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
 import { logout } from './logout';
 
 export const setToken = (param) => {
@@ -22,20 +22,20 @@ export const decodeToken = (params) => {
 };
 
 export const clearStorageOnTokenExpiry = () => {
-    
+
     const token = decodeToken();
-    
+
     if (token) {
         const currentTime = Date.now() / 1000;
-        
+
         if (token.exp < currentTime) {
-            
-            return logout({timeout:'timeout'})
+
+            return logout({ timeout: 'timeout' })
         }
     };
 
     if (!token) {
-        return {route: "/login"};
+        return { route: "/login" };
     };
     return;
 };

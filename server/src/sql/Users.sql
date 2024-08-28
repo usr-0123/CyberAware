@@ -1,18 +1,18 @@
--- CREATE TABLE tbl_Users (
---     userID VarChar(255) PRIMARY KEY,
---     usrRole Bit DEFAULT 0,
---     firstName VarChar(255),
---     lastName VarChar(255),
---     surName VarChar(255),
---     userName VarChar(255),
---     gender Bit DEFAULT 0,
---     emailAddress VarChar(255),
---     usrPassword VarChar(255),
---     phoneNumber VarChar(255),
---     dateOfBirth Date,
---     street VarChar(255),
---     profileURL VarChar(255)
--- );
+CREATE TABLE tbl_Users (
+    userID VarChar(255) PRIMARY KEY,
+    usrRole VARCHAR(10) DEFAULT 'User',
+    firstName VarChar(255),
+    lastName VarChar(255),
+    surName VarChar(255),
+    userName VarChar(255),
+    gender Bit DEFAULT 0,
+    emailAddress VarChar(255),
+    usrPassword VarChar(255),
+    phoneNumber VarChar(255),
+    dateOfBirth Date,
+    street VarChar(255),
+    profileURL VarChar(255)
+);
 
 -- DROP TABLE tbl_Users;
 -- DELETE FROM tbl_Users;
