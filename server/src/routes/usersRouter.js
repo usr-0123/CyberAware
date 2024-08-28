@@ -2,12 +2,15 @@ import { Router } from "express";
 
 // import { verifyTokenMiddleware } from "../middlewares/userAuthMiddleware";
 
-import { registerUserController, fetchUsersController, fetchUserByIdController, fetchUsersByEmailController, fetchUsersByUsernameController, updateUserDetailsController, deleteUserController, loginUserController } from '../controller/usersControllers.js'
+import { registerUserController, fetchUsersController, fetchUserByIdController, fetchUsersByEmailController, fetchUsersByUsernameController, updateUserDetailsController, deleteUserController, loginUserController, sendOTP, resetPasswordController, getOTP } from '../controller/usersControllers.js'
 
 const usersRouter = Router()
 
 usersRouter.post('/users/register', registerUserController)
 usersRouter.post('/user/login', loginUserController)
+usersRouter.post('/user/sendOtp/email', sendOTP)
+usersRouter.patch('/user/reset', resetPasswordController)
+usersRouter.post('/users/getOtp',getOTP)
 usersRouter.get('/users/all', fetchUsersController)
 usersRouter.get('/user/id/:userID', fetchUserByIdController)
 usersRouter.get('/user/email/:email', fetchUsersByEmailController)

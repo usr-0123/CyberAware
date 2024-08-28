@@ -1,9 +1,8 @@
 import nodemailer from 'nodemailer'
-import {logger} from '../utils/logger.js'
-import { sendBadRequest, sendServerError } from '../helpers/helperFunctions.js'
+import { logger } from '../utils/logger.js'
 
 const company = {
-    name:'Luwi'
+    name: 'Luwi'
 }
 
 const time = new Date()
@@ -229,7 +228,86 @@ export const deleteTemplate = (name) => {
     return template
 }
 
-export const sendMail = async (res, params) => {
+export const otpTemplate = (params) => {
+
+    const template = `
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f4f4;
+                margin: 0;
+                padding: 0;
+            }
+            .container {
+                width: 100%;
+                max-width: 600px;
+                margin: 0 auto;
+                background-color: #ffffff;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            .header {
+                text-align: center;
+                padding-bottom: 20px;
+            }
+            .header h1 {
+                margin: 0;
+                color: #333333;
+            }
+            .content {
+                text-align: center;
+                font-size: 18px;
+                color: #555555;
+            }
+            .otp {
+                display: inline-block;
+                font-size: 24px;
+                font-weight: bold;
+                margin: 20px 0;
+                padding: 10px 20px;
+                border-radius: 4px;
+                background-color: #f7f7f7;
+                border: 1px solid #cccccc;
+            }
+            .footer {
+                text-align: center;
+                padding-top: 20px;
+                font-size: 14px;
+                color: #777777;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h1>Your OTP Code</h1>
+            </div>
+            <div class="content">
+                <p>Thank you for choosing our services. To complete your reset password, please use the OTP code provided below:</p>
+                <div class="otp">${params.otpCode}</div>
+                <p>This OTP is valid for the next [duration] minutes. Please do not share this code with anyone, as it is intended to keep your account secure.</p>
+            </div>
+            <div class="footer">
+                <p>If you did not request this OTP or have any concerns, please contact our support team.</p>
+                <p>Thank you for your attention.</p>
+                <p>Best regards.</p>
+            </div>
+        </div>
+    </body>
+    </html>
+
+    `
+    return template;
+}
+
+export const sendMail = async (params) => {
+
     let transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -248,22 +326,42 @@ export const sendMail = async (res, params) => {
                 return updateTemplate(params.data);
             case 'delete':
                 return deleteTemplate(params.data);
+            case 'otp':
+                return otpTemplate(params)
             default:
-                return sendBadRequest(res, 'Email confirmation was not sent');
+                return;
         }
-    }    
+    }
+
+    const subject = () => {
+        switch (params.option) {
+            case 'register':
+                return 'Account registration';
+            case 'login':
+                return 'Login success';
+            case 'update':
+                return 'Update successful';
+            case 'delete':
+                return 'Delete successful';
+            case 'otp':
+                return 'OTP code request successful';
+            default:
+                return 'Email System Notification';
+        }
+    }
 
     const mailOptions = {
         from: process.env.Email,
         to: params.Email_address,
+        subject: subject(),
         html: temp(),
     }
 
     try {
-        logger.info('Sending mail....')
-        await transporter.sendMail(mailOptions)
-        logger.info('Email sent successfully!')
+        logger.info("Sending email...")
+        let info = await transporter.sendMail(mailOptions)
+        return { info }
     } catch (error) {
-        logger.error(error)
+        return { error }
     }
 }

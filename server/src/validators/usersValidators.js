@@ -3,18 +3,18 @@ import Joi from "joi";
 export const userValidator = (user) => {
     const userValidationSchema = Joi.object({
         firstName: Joi.string().max(255).required(),
-        lastName: Joi.string().max(255).allow(''),
+        lastName: Joi.string().max(255).required(),
         surName: Joi.string().max(255).allow(''),
-        userName: Joi.string().min(4).required(),
+        userName: Joi.string().max(255).allow(''),
         gender: Joi.number().integer().valid(0, 1).default(0).allow(''),
         emailAddress: Joi.string().email().required(),
         usrPassword: Joi
             .string()
-            .min(4)
-            .pattern(/^[a-zA-Z0-9_]{3,20}$/)
-            .message('The username should be 3-20 characters long and contains only letters, numbers, and underscores.')
+            .min(8)
+            .pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)
+            .message('The password should have a minimum length of 8 characters, at least one uppercase letter, at least one lowercase letter, at least one digit, and at least one special character.')
             .required(),
-        phoneNumber: Joi.string().max(255).required().allow(''),
+        phoneNumber: Joi.string().max(255).allow(''),
     })
 
     return userValidationSchema.validate(user)

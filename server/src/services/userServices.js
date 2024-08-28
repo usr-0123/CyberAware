@@ -13,7 +13,7 @@ export const registerUserService = async (newUser) => {
             .input('lastName', sql.VarChar, newUser.lastName)
             .input('surName', sql.VarChar, newUser.surName)
             .input('userName', sql.VarChar, newUser.userName)
-            .input('gender', sql.VarChar, newUser.gender)
+            .input('gender', sql.Int, newUser.gender)
             .input('emailAddress', sql.VarChar, newUser.emailAddress)
             .input('usrPassword', sql.VarChar, newUser.usrPassword)
             .input('phoneNumber', sql.VarChar, newUser.phoneNumber)
@@ -70,6 +70,7 @@ export const fetchUsersService = async (params) => {
 }
 
 export const updateUserService = async (userID, params) => {
+    
     let query = updateUserQuery(userID, params)
 
     try {
