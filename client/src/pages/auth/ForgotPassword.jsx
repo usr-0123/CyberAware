@@ -64,6 +64,11 @@ const ForgotPassword = () => {
                 >
                     Or <a href="" onClick={() => navigate("/login", { replace: true })}>login</a>
                 </Form.Item>
+                <Form.Item
+                    className='formItem'
+                >
+                    Already have reset password OTP? <a href="" onClick={() => navigate("/reset-password")}>reset password</a>
+                </Form.Item>
             </Form>
         </div>
     )
