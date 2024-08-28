@@ -5,7 +5,7 @@ import { validatePasswordPattern } from '../../helpers/validator';
 import barner from '../../assets/post1.jpg'
 import { useNavigate } from 'react-router-dom';
 import { useLoginUserMutation } from '../../services/usersApi';
-import { setToken } from '../../helpers/token';
+import { decodeToken, setToken } from '../../helpers/token';
 import { alertService } from '../../service/alertService';
 
 const { showAlert } = alertService();
@@ -14,11 +14,11 @@ const LoginPage = () => {
     const navigate = useNavigate();
     const [login, { isLoading }] = useLoginUserMutation();
 
-    const onFinish = async(params) => {
+    const onFinish = async (params) => {
         try {
             if (params) {
                 const response = await login(params)
-                
+
                 if (!response) {
                     showAlert('error', 'An error occured. Please try again.', 'error', 3)
                     return;
@@ -28,8 +28,11 @@ const LoginPage = () => {
                     showAlert('success', `${response.data.Message}`, 'success', 3);
 
                     setToken(response.data.data)
-                    
-                    setTimeout(() => navigate("/dashboard", { replace: true }), 3000);
+
+                    const role = decodeToken(response.data.data);
+
+                    setTimeout(() => navigate(role.userRole === 'Admin' ? "/dashboard/admin" : "/dashboard/user", { replace: true }), 3000);
+
                 } else {
                     showAlert('error', `${response.error.data.Message}`, 'error', 3)
                 }

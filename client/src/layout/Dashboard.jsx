@@ -1,33 +1,41 @@
-import { useEffect } from "react";
-import { Button } from "antd";
-import { logout } from "../helpers/logout";
-import { useNavigate } from "react-router-dom";
-import { clearStorageOnTokenExpiry } from "../helpers/token";
+import React, { useEffect } from "react";
+import { Route, Routes, useNavigate } from "react-router-dom";
+import { clearStorageOnTokenExpiry, decodeToken } from "../helpers/token";
 
-const Dashboard = () => {
+import UserRoutes from "./UserDashboard";
+import AdminRoutes from "./AdminDashboard";
+
+function Dashboard() {
     const navigate = useNavigate();
 
     useEffect(() => {
         const response = clearStorageOnTokenExpiry();
-    
+
         if (response && response.route) {
             navigate(response.route, { replace: true });
         }
-      }, [logout]);
+    }, [navigate]);
 
-    const logOut = async() => {
-        const response = await logout({logout});
-        if (response.route) {
-            
-            navigate(response.route, {replace: true});
+    const user = decodeToken();
+
+    useEffect(() => {
+        if (!user) {
+            navigate("/not-found", { replace: true });
+        } else if (user.usrRole === 'User') {
+            navigate("/dashboard/user/*", { replace: true });
+        } else if (user.usrRole === 'Admin') {
+            navigate("/dashboard/admin/*", { replace: true });
         }
-    };
+    }, [user, navigate]);
 
     return (
-        <>Dashboard
-            <Button onClick={() => logOut()}>Logout</Button>
-        </>
-    )
+        <div>
+            <Routes>
+                <Route path="user/*" element={<UserRoutes />} />
+                <Route path="admin/*" element={<AdminRoutes />} />
+            </Routes>
+        </div>
+    );
 }
 
 export default Dashboard;

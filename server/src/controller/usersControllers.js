@@ -88,6 +88,7 @@ export const loginUserController = async (req, res) => {
             if (validPass) {
                 const token = jwt.sign({
                     userID: user.recordset[0].userID,
+                    usrRole: user.recordset[0].usrRole,
                     emailAddress: user.recordset[0].emailAddress,
                     userName: user.recordset[0].userName
                 }, process.env.JWT_SECRET, { expiresIn: "6h" })

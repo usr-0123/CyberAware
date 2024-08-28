@@ -3,8 +3,8 @@ import dotenv from 'dotenv'
 import cors from 'cors'
 import bodyParser from 'body-parser'
 
-// Routes
 import usersRouter from './src/routes/usersRouter.js'
+import { logger } from './src/utils/logger.js'
 
 dotenv.config()
 
@@ -17,8 +17,6 @@ var corsOptions = {
 
 const PORT = process.env.API_PORT || 8000
 
-console.log(`${PORT}`);
-
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
         extended:true
@@ -30,5 +28,5 @@ app.use(cors(corsOptions))
 app.use('/api', usersRouter)
 
 app.listen(PORT, () => {
-    console.log(`The server is running on port ${PORT}`);
+    logger(`The server is running on port ${PORT}`);
 })
