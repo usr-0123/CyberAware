@@ -31,11 +31,7 @@ const AdminHomeStatistics = () => {
     const [props, setProps] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    console.log(isModalOpen);
-
     const onRow = (e) => {
-        console.log(e);
-        
         setProps(e);
         setIsModalOpen();
     };

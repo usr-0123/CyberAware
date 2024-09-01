@@ -7,7 +7,6 @@ import AdminHomeInfo from './adminHome/AdminHimeInfo';
 import AdminHomeFAQs from './adminHome/AdminHomeFAQs';
 
 const onChange = (key) => {
-    console.log(key);
 };
 
 const tabItems = [
