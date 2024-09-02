@@ -14,7 +14,17 @@ Content-Type: application/json
 }
 
 ###
+POST http://localhost:3100/api/user/login
+Content-Type: application/json
+
+{
+    "emailAddress":"kemboilewis6@gmail.com",
+    "password":"@Usr0123",
+}
+
+###
 GET http://localhost:3100/api/users/all
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiJjYjRhZWFlMC1mYzczLTRlZDgtYmY0NS05MjM3YmVkNjhiODAiLCJ1c3JSb2xlIjoiQWRtaW4iLCJlbWFpbEFkZHJlc3MiOiJrZW1ib2lsZXdpczZAZ21haWwuY29tIiwidXNlck5hbWUiOiJsdXdpIiwiaWF0IjoxNzI1Mjc1NjU5LCJleHAiOjE3MjUyOTcyNTl9.MdnWXdhTYU2ABR47eaJiou-qhBw4L4zaZg0QpOjRJ6Q
 
 ###
 POST http://localhost:3100/api/user/sendOtp/email
@@ -40,4 +50,13 @@ Content-Type: application/json
 {
     "emailAddress":"kemboilewis6@gmail.com",
     "otp":"zep8n"
+}
+
+###
+POST http://localhost:3100/api/category/create
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiJjYjRhZWFlMC1mYzczLTRlZDgtYmY0NS05MjM3YmVkNjhiODAiLCJ1c3JSb2xlIjoiQWRtaW4iLCJlbWFpbEFkZHJlc3MiOiJrZW1ib2lsZXdpczZAZ21haWwuY29tIiwidXNlck5hbWUiOiJsdXdpIiwiaWF0IjoxNzI1Mjc1NjU5LCJleHAiOjE3MjUyOTcyNTl9.MdnWXdhTYU2ABR47eaJiou-qhBw4L4zaZg0QpOjRJ6Q
+Content-Type: application/json
+
+{
+    "categoryName":"Test Category"
 }

@@ -1,5 +1,5 @@
 export const registerUserQuery = `INSERT INTO tbl_Users ( userID, firstName, lastName, surName, userName, gender, emailAddress, usrPassword, phoneNumber, dateOfBirth, street)
-VALUES ( @userID, @firstName, @lastName, @surName, @userName, @gender, @emailAddress, @usrPassword, @phoneNumber, @dateOfBirth, @street)`
+VALUES ( @userID, @firstName, @lastName, @surName, @userName, @gender, @emailAddress, @usrPassword, @phoneNumber, @dateOfBirth, @street)`;
 
 export const fetchUsersQuery = `SELECT userID, firstName, lastName, surName, userName, gender, emailAddress, phoneNumber, dateOfBirth, street FROM tbl_Users`
 

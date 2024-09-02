@@ -205,7 +205,7 @@ export const fetchUsersController = async (req, res) => {
         }
 
     } catch (error) {
-        sendServerError(res, error)
+        return sendServerError(res, error)
     }
 }
 
@@ -221,7 +221,7 @@ export const fetchUserByIdController = async (req, res) => {
         }
 
     } catch (error) {
-        sendServerError(res, error)
+        return sendServerError(res, error)
     }
 
 }
@@ -240,7 +240,7 @@ export const fetchUsersByEmailController = async (req, res) => {
         }
 
     } catch (error) {
-        sendServerError(res, error)
+        return sendServerError(res, error)
     }
 
 }
@@ -261,7 +261,7 @@ export const fetchUsersByUsernameController = async (req, res) => {
             return successMessage(res, `No user with the username ${params.userName}, records found`)
         }
     } catch (error) {
-        sendServerError(res, error)
+        return sendServerError(res, error)
     }
 
 }
@@ -294,7 +294,7 @@ export const updateUserDetailsController = async (req, res) => {
             }
 
         } catch (error) {
-            sendServerError(res, error)
+            return sendServerError(res, error)
         }
 
     } else {
