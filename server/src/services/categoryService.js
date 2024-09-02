@@ -22,10 +22,10 @@ export const fetchAllCategories = async (params) => {
     let query;
 
     if (!params) {
-        query = fetchAllCategoriesQuery
+        query = fetchAllCategoriesQuery;
     } else {
         if (params.categoryId) {
-            query = fetchAllCategoriesQuery + ` WHERE categoryID = '${params.categoryId}'`
+            query = fetchAllCategoriesQuery + ` WHERE categoryID = '${params.categoryId}'`;
         };
     };
 

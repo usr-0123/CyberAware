@@ -6,6 +6,7 @@ import bodyParser from 'body-parser';
 import usersRouter from './src/routes/usersRouter.js';
 import { logger } from './src/utils/logger.js';
 import categoryRouter from './src/routes/categoryRouter.js';
+import questionRouter from './src/routes/questionsRouter.js';
 
 dotenv.config();
 
@@ -28,6 +29,7 @@ app.use(cors(corsOptions));
 
 app.use('/api', usersRouter);
 app.use('/api', categoryRouter);
+app.use('/api', questionRouter);
 
 app.listen(PORT, () => {
     logger.info(`The server is running on port ${PORT}`);

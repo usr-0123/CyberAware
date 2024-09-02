@@ -1,6 +1,8 @@
-CREATE TABLE tbl_Categories (
+CREATE TABLE tbl_Categories
+(
     categoryID VarChar(255) PRIMARY KEY,
     categoryName VarChar(255),
 );
 
-SELECT * FROM tbl_Categories;
+SELECT *
+FROM tbl_Categories;

@@ -1,5 +1,5 @@
 import { v4 } from "uuid"
-import { dataFound, sendCreated, sendServerError, successMessage } from "../helpers/helperFunctions.js";
+import { dataFound, sendCreated, sendNotFound, sendServerError, successMessage } from "../helpers/helperFunctions.js";
 import { createCategoryService, deleteCategoryService, fetchAllCategories, updateCategoryService } from "../services/categoryService.js";
 
 export const createCategoryController = async (req, res) => {
@@ -55,7 +55,7 @@ export const fetchAllCategoriesByIdControllers = async (req, res) => {
         if (result.rowsAffected > 0) {
             return dataFound(res, result.recordset, 'All categories fetched.');
         } else {
-            return successMessage(res, 'No category entry found.');
+            return sendNotFound(res, 'No category entry found.');
         }
 
     } catch (error) {
