@@ -1,7 +1,6 @@
-import { createNewCategoryQuery, deleteCategoryEntryQuery, fetchAllCategoriesQuery, updateCategoryQuery } from "../helpers/categoryQuery.js"
+import { createNewCategoryQuery, deleteCategoryEntryQuery, fetchAllCategoriesQuery, updateCategoryQuery } from "../queries/categoryQuery.js"
 import { poolrequest, sql } from "../utils/dbConnect.js"
 
-// C
 export const createCategoryService = async (newcategory) => {
     try {
 
@@ -17,7 +16,6 @@ export const createCategoryService = async (newcategory) => {
     };
 };
 
-// R
 export const fetchAllCategories = async (params) => {
     let query;
 
@@ -38,7 +36,6 @@ export const fetchAllCategories = async (params) => {
     };
 };
 
-// U
 export const updateCategoryService = async (params) => {
     if (!params.categoryName && !params.categoryId) {
         return { errorMessage: 'Please provide the required fields.' };
@@ -54,7 +51,6 @@ export const updateCategoryService = async (params) => {
     };
 };
 
-// D
 export const deleteCategoryService = async (params) => {
     let query = deleteCategoryEntryQuery + `'${params.categoryId}'`;
 

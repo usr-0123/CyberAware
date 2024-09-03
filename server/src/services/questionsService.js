@@ -1,7 +1,7 @@
-import { createNewQuestionQuery, deleteQuestionsQuery, fetchAllQuestionsQuery, updateQuestionsQuery } from "../helpers/questionsQuery.js";
+import { createNewQuestionQuery, deleteQuestionsQuery, fetchAllQuestionsQuery, updateQuestionsQuery } from "../queries/questionsQuery.js";
+
 import { poolrequest, sql } from "../utils/dbConnect.js";
 
-// c
 export const createQuestionService = async (newQuestion) => {
     try {
 
@@ -20,7 +20,6 @@ export const createQuestionService = async (newQuestion) => {
     };
 };
 
-// r
 export const fetchQuestionsService = async (params) => {
     let query;
 
@@ -39,7 +38,6 @@ export const fetchQuestionsService = async (params) => {
     }
 };
 
-// u
 export const updateQuestionService = async (params) => {
     
     if (!params.questionId &&
@@ -57,7 +55,6 @@ export const updateQuestionService = async (params) => {
     };
 };
 
-// d
 export const deleteQuestionService = async (params) => {
     let query = deleteQuestionsQuery + `'${params.questionId}'`;
 

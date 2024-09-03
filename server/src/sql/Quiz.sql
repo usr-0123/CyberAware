@@ -1,0 +1,5 @@
+CREATE TABLE tbl_Quiz (
+    quizId VARCHAR(255) PRIMARY KEY,
+    userId VARCHAR(255) NOT NULL,
+    quizDate DATE NOT NULL
+);

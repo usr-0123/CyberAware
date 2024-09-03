@@ -7,6 +7,7 @@ import usersRouter from './src/routes/usersRouter.js';
 import { logger } from './src/utils/logger.js';
 import categoryRouter from './src/routes/categoryRouter.js';
 import questionRouter from './src/routes/questionsRouter.js';
+import quizRouter from './src/routes/quizRouter.js';
 
 dotenv.config();
 
@@ -30,6 +31,7 @@ app.use(cors(corsOptions));
 app.use('/api', usersRouter);
 app.use('/api', categoryRouter);
 app.use('/api', questionRouter);
+app.use('/api', quizRouter);
 
 app.listen(PORT, () => {
     logger.info(`The server is running on port ${PORT}`);

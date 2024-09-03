@@ -1,6 +1,6 @@
 import dotenv from 'dotenv'
 import { poolrequest, sql } from '../utils/dbConnect.js'
-import { authenticateUserQuery, deleteUserQuery, fetchUsersQuery, registerUserQuery, updateUserQuery } from '../helpers/userQuery.js'
+import { authenticateUserQuery, deleteUserQuery, fetchUsersQuery, registerUserQuery, updateUserQuery } from '../queries/userQuery.js'
 
 dotenv.config()
 
