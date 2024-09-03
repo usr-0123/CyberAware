@@ -12,7 +12,7 @@ const { showAlert } = alertService();
 
 const LoginPage = () => {
     const navigate = useNavigate();
-    const [login, { isLoading }] = useLoginUserMutation();
+    const [login] = useLoginUserMutation();
 
     const onFinish = async (params) => {
         try {

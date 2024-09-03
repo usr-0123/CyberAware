@@ -1,6 +1,6 @@
 import { v4 } from "uuid";
 import { dataFound, sendNotFound, sendServerError, successMessage } from "../helpers/helperFunctions.js";
-import { createQuestionService, deleteQuestionService, fetchQuestionsService, updateQuestionService } from "../services/questionsService.js";
+import { createQuestionService, deleteQuestionService, fetchQuestionsService, fetchQuestionsWithCategoryService, updateQuestionService } from "../services/questionsService.js";
 import { questionValidator } from "../validators/questionValidators.js";
 
 export const createNewQuestionController = async (req, res) => {
@@ -65,6 +65,37 @@ export const fetchQuestionByIdController = async (req, res) => {
     };
 };
 
+export const fetchQuestionsWithCategoryController = async (req, res) => {
+
+    try {
+        const result = await fetchQuestionsWithCategoryService();
+        if (result.rowsAffected > 0) {
+            return dataFound(res, result.recordset, 'Question entries fetched.');
+        } else {
+            return sendNotFound(res, 'No question entry found.');
+        };
+    } catch (error) {
+        return sendServerError(res, error.message);
+    };
+};
+
+export const fetchQuestionsWithCategoryByIdController = async (req, res) => {
+    let params;
+
+    params = { questionId: req.params.questionId };
+
+    try {
+        const result = await fetchQuestionsWithCategoryService(params);
+        if (result.rowsAffected > 0) {
+            return dataFound(res, result.recordset, 'Question entry fetched.');
+        } else {
+            return sendNotFound(res, 'No question entry found.');
+        };
+    } catch (error) {
+        return sendServerError(res, error.message);
+    };
+};
+
 export const updateQuestionController = async (req, res) => {
     try {
 
@@ -94,7 +125,7 @@ export const updateQuestionController = async (req, res) => {
 
 export const deleteQuestionController = async (req, res) => {
     const params = { questionId: req.params.questionId };
-
+    
     try {
         const available_entry = await fetchQuestionsService(params);
         if (available_entry.rowsAffected[0] > 0) {

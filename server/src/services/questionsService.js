@@ -1,4 +1,4 @@
-import { createNewQuestionQuery, deleteQuestionsQuery, fetchAllQuestionsQuery, updateQuestionsQuery } from "../queries/questionsQuery.js";
+import { createNewQuestionQuery, deleteQuestionsQuery, fetchAllQuestionsQuery, fetchQuestionsWithCategoryQuery, updateQuestionsQuery } from "../queries/questionsQuery.js";
 
 import { poolrequest, sql } from "../utils/dbConnect.js";
 
@@ -38,8 +38,28 @@ export const fetchQuestionsService = async (params) => {
     }
 };
 
+export const fetchQuestionsWithCategoryService = async (params) => {
+
+    let query;
+
+    if (!params) {
+        query = fetchQuestionsWithCategoryQuery;
+    } else {
+        query = fetchQuestionsWithCategoryQuery + ` WHERE q.questionId = '${params.questionId}'`;
+    };
+
+    try {
+        const result = await poolrequest()
+            .query(query);
+        return result;
+    } catch (error) {
+        return error;
+    };
+
+};
+
 export const updateQuestionService = async (params) => {
-    
+
     if (!params.questionId &&
         (!params.questionWeight || !params.questionCategoryId || !params.questionText)) {
         return { errorMessage: 'Please provide the required fields.' };

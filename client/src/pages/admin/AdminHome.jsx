@@ -22,7 +22,7 @@ const tabItems = [
     },
     {
         key: '3',
-        label: 'Quizes',
+        label: 'Questions',
         children: <AdminHomeQuizes />
     },
     {
