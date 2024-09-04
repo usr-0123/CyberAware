@@ -6,9 +6,6 @@ import AdminHomeQuizes from './adminHome/AdminQuizes';
 import AdminHomeInfo from './adminHome/AdminHimeInfo';
 import AdminHomeFAQs from './adminHome/AdminHomeFAQs';
 
-const onChange = (key) => {
-};
-
 const tabItems = [
     {
         key: '1',
@@ -41,9 +38,9 @@ const AdminHome = () => {
     return (
         <>
             <h1>Admin Home</h1>
-            <Tabs defaultActiveKey="1" items={tabItems} onChange={onChange} />
+            <Tabs defaultActiveKey="1" items={tabItems} />
         </>
     )
-}
+};
 
 export default AdminHome;

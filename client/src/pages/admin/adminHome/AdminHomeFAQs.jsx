@@ -20,7 +20,6 @@ const AdminHomeFAQs = () => {
         <>
             <h1>Admin Home FAQs</h1>
             <Table title={() => 'Frequently Asked Questions'} columns={columns} dataSource={arrayData} bordered />
-            <Button type="primary">Add FAQ</Button>
         </>
     );
 };

@@ -29,7 +29,6 @@ const AdminHomeInfo = () => {
         <>
             <h1>Admin Home Info</h1>
             <Table title={() => 'Educational Information Content'} columns={columns} dataSource={arrayData} bordered />
-            <Button type="primary">Add Content</Button>
         </>
     );
 };
