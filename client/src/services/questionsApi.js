@@ -46,10 +46,14 @@ export const questionsApi = createApi({
         }),
 
         updateQuestion: builder.mutation({
-            query: (questionId) => ({
+            query: ({ questionId, editedValues }) => ({
                 url: `question/update/${questionId}`,
                 method: "PATCH",
-                body: question,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'questionId': questionId
+                },
+                body: editedValues
             }),
             invalidatesTags: ["Questions"],
         }),

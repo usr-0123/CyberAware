@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
+import EditQuestionForm from "./EditQuestionForm";
 
-const QuestionModal = ({ selectedQId, data }) => {
-[]    
+const QuestionModal = ({ selectedQId, setIsModalOpen, data, edit }) => {
     const [questionObject, setQuestionObject] = useState({});
 
     useEffect(() => {
@@ -16,11 +16,12 @@ const QuestionModal = ({ selectedQId, data }) => {
     }, [selectedQId, data]);
 
     return (
-        <>
-            <p><strong>Created Date:</strong> {questionObject.createdDate || "N/A"}</p>
-            <p><strong>Question Text:</strong> {questionObject.questionText || "N/A"}</p>
-            <p><strong>Category Name:</strong> {questionObject.categoryName || "N/A"}</p>
-        </>
+        edit ? < EditQuestionForm questionId={selectedQId} allData={data} setIsModalOpen={setIsModalOpen} /> :
+            <>
+                <p><strong>Created Date:</strong> {questionObject.createdDate || "N/A"}</p>
+                <p><strong>Question Text:</strong> {questionObject.questionText || "N/A"}</p>
+                <p><strong>Category Name:</strong> {questionObject.categoryName || "N/A"}</p>
+            </>
     );
 };
 

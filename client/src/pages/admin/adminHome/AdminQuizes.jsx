@@ -4,17 +4,19 @@ import { useDeleteQuestionMutation, useGetAllQuestionsCategoryQuery } from "../.
 import { convertDateToFormat } from "../../../helpers/dateConvertion";
 import QuestionModal from "../../../components/Layout/adminDashboard/adminHome/QuestionModal";
 import { alertService } from "../../../service/alertService";
+import NewQuestionForm from "../../../components/Layout/adminDashboard/adminHome/NewQuestionForm";
 
 const { showAlert } = alertService();
 
 const AdminHomeQuizes = () => {
     const [arrayData, setArrayData] = useState();
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isNewQuestionModalOpen, setIsNewQuestionModalOpen] = useState(false);
     const [selectedQId, setSelectedQId] = useState(null);
+    const [edit, setEdit] = useState(false);
 
     const { data, isError, refetch } = useGetAllQuestionsCategoryQuery();
-    refetch();
-    const [del, { isLoading: isDeleting, error: deleteError }] = useDeleteQuestionMutation();
+    const [del, { isLoading: isDeleting }] = useDeleteQuestionMutation();
 
     const handleSelect = (questionId) => {
         setSelectedQId(questionId);
@@ -25,17 +27,18 @@ const AdminHomeQuizes = () => {
         if (selectedQId) {
             const response = await del(selectedQId);
             if (response.error) {
-                showAlert('error', response.error.data.Message, 'error', 3);
+                showAlert('Error', response.error.data.Message, 'error', 3);
                 refetch();
             } else {
-                showAlert('success', 'Question deleted successfully', 'success', 3);
+                showAlert('Success', 'Question deleted successfully', 'success', 3);
                 setArrayData([]);
                 refetch();
-                setIsModalOpen(false);
             }
         } else {
-            showAlert('error', 'No question selected', 'error', 3);
-        }
+            showAlert('Error', 'No question selected to be deleted', 'error', 3);
+        };
+
+        setIsModalOpen(false);
     };
 
     const columns = [
@@ -69,9 +72,8 @@ const AdminHomeQuizes = () => {
 
     return (
         <>
-            <h1>Admin Home Quizzes</h1>
             <Table
-                title={() => 'Available Quizzes'}
+                title={() => 'Available Questions'}
                 columns={columns}
                 onRow={(record) => ({
                     onClick: () => handleSelect(record.questionId)
@@ -89,12 +91,26 @@ const AdminHomeQuizes = () => {
                 width={500}
                 footer={[
                     <Button key="delete" onClick={handleDelete} loading={isDeleting}>Delete</Button>,
-                    <Button key="edit">Edit</Button>
+                    !edit && <Button key="edit" onClick={() => setEdit(!edit)} >Edit</Button>,
+                    edit && <Button key="cancelEdit" onClick={() => setEdit(!edit)} >Cancel Edit</Button>
                 ]}
             >
-                <QuestionModal selectedQId={selectedQId} data={arrayData} />
+                <QuestionModal selectedQId={selectedQId} setIsModalOpen={setIsModalOpen} data={arrayData} edit={edit} />
             </Modal>
-            <Button type="primary">Add Quiz</Button>
+
+            <Modal
+                title="New Question Input Form"
+                centered
+                open={isNewQuestionModalOpen}
+                onOk={() => setIsNewQuestionModalOpen(false)}
+                onCancel={() => setIsNewQuestionModalOpen(false)}
+                width={500}
+                footer={false}
+            >
+                <NewQuestionForm setIsNewQuestionModalOpen={setIsNewQuestionModalOpen} />
+            </Modal>
+
+            <Button type="primary" key="add" onClick={() => setIsNewQuestionModalOpen(!isNewQuestionModalOpen)} style={{ margin: '10px' }} >Add Quiz</Button>
         </>
     );
 };
