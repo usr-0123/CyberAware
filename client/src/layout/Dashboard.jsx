@@ -15,7 +15,7 @@ function Dashboard() {
     const [isCollapsed, setIsCollapsed] = useState(true);
     const [isAdmin, setIsAdmin] = useState(false);
     const navigate = useNavigate();
-    
+
     const handleLogout = async () => {
         const route = await logout();
         navigate(route.route, { replace: true });
@@ -55,7 +55,7 @@ function Dashboard() {
             navigate(item.key);
         }
     };
-    
+
     return (
         <div>
             <Layout>
@@ -95,6 +95,7 @@ function Dashboard() {
                         <Sider
                             style={{
                                 background: colorBgContainer,
+                                height: 'max-content'
                             }}
                             width={200}
                             collapsed={isCollapsed}
