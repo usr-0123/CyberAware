@@ -1,4 +1,4 @@
-import { Button, Form, Input } from "antd";
+import { Button, Form, Input, Select } from "antd";
 import { useEffect, useState } from "react";
 import { alertService } from "../../../../service/alertService";
 import { useUpdateUserMutation } from "../../../../services/usersApi";
@@ -11,7 +11,7 @@ const EditUserDetailsForm = ({ userID, allData, setIsModalOpen, setEdit }) => {
 
     const onFinish = async (values) => {
 
-        if (values && !values.firstName && !values.lastName && !values.surName && !values.userName && !values.emailAddress && !values.phoneNumber && !values.street) {
+        if (values && !values.firstName && !values.lastName && !values.surName && !values.userName && !values.emailAddress && !values.phoneNumber && !values.street && !values.usrRole) {
             showAlert('Error', 'Please change atleast one field to make the update', 'error', 3);
             return;
         };
@@ -24,23 +24,24 @@ const EditUserDetailsForm = ({ userID, allData, setIsModalOpen, setEdit }) => {
             ...(values.emailAddress && { emailAddress: values.emailAddress }),
             ...(values.phoneNumber && { phoneNumber: values.phoneNumber }),
             ...(values.street && { street: values.street }),
+            ...(values.usrRole && { usrRole: values.usrRole }),
         };
 
         try {
             if (userID) {
                 const response = await update({ userID, editedValues });
-                
+
                 if (response?.data) {
                     showAlert('Success', response.data.Message, 'success', 3);
                     setEdit(false);
                 } else {
                     showAlert('Error', response.error.data.Message, 'error', 3);
                 };
-                
+
             } else {
                 showAlert('Error', 'No user entry was selected to be edited', 'error', 3);
             }
-            
+
         } catch (error) {
             showAlert('Error', 'There was an error while editing details. Please retry.', 'error', 3);
         };
@@ -62,6 +63,21 @@ const EditUserDetailsForm = ({ userID, allData, setIsModalOpen, setEdit }) => {
             name="editUserForm"
             onFinish={onFinish}
         >
+            <Form.Item
+                name="usrRole"
+                label="User Role"
+            >
+                <Select options={[
+                    {
+                        value: 'User',
+                        label: 'User',
+                    },
+                    {
+                        value: 'Admin',
+                        label: 'Admin',
+                    },
+                ]} placeholder={userObject?.usrRole} />
+            </Form.Item>
 
             <Form.Item
                 name="firstName"

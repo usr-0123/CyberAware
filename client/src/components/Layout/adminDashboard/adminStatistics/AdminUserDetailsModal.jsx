@@ -26,6 +26,7 @@ const AdminUserDetailsModal = ({ selectedUserId, setIsModalOpen, data, edit, set
                 <p><strong>Phone Number:</strong> {userObject.phoneNumber || "N/A"}</p>
                 <p><strong>Date of Birth:</strong> {userObject.dateOfBirth || "N/A"}</p>
                 <p><strong>Street Address:</strong> {userObject.street || "N/A"}</p>
+                <p><strong>Role:</strong> {userObject.usrRole || "N/A"}</p>
             </>
     );
 };

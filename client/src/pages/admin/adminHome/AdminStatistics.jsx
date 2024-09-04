@@ -28,6 +28,10 @@ const columns = [
         title: 'Phone Number',
         dataIndex: 'phoneNumber',
         key: 'phoneNumber'
+    }, {
+        title: 'User Role',
+        dataIndex: 'usrRole',
+        key: 'usrRole'
     },
 ];
 
