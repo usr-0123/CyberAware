@@ -1,25 +1,41 @@
-import { Button, Table } from "antd";
-import { useState } from "react";
+import { Collapse } from "antd";
+import { useEffect, useState } from "react";
 
-const columns = [
-    {
-        title: 'FAQuestion',
-        dataIndex: 'firstName',
-        key: 'firstName'
-    }, {
-        title: 'Description',
-        dataIndex: 'lastName',
-        key: 'lastName'
-    }
-];
+import data from '../../../.json';
+
+const { Panel } = Collapse;
 
 const AdminHomeFAQs = () => {
-    const [arrayData, setArrayData] = useState();
+    const [arrayData, setArrayData] = useState([]);
+
+    useEffect(() => {
+        if (data && data.body) {
+            const faqs = data.body.filter(object => object.title === "FAQ Section")
+
+            if (faqs && faqs.length > 0) {
+                setArrayData(faqs[0].Content);
+            } else {
+                setArrayData([]);
+            };
+        }
+    }, []);
+
+    const collapseItems = arrayData?.map((item, index) => ({
+        key: String(index + 1),
+        label: item.question,
+        children: item.answer
+    }));
 
     return (
         <>
-            <h1>Admin Home FAQs</h1>
-            <Table title={() => 'Frequently Asked Questions'} columns={columns} dataSource={arrayData} bordered />
+            <h1>Frequently Asked Questions</h1>
+            <Collapse>
+                {collapseItems?.map((item) => (
+                    <Panel header={item.label} key={item.key}>
+                        {item.children}
+                    </Panel>
+                ))}
+            </Collapse>
         </>
     );
 };
