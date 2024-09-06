@@ -6,6 +6,8 @@ export const createQuestionService = async (newQuiz) => {
     try {
         const result = await poolrequest()
             .input('quizId', sql.VarChar, newQuiz.quizId)
+            .input('questionId', sql.VarChar, newQuiz.questionId)
+            .input('response', sql.VarChar, newQuiz.response)
             .input('userId', sql.VarChar, newQuiz.userId)
             .input('quizDate', sql.DateTime, newQuiz.quizDate)
             .query(createNewQuiz)
@@ -30,6 +32,10 @@ export const fetchQuizService = async (params) => {
         if (params.quizId) {
             query = fetchAllQuizes + ` where quizId = '${params.quizId}'`;
         };
+
+        if (params.questionId) {
+            query = fetchAllQuizes + ` where questionId = '${params.questionId}'`;
+        };
     };
 
     try {
@@ -43,7 +49,7 @@ export const fetchQuizService = async (params) => {
 
 export const updateQuizService = async (params) => {
 
-    if (!params.quizDate && (!params.quizDate && !params.userId)) {
+    if (!params.quizDate && (!params.quizDate && !params.userId && !params.questionId)) {
         return { errorMessage: 'Please provide the required fields.' };
     };
 

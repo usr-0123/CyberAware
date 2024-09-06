@@ -28,8 +28,8 @@ function AdminDashboard() {
     return (
         <Routes>
             <Route index element={<AdminHome />} />
-            <Route path="/all-users" element={<UsersList />} />
             <Route path="/admin-home" element={<AdminHome />} />
+            <Route path="/all-users" element={<UsersList />} />
         </Routes>
     );
 }

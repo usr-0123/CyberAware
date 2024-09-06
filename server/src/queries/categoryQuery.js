@@ -1,4 +1,4 @@
-export const createNewCategoryQuery = `INSERT INTO tbl_Categories (categoryID, categoryName) VALUES (@categoryID, @categoryName)`;
+export const createNewCategoryQuery = `INSERT INTO tbl_Categories (categoryID, categoryName, categoryDescription) VALUES (@categoryID, @categoryName, @categoryDescription)`;
 
 export const fetchAllCategoriesQuery = `SELECT * FROM tbl_Categories`;
 

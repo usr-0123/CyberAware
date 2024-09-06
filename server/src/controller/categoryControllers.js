@@ -5,7 +5,7 @@ import { createCategoryService, deleteCategoryService, fetchAllCategories, updat
 export const createCategoryController = async (req, res) => {
 
     try {
-        const { categoryName } = req.body;
+        const { categoryName, categoryDescription } = req.body;
 
         const categories = await fetchAllCategories();
 
@@ -17,7 +17,7 @@ export const createCategoryController = async (req, res) => {
 
             const categoryId = v4();
 
-            const newCategory = { categoryId, categoryName };
+            const newCategory = { categoryId, categoryName, categoryDescription };
 
             const result = await createCategoryService(newCategory);
 
@@ -66,7 +66,8 @@ export const fetchAllCategoriesByIdControllers = async (req, res) => {
 export const updateCategoryController = async (req, res) => {
     try {
         const { categoryName } = req.body;
-        const params = { categoryId: req.params.categoryId, categoryName };
+        
+        const params = { categoryId: req.params.categoryId, ...req.body };
 
         const result = await fetchAllCategories(params);
 

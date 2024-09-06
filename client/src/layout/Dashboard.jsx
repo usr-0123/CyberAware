@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { replace, Route, Routes, useNavigate } from "react-router-dom";
 import { clearStorageOnTokenExpiry, decodeToken } from "../helpers/token";
 import { LogoutOutlined, MenuFoldOutlined, MenuOutlined, UserOutlined } from '@ant-design/icons';
 
@@ -14,6 +14,8 @@ import { logout } from "../helpers/logout";
 function Dashboard() {
     const [isCollapsed, setIsCollapsed] = useState(true);
     const [isAdmin, setIsAdmin] = useState(false);
+    const [userDetails, setUserDetails] = useState(null);
+    const [login, setLogin] = useState(false);
     const navigate = useNavigate();
 
     const handleLogout = async () => {
@@ -32,13 +34,20 @@ function Dashboard() {
     useEffect(() => {
         const user = decodeToken();
 
+        if (user) {
+            setUserDetails(user);
+        }
+
         if (!user) {
             handleLogout()
-        } else if (user.usrRole === 'User') {
+        } else if (user.usrRole === 'User' && !login) {
+
             setIsAdmin(false);
-            navigate("/dashboard/user/*", { replace: true });
-        } else if (user.usrRole === 'Admin') {
+            setLogin(!login);
+            navigate("/dashboard/user", { replace: true });
+        } else if (user.usrRole === 'Admin' && !login) {
             setIsAdmin(true);
+            setLogin(!login);
             navigate("/dashboard/admin", { replace: true });
         }
     }, [navigate]);
@@ -52,7 +61,7 @@ function Dashboard() {
         if (!item && !item.key) {
             logout();
         } else {
-            navigate(item.key);
+            navigate(item.item.props.path);
         }
     };
 
@@ -72,11 +81,15 @@ function Dashboard() {
                         display: 'flex',
                         alignItems: 'center',
                         color: '#fff',
-                        width: '10%',
+                        minWidth: '10%',
+                        gap: '10%',
                         fontWeight: '1000',
                         justifyContent: 'space-between'
                     }}>
-                        <UserOutlined />
+                        <p>
+                            {userDetails ? userDetails.emailAddress : <UserOutlined />}
+                        </p>
+
                         <LogoutOutlined onClick={() => handleLogout()} />
                     </div>
                 </Header>
@@ -115,12 +128,12 @@ function Dashboard() {
                             <Menu
                                 mode="inline"
                                 defaultSelectedKeys={[location.pathname]}
-                                defaultOpenKeys={['/dashboard']}
+                                defaultOpenKeys={isAdmin ? ['adminHome'] : ['userHome']}
                                 style={{
                                     height: '100%',
                                 }}
                                 items={isAdmin ? adminSideBarItems : userSidebarItems}
-                                onClick={handleMenuClick}
+                                onClick={(e) => handleMenuClick(e)}
                             />
                         </Sider>
                         <Content

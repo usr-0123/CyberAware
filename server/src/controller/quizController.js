@@ -3,11 +3,19 @@ import { dataFound, sendServerError, successMessage } from "../helpers/helperFun
 import { createQuestionService, deleteQuizService, fetchQuizService, updateQuizService } from "../services/quizService.js";
 
 export const createNewQuizController = async (req, res) => {
+
     try {
         const quizId = v4();
+
+        const questionExists = await fetchQuizService({ questionId: req.body.questionId });
+
+        if (questionExists && questionExists.recordset.length > 0) {
+            return sendServerError(res, 'The question already has a response. Try updating if you have a different response.');
+        };
+
         const result = await createQuestionService({ quizId, ...req.body });
 
-        if (result.rowsAffected[0] > 0) {
+        if (result.rowsAffected && result.rowsAffected[0] > 0) {
             successMessage(res, 'Quiz created successfully.');
         } else {
             sendServerError(res, 'A problem occured while creating a new quiz. Please try again.');
@@ -21,7 +29,7 @@ export const createNewQuizController = async (req, res) => {
 export const fetchAllQuizController = async (req, res) => {
     try {
         const result = await fetchQuizService();
-        if (result.rowsAffected > 0) {
+        if (result.rowsAffected && result.rowsAffected > 0) {
             return dataFound(res, result.recordset, 'All quizes fetched.');
         } else {
             return successMessage(res, 'No quiz entry found.');
@@ -35,7 +43,7 @@ export const fetchQuizByIdController = async (req, res) => {
     try {
         const result = await fetchQuizService(req.params);
 
-        if (result.rowsAffected > 0) {
+        if (result.rowsAffected && result.rowsAffected > 0) {
             return dataFound(res, result.recordset, 'All quizes fetched.');
         } else {
             return successMessage(res, 'No quiz entry found.');
@@ -49,7 +57,21 @@ export const fetchQuizByUserIdController = async (req, res) => {
 
     try {
         const result = await fetchQuizService(req.params);
-        if (result.rowsAffected > 0) {
+        if (result.rowsAffected && result.rowsAffected > 0) {
+            return dataFound(res, result.recordset, 'All quizes fetched.');
+        } else {
+            return successMessage(res, 'No quiz entry found.');
+        };
+    } catch (error) {
+        return sendServerError(res, error.message);
+    };
+};
+
+export const fetchQuizByQuestionIdController = async (req, res) => {
+
+    try {
+        const result = await fetchQuizService(req.params);
+        if (result.rowsAffected && result.rowsAffected > 0) {
             return dataFound(res, result.recordset, 'All quizes fetched.');
         } else {
             return successMessage(res, 'No quiz entry found.');
@@ -83,7 +105,7 @@ export const updateQuizController = async (req, res) => {
 
             const response = await updateQuizService(params);
 
-            if (response.rowsAffected[0] > 0) {
+            if (response.rowsAffected && response.rowsAffected[0] > 0) {
                 return successMessage(res, 'Quiz updated successfully.');
             } else {
                 return sendServerError(res, 'There was a problem while updating quiz entry.');
@@ -102,10 +124,10 @@ export const deleteQuizController = async (req, res) => {
 
     try {
         const available_entry = await fetchQuizService(req.params);
-        if (available_entry.rowsAffected[0] > 0) {
+        if (available_entry.rowsAffected && available_entry.rowsAffected[0] > 0) {
             const result = await deleteQuizService(req.params);
 
-            if (result.rowsAffected[0] > 0) {
+            if (result.rowsAffected && result.rowsAffected[0] > 0) {
                 return successMessage(res, 'Quiz deleted successfully.');
             };
 

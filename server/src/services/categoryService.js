@@ -7,6 +7,7 @@ export const createCategoryService = async (newcategory) => {
         const result = await poolrequest()
             .input('categoryID', sql.VarChar, newcategory.categoryId)
             .input('categoryName', sql.VarChar, newcategory.categoryName)
+            .input('categoryDescription', sql.VarChar, newcategory.categoryDescription)
             .query(createNewCategoryQuery);
 
         return result;
@@ -37,11 +38,19 @@ export const fetchAllCategories = async (params) => {
 };
 
 export const updateCategoryService = async (params) => {
-    if (!params.categoryName && !params.categoryId) {
+    if (!params.categoryName && !params.categoryId && !params.categoryDescription) {
         return { errorMessage: 'Please provide the required fields.' };
     };
 
-    let query = updateCategoryQuery + `categoryName = '${params.categoryName}' WHERE categoryID = '${params.categoryId}'`;
+    let query = updateCategoryQuery;
+
+    if (params.categoryName) {
+        query = query + updateCategoryQuery + `categoryName = '${params.categoryName}' WHERE categoryID = '${params.categoryId}'`;
+    };
+
+    if (params.categoryDescription) {
+        query = query + updateCategoryQuery + `categoryDescription = '${params.categoryDescription}' WHERE categoryID = '${params.categoryId}'`;
+    }
 
     try {
         const result = await poolrequest().query(query);
