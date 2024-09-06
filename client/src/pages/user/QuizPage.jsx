@@ -1,5 +1,6 @@
 import { Tabs } from "antd";
 import UserNewQuiz from "../../components/Layout/userDashboard/userNewQuiz/userNewQuiz";
+import QuizResponses from "../../components/Layout/userDashboard/userNewQuiz/QuizResponses";
 
 const tabItems = [
     {
@@ -9,7 +10,7 @@ const tabItems = [
     }, {
         key: 'quizResponses',
         label: 'Quiz Responses',
-        // children: <UserStatistics />
+        children: <QuizResponses />
     }
 ]
 

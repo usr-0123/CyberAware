@@ -67,8 +67,9 @@ const AdminHomeQuizes = () => {
             setArrayData(data.data);
         } else if (isError) {
             setArrayData([]);
+            refetch();
         }
-    }, [data, isError]);
+    }, [data, isError, refetch]);
 
     return (
         <>

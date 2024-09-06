@@ -15,7 +15,7 @@ const customStyle = {
 
 const UserNewQuiz = () => {
     const [arraydata, setArrayData] = useState();
-    const { data } = useGetAllCategoriesQuery();
+    const { data, refetch: refetchCategories } = useGetAllCategoriesQuery();
     const [isQuizModalOpen, setIsQuizModalOpen] = useState(false);
     const [selectedCategoryObject, setSelectedCategoryObject] = useState(null);
 
@@ -23,9 +23,10 @@ const UserNewQuiz = () => {
         if (data?.data) {
             setArrayData(data.data)
         } else {
-            setArrayData([])
+            setArrayData([]);
+            refetchCategories();
         }
-    }, [data]);
+    }, [data, refetchCategories]);
 
     const handleSelect = (params) => {
         setSelectedCategoryObject(params)

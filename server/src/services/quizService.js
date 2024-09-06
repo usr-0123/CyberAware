@@ -1,4 +1,4 @@
-import { createNewQuiz, deleteQuiz, fetchAllQuizes, updateQuiz } from "../queries/quizQuery.js";
+import { createNewQuiz, deleteQuiz, fetchAllQuizes, fetchQuizQuestionQuery, updateQuiz } from "../queries/quizQuery.js";
 import { poolrequest, sql } from "../utils/dbConnect.js";
 
 export const createQuestionService = async (newQuiz) => {
@@ -41,6 +41,22 @@ export const fetchQuizService = async (params) => {
     try {
         const result = await poolrequest()
             .query(query);
+        return result;
+    } catch (error) {
+        return error;
+    };
+};
+
+export const fetchQuizQuestionByQuizidService = async (params) => {
+
+    if (!params && !params.userId) {
+        return { errorMessage: 'Some fetch fields are not provided.' };
+    };
+
+    let query = fetchQuizQuestionQuery + `'${params.userId}'`
+
+    try {
+        const result = await poolrequest().query(query);
         return result;
     } catch (error) {
         return error;

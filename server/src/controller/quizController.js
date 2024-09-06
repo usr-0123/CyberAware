@@ -1,6 +1,6 @@
 import { v4 } from "uuid";
 import { dataFound, sendServerError, successMessage } from "../helpers/helperFunctions.js";
-import { createQuestionService, deleteQuizService, fetchQuizService, updateQuizService } from "../services/quizService.js";
+import { createQuestionService, deleteQuizService, fetchQuizService, updateQuizService, fetchQuizQuestionByQuizidService } from "../services/quizService.js";
 
 export const createNewQuizController = async (req, res) => {
 
@@ -81,6 +81,20 @@ export const fetchQuizByQuestionIdController = async (req, res) => {
     };
 };
 
+export const fetchQuizQuestionByQuizidController = async (req, res) => {
+    try {
+        const result = await fetchQuizQuestionByQuizidService(req.params);
+
+        if (result.recordset && result.recordset.length > 0) {
+            return dataFound(res, result.recordset, 'All quizes fetched.');
+        } else {
+            return successMessage(res, 'No quiz entry found.');
+        };
+    } catch (error) {
+        return sendServerError(res, error.message);
+    }
+};
+
 export const updateQuizController = async (req, res) => {
 
     try {
@@ -105,7 +119,7 @@ export const updateQuizController = async (req, res) => {
 
             const response = await updateQuizService(params);
 
-            if (response.rowsAffected && response.rowsAffected[0] > 0) {
+            if (response.rowsAffected && response.rowsAffected > 0) {
                 return successMessage(res, 'Quiz updated successfully.');
             } else {
                 return sendServerError(res, 'There was a problem while updating quiz entry.');
@@ -124,10 +138,10 @@ export const deleteQuizController = async (req, res) => {
 
     try {
         const available_entry = await fetchQuizService(req.params);
-        if (available_entry.rowsAffected && available_entry.rowsAffected[0] > 0) {
+        if (available_entry.rowsAffected && available_entry.rowsAffected > 0) {
             const result = await deleteQuizService(req.params);
 
-            if (result.rowsAffected && result.rowsAffected[0] > 0) {
+            if (result.rowsAffected && result.rowsAffected > 0) {
                 return successMessage(res, 'Quiz deleted successfully.');
             };
 
