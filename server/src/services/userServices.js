@@ -1,6 +1,6 @@
 import dotenv from 'dotenv'
 import { poolrequest, sql } from '../utils/dbConnect.js'
-import { authenticateUserQuery, deleteUserQuery, fetchUsersQuery, registerUserQuery, updateUserQuery } from '../helpers/userQuery.js'
+import { authenticateUserQuery, deleteUserQuery, fetchUsersQuery, registerUserQuery, updateUserQuery } from '../queries/userQuery.js'
 
 dotenv.config()
 
@@ -35,11 +35,11 @@ export const fetchUsersService = async (params) => {
     if (!params) {
         query = fetchUsersQuery
     } else {
-        
+
         if (params.userID) {
             query = fetchUsersQuery + ` WHERE userID = '${params.userID}'`
         }
-        
+
         if (params.emailAddress) {
             switch (params.usrPassword) {
                 case params.usrPassword:
@@ -70,7 +70,7 @@ export const fetchUsersService = async (params) => {
 }
 
 export const updateUserService = async (userID, params) => {
-    
+
     let query = updateUserQuery(userID, params)
 
     try {

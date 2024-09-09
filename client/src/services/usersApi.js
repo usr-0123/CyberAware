@@ -1,14 +1,25 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { getToken } from "../helpers/token";
 
 export const usersApi = createApi({
     reducerPath: "userApi",
-    baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3100/api/" }),
+    baseQuery: fetchBaseQuery({
+        baseUrl: "http://localhost:3100/api/",
+        prepareHeaders: (headers) => {
+            const token = getToken();
+            if (token) {
+                headers.set('Authorization', `Bearer ${token}`);
+            }
+            return headers;
+        },
+    }),
     tagTypes: ["Users"],
     endpoints: (builder) => ({
 
         getAllUsers: builder.query({
-            query: () => "users/all",
+            query: () => 'users/all',
             providesTags: ["Users"],
+            method: "GET",
         }),
 
         getUserByEmail: builder.query({
@@ -38,7 +49,7 @@ export const usersApi = createApi({
             invalidatesTags: ["Users"],
         }),
 
-        getOTP:builder.mutation({
+        getOTP: builder.mutation({
             query: (users) => ({
                 url: 'users/getOtp',
                 method: "POST",
@@ -66,17 +77,21 @@ export const usersApi = createApi({
         }),
 
         updateUser: builder.mutation({
-            query: (Users) => ({
-                url: `users/update/${Users.EmployeeID}`,
-                method: "PUT",
-                body: Users,
+            query: ({ userID, editedValues }) => ({
+                url: `user/update/${userID}`,
+                method: "PATCH",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'userID': userID
+                },
+                body: editedValues
             }),
             invalidatesTags: ["Users"],
         }),
 
         deleteUser: builder.mutation({
-            query: (Email_address) => ({
-                url: `users/deleteByEmail/${Email_address}`,
+            query: (userID) => ({
+                url: `user/delete/${userID}`,
                 method: "DELETE",
             }),
             invalidatesTags: ["Users"],
