@@ -298,7 +298,7 @@ export const updateUserDetailsController = async (req, res) => {
         }
 
     } else {
-        return sendNotFound(res, 'No user record to delete was found')
+        return sendNotFound(res, 'No user record to update was found')
     }
 
 }
@@ -321,7 +321,7 @@ export const deleteUserController = async (req, res) => {
             if (result.rowsAffected > 0) {
 
                 const mailOptions = {
-                    option: 'update',
+                    option: 'delete',
                     Email_address: available_entry.recordset[0].emailAddress,
                     data: `${available_entry.recordset[0].firstName} ${available_entry.recordset[0].lastName}`
                 }

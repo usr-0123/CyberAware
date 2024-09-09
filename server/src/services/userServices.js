@@ -35,11 +35,11 @@ export const fetchUsersService = async (params) => {
     if (!params) {
         query = fetchUsersQuery
     } else {
-        
+
         if (params.userID) {
             query = fetchUsersQuery + ` WHERE userID = '${params.userID}'`
         }
-        
+
         if (params.emailAddress) {
             switch (params.usrPassword) {
                 case params.usrPassword:
@@ -70,7 +70,7 @@ export const fetchUsersService = async (params) => {
 }
 
 export const updateUserService = async (userID, params) => {
-    
+
     let query = updateUserQuery(userID, params)
 
     try {
