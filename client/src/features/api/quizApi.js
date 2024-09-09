@@ -50,6 +50,11 @@ export const quizApi = createApi({
             providesTags: ['Quiz'],
         }),
 
+        getUsersQuizes: builder.query({
+            query: () => `/quiz/fetch/user`,
+            providesTags: ["Quiz"],
+        }),
+
         updateQuiz: builder.mutation({
             query: ({ quizId, editedvalues }) => ({
                 url: `quiz/update/${quizId}`,
@@ -70,4 +75,4 @@ export const quizApi = createApi({
 
 });
 
-export const { useCreateNewQuizMutation, useGetAllQuizQuery, useGetQuizByQuizIdQuery, useGetQuizbyUseridQuery, useGetQuizByQuestionidQuery, useGetQuizQuestionQuizidQuery, useUpdateQuizMutation, useDeleteQuizMutation } = quizApi;
+export const { useCreateNewQuizMutation, useGetAllQuizQuery, useGetQuizByQuizIdQuery, useGetQuizbyUseridQuery, useGetQuizByQuestionidQuery, useGetQuizQuestionQuizidQuery, useGetUsersQuizesQuery, useUpdateQuizMutation, useDeleteQuizMutation } = quizApi;

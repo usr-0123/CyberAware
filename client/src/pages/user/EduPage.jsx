@@ -28,13 +28,15 @@ const EduPage = () => {
                         key={String(index)}
                     >
                         <h2>{object.Heading}</h2>
-                        {object.Content?.map((entry) => (
+                        {object.Content?.map((entry, index) => (
                             entry.resource ?
-                                <>
+                                <div key={String(index)}>
                                     <h3>{entry.resource}</h3>
                                     <p>{entry.description}</p>
                                     <a href={entry.link}>{entry.link}</a>
-                                </> : entry.infoHeader ?
+                                </div>
+                                :
+                                entry.infoHeader ?
                                     <>
                                         <h3>{entry.infoHeader}</h3>
                                         <p>{entry.info}</p>

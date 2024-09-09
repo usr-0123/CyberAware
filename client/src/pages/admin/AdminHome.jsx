@@ -7,6 +7,7 @@ import AdminHomeQuizes from './adminHome/AdminQuizes';
 import AdminHomeInfo from './adminHome/AdminHimeInfo';
 import AdminHomeFAQs from './adminHome/AdminHomeFAQs';
 import AdminCategory from './adminHome/AdminCategory';
+import AdminUserQuizes from './adminHome/AdminUserQuizes';
 
 const tabItems = [
     {
@@ -31,11 +32,16 @@ const tabItems = [
     },
     {
         key: '5',
+        label: 'User Quizes',
+        children: <AdminUserQuizes />
+    },
+    {
+        key: '6',
         label: 'Informational Content',
         children: <AdminHomeInfo />
     },
     {
-        key: '6',
+        key: '7',
         label: 'FAQs',
         children: <AdminHomeFAQs />
     },
