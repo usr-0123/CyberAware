@@ -9,7 +9,7 @@ const UserInfo = () => {
 
     const user = decodeToken();
 
-    const { data: userQuizes, refetch: refetchUserQuizes } = useGetQuizbyUseridQuery(user.userID);
+    const { data: userQuizes, refetch: refetchUserQuizes } = useGetQuizbyUseridQuery(user?.userID);
     const { data: questionCategories, refetch: refetchuestionCategories } = useGetAllQuestionsCategoryQuery();
 
     useEffect(() => {
