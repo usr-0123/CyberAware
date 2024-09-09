@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { getToken } from "../helpers/token";
+import { getToken } from "../../helpers/token";
 
 export const questionsApi = createApi({
     reducerPath: "questionsApi",

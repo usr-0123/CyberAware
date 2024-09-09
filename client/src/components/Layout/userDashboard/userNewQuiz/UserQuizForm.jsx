@@ -1,9 +1,9 @@
 import { Button, Collapse, Radio } from "antd";
 import { useEffect, useState } from "react";
-import { useGetAllQuestionsCategoryQuery } from "../../../../services/questionsApi";
 import { decodeToken } from "../../../../helpers/token";
 import { alertService } from "../../../../service/alertService";
-import { useCreateNewQuizMutation } from "../../../../services/quizApi";
+import { useGetAllQuestionsCategoryQuery } from "../../../../features/api/questionsApi";
+import { useCreateNewQuizMutation } from "../../../../features/api/quizApi";
 
 const { Panel } = Collapse;
 
@@ -101,7 +101,8 @@ const UserQuizForm = ({ selectedCategoryObject }) => {
             if (filteredData && filteredData.length > 0) {
                 setArrayData(filteredData);
             } else {
-                setArrayData([])
+                setArrayData([]);
+                refetch();
             };
 
         } else {

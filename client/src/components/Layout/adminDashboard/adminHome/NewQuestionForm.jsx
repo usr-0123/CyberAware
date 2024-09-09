@@ -1,8 +1,8 @@
 import { Button, Form, Input, Select } from "antd";
-import { useGetAllCategoriesQuery } from "../../../../services/categoriesApi";
 import { useEffect, useState } from "react";
-import { useCreateNewQuestionMutation } from "../../../../services/questionsApi";
 import { alertService } from "../../../../service/alertService";
+import { useGetAllCategoriesQuery } from "../../../../features/api/categoriesApi";
+import { useCreateNewQuestionMutation } from "../../../../features/api/questionsApi";
 
 const { showAlert } = alertService();
 

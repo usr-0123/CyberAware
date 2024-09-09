@@ -3,11 +3,7 @@
         {
             "title": "Introduction to Cybersecurity",
             "heading": "Understanding Cybersecurity",
-            "Content": [
-                {
-                    "info": "Cybersecurity involves protecting internet-connected systems, including hardware, software, and data, from cyber attacks. As our reliance on technology increases, so does the importance of safeguarding against these threats. Common cyber threats include phishing, malware, ransomware, and social engineering attacks. Understanding the basics of cybersecurity is crucial for anyone using digital platforms, as it helps to protect personal information and maintain privacy."
-                }
-            ]
+            "info": "Cybersecurity involves protecting internet-connected systems, including hardware, software, and data, from cyber attacks. As our reliance on technology increases, so does the importance of safeguarding against these threats. Common cyber threats include phishing, malware, ransomware, and social engineering attacks. Understanding the basics of cybersecurity is crucial for anyone using digital platforms, as it helps to protect personal information and maintain privacy."
         }
     ],
     "body": [

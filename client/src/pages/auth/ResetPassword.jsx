@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { Button, Form, Input } from 'antd';
-import { useGetOTPMutation, useResetPasswordMutation } from "../../services/usersApi";
 import { validatePasswordPattern } from "../../helpers/validator";
 import { useState } from "react";
 import { alertService } from "../../service/alertService";
+import { useGetOTPMutation, useResetPasswordMutation } from "../../features/api/usersApi";
 
 const { showAlert } = alertService();
 

@@ -1,5 +1,5 @@
 import { Table } from "antd";
-import { useEffect, useState } from "react";
+import React from "react";
 
 import data from '../../../.json'
 
@@ -21,18 +21,11 @@ const columns = [
 ];
 
 const AdminHomeInfo = () => {
-    const [arrayData, setArrayData] = useState([]);
-
-    useEffect(() => {
-        if (data && data.body) {
-            setArrayData(data.body);
-        }
-    }, []);
 
     return (
         <>
             <h1>Admin Home Info</h1>
-            <Table title={() => 'Educational Information Content'} columns={columns} dataSource={arrayData} bordered rowKey="title" />
+            <Table title={() => 'Educational Information Content'} columns={columns} dataSource={data?.body} bordered rowKey="title" />
         </>
     );
 };

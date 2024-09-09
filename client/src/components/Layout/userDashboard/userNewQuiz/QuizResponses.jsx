@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { Button, Collapse, Modal } from 'antd';
-import { useDeleteQuizMutation, useGetQuizQuestionQuizidQuery } from '../../../../services/quizApi';
 import { decodeToken } from '../../../../helpers/token';
-import { useGetAllCategoriesQuery } from '../../../../services/categoriesApi';
 import { alertService } from '../../../../service/alertService';
+import { useGetAllCategoriesQuery } from '../../../../features/api/categoriesApi';
+import { useDeleteQuizMutation, useGetQuizQuestionQuizidQuery } from '../../../../features/api/quizApi';
 
 const { Panel } = Collapse;
 

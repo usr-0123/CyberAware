@@ -4,8 +4,8 @@ import { Button, Form, Input, Select, } from 'antd';
 import { validateNameLength, validatePasswordPattern, validateUserNameLength } from '../../helpers/validator';
 import barner from '../../assets/post1.jpg';
 import { useNavigate } from 'react-router-dom';
-import { useRegisterUserMutation } from '../../services/usersApi';
 import { alertService } from '../../service/alertService';
+import { useRegisterUserMutation } from '../../features/api/usersApi';
 
 const { showAlert } = alertService();
 

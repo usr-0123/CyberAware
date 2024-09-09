@@ -1,7 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { getToken } from "../helpers/token";
-
-// const api = import.meta.env.REACT_APP_BASE_URL
+import { getToken } from "../../helpers/token";
 
 export const quizApi = createApi({
     reducerPath: "quizApi",

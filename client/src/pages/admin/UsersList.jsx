@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Table } from "antd";
-import { useGetAllUsersQuery } from "../../services/usersApi";
 import { decodeToken } from "../../helpers/token";
+import { useGetAllUsersQuery } from "../../features/api/usersApi";
 
 const columns = [
     {

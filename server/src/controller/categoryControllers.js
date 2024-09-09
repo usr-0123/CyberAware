@@ -7,6 +7,10 @@ export const createCategoryController = async (req, res) => {
     try {
         const { categoryName, categoryDescription } = req.body;
 
+        if (!categoryName && !categoryDescription) {
+            return sendServerError(res, 'Category name and category description are required.');
+        };
+
         const categories = await fetchAllCategories();
 
         const categoryExists = categories.recordset.filter(category => category.categoryName === categoryName);
@@ -64,20 +68,22 @@ export const fetchAllCategoriesByIdControllers = async (req, res) => {
 };
 
 export const updateCategoryController = async (req, res) => {
+    
     try {
         const { categoryName } = req.body;
         
         const params = { categoryId: req.params.categoryId, ...req.body };
-
+        
         const result = await fetchAllCategories(params);
-
-        if (result.rowsAffected > 0) {
+        
+        if (result.recordset.length > 0) {
             const categoryNameExists = result.recordset.filter(category => category.categoryName === categoryName);
 
-            if (categoryNameExists.length > 0) {
-                return successMessage(res, 'Category name already exists with this category name update.');
+            
+            if (categoryNameExists?.length > 0) {
+                return sendServerError(res, 'Category name already exists with this category name update.');
             };
-
+            
             const response = await updateCategoryService(params);
 
             if (response.rowsAffected[0] > 0) {
@@ -87,7 +93,7 @@ export const updateCategoryController = async (req, res) => {
             };
 
         } else {
-            return successMessage(res, "Category entry doesn't exist.");
+            return sendServerError(res, "Category entry doesn't exist.");
         };
 
     } catch (error) {

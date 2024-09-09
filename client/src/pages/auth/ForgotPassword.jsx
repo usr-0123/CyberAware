@@ -1,9 +1,9 @@
 import { Button, Form, Input } from "antd";
 import { MailOutlined } from '@ant-design/icons';
-import { useSendOTPMutation } from "../../services/usersApi";
 import './authStyles.scss'
 import { useNavigate } from "react-router-dom";
 import { alertService } from "../../service/alertService";
+import { useSendOTPMutation } from "../../features/api/usersApi";
 
 const { showAlert } = alertService();
 

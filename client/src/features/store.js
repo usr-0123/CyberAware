@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { setupListeners } from '@reduxjs/toolkit/query/react'
-import { usersApi } from '../services/usersApi.js'
-import { questionsApi } from '../services/questionsApi.js'
-import { categoryApi } from '../services/categoriesApi.js';
-import { quizApi } from '../services/quizApi.js';
+import { usersApi } from './api/usersApi.js'
+import { questionsApi } from './api/questionsApi.js'
+import { quizApi } from './api/quizApi.js';
+import { categoryApi } from './api/categoriesApi.js';
 
 export const store = configureStore({
     reducer: {

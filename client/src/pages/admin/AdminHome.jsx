@@ -1,10 +1,12 @@
 import React from 'react';
 import { Tabs } from 'antd';
+
 import AdminHomeGeneral from './adminHome/AdminHomeGeneral';
 import AdminHomeStatistics from './adminHome/AdminStatistics';
 import AdminHomeQuizes from './adminHome/AdminQuizes';
 import AdminHomeInfo from './adminHome/AdminHimeInfo';
 import AdminHomeFAQs from './adminHome/AdminHomeFAQs';
+import AdminCategory from './adminHome/AdminCategory';
 
 const tabItems = [
     {
@@ -24,11 +26,16 @@ const tabItems = [
     },
     {
         key: '4',
+        label: 'Categories',
+        children: <AdminCategory />
+    },
+    {
+        key: '5',
         label: 'Informational Content',
         children: <AdminHomeInfo />
     },
     {
-        key: '5',
+        key: '6',
         label: 'FAQs',
         children: <AdminHomeFAQs />
     },

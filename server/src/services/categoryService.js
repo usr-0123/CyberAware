@@ -45,12 +45,12 @@ export const updateCategoryService = async (params) => {
     let query = updateCategoryQuery;
 
     if (params.categoryName) {
-        query = query + updateCategoryQuery + `categoryName = '${params.categoryName}' WHERE categoryID = '${params.categoryId}'`;
+        query = query + `categoryName = '${params.categoryName}' WHERE categoryID = '${params.categoryId}'`;
     };
 
     if (params.categoryDescription) {
-        query = query + updateCategoryQuery + `categoryDescription = '${params.categoryDescription}' WHERE categoryID = '${params.categoryId}'`;
-    }
+        query = query + `categoryDescription = '${params.categoryDescription}' WHERE categoryID = '${params.categoryId}'`;
+    };
 
     try {
         const result = await poolrequest().query(query);

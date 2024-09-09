@@ -1,8 +1,8 @@
 import { Button, Modal, Table } from "antd";
 import { useEffect, useState } from "react";
-import { useDeleteUserMutation, useGetAllUsersQuery } from "../../../services/usersApi";
 import AdminUserDetailsModal from "../../../components/Layout/adminDashboard/adminStatistics/AdminUserDetailsModal";
 import { alertService } from "../../../service/alertService";
+import { useDeleteUserMutation, useGetAllUsersQuery } from "../../../features/api/usersApi";
 
 const { showAlert } = alertService();
 

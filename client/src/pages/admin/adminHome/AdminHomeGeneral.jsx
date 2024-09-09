@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { BarChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Bar } from 'recharts';
-import { useGetAllUsersQuery } from '../../../services/usersApi';
+import { useGetAllUsersQuery } from '../../../features/api/usersApi';
 
 const AdminHomeGeneral = () => {
     const [arrayData, setArrayData] = useState();

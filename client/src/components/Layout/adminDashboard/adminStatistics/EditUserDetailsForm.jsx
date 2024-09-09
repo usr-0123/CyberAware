@@ -1,7 +1,7 @@
 import { Button, Form, Input, Select } from "antd";
 import { useEffect, useState } from "react";
 import { alertService } from "../../../../service/alertService";
-import { useUpdateUserMutation } from "../../../../services/usersApi";
+import { useUpdateUserMutation } from "../../../../features/api/usersApi";
 
 const { showAlert } = alertService();
 

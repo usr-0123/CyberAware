@@ -4,9 +4,9 @@ import { Button, Form, Input } from 'antd';
 import { validatePasswordPattern } from '../../helpers/validator';
 import barner from '../../assets/post1.jpg'
 import { useNavigate } from 'react-router-dom';
-import { useLoginUserMutation } from '../../services/usersApi';
 import { decodeToken, setToken } from '../../helpers/token';
 import { alertService } from '../../service/alertService';
+import { useLoginUserMutation } from '../../features/api/usersApi';
 
 const { showAlert } = alertService();
 

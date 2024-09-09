@@ -1,7 +1,7 @@
 import { Carousel, Modal } from "antd";
 import { useEffect, useState } from "react";
-import { useGetAllCategoriesQuery } from "../../../../services/categoriesApi";
 import UserQuizForm from "./UserQuizForm";
+import { useGetAllCategoriesQuery } from "../../../../features/api/categoriesApi";
 
 const customStyle = {
     border: '1px solid #ddd',
@@ -25,7 +25,7 @@ const UserNewQuiz = () => {
         } else {
             setArrayData([]);
             refetchCategories();
-        }
+        };
     }, [data, refetchCategories]);
 
     const handleSelect = (params) => {

@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { getToken } from "../helpers/token";
+import { getToken } from "../../helpers/token.js";
 
 export const categoryApi = createApi({
     reducerPath: "categoryApi",
@@ -36,9 +36,14 @@ export const categoryApi = createApi({
         }),
 
         updateCategory: builder.mutation({
-            query: (categoryId) => ({
+            query: ({ categoryId, editable }) => ({
                 url: `category/update/${categoryId}`,
                 method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'categoryId': categoryId
+                },
+                body: editable
             }),
             invalidatesTags: ["Categories"],
         }),

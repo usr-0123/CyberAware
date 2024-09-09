@@ -1,10 +1,10 @@
 import { Button, Modal, Table } from "antd";
 import { useEffect, useState } from "react";
-import { useDeleteQuestionMutation, useGetAllQuestionsCategoryQuery } from "../../../services/questionsApi";
 import { convertDateToFormat } from "../../../helpers/dateConvertion";
 import QuestionModal from "../../../components/Layout/adminDashboard/adminHome/QuestionModal";
 import { alertService } from "../../../service/alertService";
 import NewQuestionForm from "../../../components/Layout/adminDashboard/adminHome/NewQuestionForm";
+import { useDeleteQuestionMutation, useGetAllQuestionsCategoryQuery } from "../../../features/api/questionsApi";
 
 const { showAlert } = alertService();
 
