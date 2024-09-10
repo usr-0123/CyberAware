@@ -3,6 +3,7 @@ import { Route, Routes, useNavigate } from 'react-router-dom';
 import UsersList from '../pages/admin/UsersList';
 import AdminHome from '../pages/admin/AdminHome';
 import { decodeToken } from '../helpers/token';
+import Profile from '../pages/profile/Profile';
 
 function AdminDashboard() {
     const navigate = useNavigate();
@@ -30,6 +31,7 @@ function AdminDashboard() {
             <Route index element={<AdminHome />} />
             <Route path="/admin-home" element={<AdminHome />} />
             <Route path="/all-users" element={<UsersList />} />
+            <Route path='/profile' element={<Profile />} />
         </Routes>
     );
 }

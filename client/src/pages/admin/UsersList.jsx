@@ -28,7 +28,6 @@ const columns = [
     },
 ];
 
-
 const UsersList = () => {
     const [arrayData, setArrayData] = useState([]);
     const { data } = useGetAllUsersQuery();
