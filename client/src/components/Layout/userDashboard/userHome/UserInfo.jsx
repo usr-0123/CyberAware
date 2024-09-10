@@ -6,7 +6,7 @@ const UserInfo = ({ useThreats }) => {
 
     return (
         <>
-            <p> User info</p>
+            <p> User quiz response</p>
             <Collapse accordion>
                 {useThreats?.map((item) => (
                     <Panel header={item.categoryName} key={item.questionId}>

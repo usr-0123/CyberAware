@@ -245,3 +245,28 @@ export const analyzeResponses = (questions, responses) => {
 
     return filteredData;
 };
+
+export function fetchRecommendations(userResponses) {
+    return userResponses.map(response => {
+        const matchedWeakness = threatRecommendations.find(item => item.weakness === response.weakness);
+
+        if (!matchedWeakness) {
+            return { ...response, recommendations: [] };
+        }
+
+        const matchedRecommendations = matchedWeakness.recommendations.filter(rec =>
+            response.threats.includes(rec.threat)
+        );
+
+        return {
+            questionId: response.questionId,
+            response: response.response,
+            categoryName: response.categoryName,
+            weakness: response.weakness,
+            recommendations: matchedRecommendations.map(rec => ({
+                recommendation: rec.recommendation,
+                action: rec.action
+            }))
+        };
+    });
+}

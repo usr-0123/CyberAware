@@ -36,11 +36,11 @@ const UserHome = () => {
     const tabItems = [
         {
             key: 'userHomeInfo',
-            label: 'Info',
+            label: 'Quiz Results',
             children: <UserInfo useThreats={useThreats} />
         }, {
             key: 'userStatistics',
-            label: 'Personality Statistics',
+            label: 'Recommendations',
             children: <UserStatistics params={useThreats} />
         }
     ];
