@@ -72,7 +72,6 @@ const QuizResponses = () => {
     return (
         <>
             <h1>Your quiz responses</h1>
-            <Button key='refetch' onClick={() => refetch()} >Refetch</Button>
             {groupedData.map((group) => (
                 <div key={group.categoryID}>
                     <h2>

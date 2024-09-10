@@ -38,7 +38,7 @@ const UserNewQuiz = () => {
             <h1>
                 New Quiz
             </h1>
-            <Carousel arrows autoplay easing="linear" infinite={true}>
+            <Carousel style={{cursor: 'pointer'}} arrows autoplay easing="linear" infinite={true}>
                 {arraydata?.map((item, index) => (
                     <div
                         style={customStyle}

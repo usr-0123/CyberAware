@@ -6,10 +6,10 @@ export let userSidebarItems = [
     { key: 'quizPage', label: 'Assessments', path: '/dashboard/user/user-quiz', icon: <SolutionOutlined /> },
     { key: 'infoZone', label: 'Educational Content', path: '/dashboard/user/educate', icon: <ReadOutlined /> },
     { key: 'faq', label: 'FAQs', path: '/dashboard/user/user-faqs', icon: <QuestionCircleOutlined /> },
-    { key: 'userProfile', label: 'Profile', path: '/dashboard/dashboard/user/', icon: <UserOutlined /> },
+    { key: 'userProfile', label: 'Profile', path: '/dashboard/user/profile', icon: <UserOutlined /> },
 ];
 
 export let adminSideBarItems = [
     { key: 'adminHome', label: 'Home', path: '/dashboard/admin/admin-home', icon: <HomeOutlined /> },
-    { key: 'adminProfile', label: 'Profile', path: '/dashboard/admin', icon: <UserOutlined /> },
+    { key: 'adminProfile', label: 'Profile', path: '/dashboard/admin/profile', icon: <UserOutlined /> },
 ];
