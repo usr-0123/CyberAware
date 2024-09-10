@@ -17,7 +17,7 @@ const EduPage = () => {
                     <p>{data.intro[0].info}</p>
                 </div>
             }
-            {data.body && <Collapse>
+            {data.body && <Collapse accordion>
                 {data.body?.filter(object => object.title != "FAQ Section").map((object, index) => (
                     <Panel style={{ borderBottom: '1px solid #d1d1d1' }}
                         header={
@@ -37,10 +37,10 @@ const EduPage = () => {
                                 </div>
                                 :
                                 entry.infoHeader ?
-                                    <>
+                                    <div key={String(index)}>
                                         <h3>{entry.infoHeader}</h3>
                                         <p>{entry.info}</p>
-                                    </> : <></>
+                                    </div> : <></>
                         ))}
                     </Panel>
                 ))}

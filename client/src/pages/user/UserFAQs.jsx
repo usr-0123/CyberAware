@@ -15,7 +15,7 @@ const UserFAQs = () => {
     return (
         <>
             <h1>FAQs</h1>
-            <Collapse>
+            <Collapse accordion>
                 {collapseItems?.map((item) => (
                     <Panel header={item.label} key={item.key}>
                         {item.children}
