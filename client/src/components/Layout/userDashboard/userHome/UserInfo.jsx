@@ -1,35 +1,8 @@
-import { useGetQuizbyUseridQuery } from '../../../../features/api/quizApi';
-import { decodeToken } from '../../../../helpers/token';
-import { useGetAllQuestionsCategoryQuery } from '../../../../features/api/questionsApi';
-import { analyzeResponses } from '../../../../service/algorithmService';
-import { useEffect, useState } from 'react';
 import { Collapse, List } from 'antd';
 
 const { Panel } = Collapse;
 
-const UserInfo = () => {
-    const [useThreats, setUseThreats] = useState([]);
-
-    const user = decodeToken();
-
-    const { data: userQuizes, refetch: refetchUserQuizes } = useGetQuizbyUseridQuery(user?.userID);
-    const { data: questionCategories, refetch: refetchuestionCategories } = useGetAllQuestionsCategoryQuery();
-
-    useEffect(() => {
-        if (userQuizes && questionCategories) {
-            const calculateThreats = async () => {
-                const userReport = analyzeResponses(questionCategories?.data, userQuizes?.data);
-
-                setUseThreats(userReport);
-            };
-            calculateThreats();
-        };
-
-        refetchUserQuizes();
-        refetchuestionCategories();
-    }, [userQuizes, questionCategories, refetchUserQuizes, refetchuestionCategories]);
-
-    console.log(useThreats);
+const UserInfo = ({ useThreats }) => {
 
     return (
         <>

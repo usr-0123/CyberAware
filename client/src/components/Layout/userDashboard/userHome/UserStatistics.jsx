@@ -1,4 +1,6 @@
-const UserStatistics = () => {
+const UserStatistics = ({params}) => {
+    console.log(params);
+    
     return (
         <>User statistics</>
     )

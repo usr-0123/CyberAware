@@ -64,6 +64,109 @@ const weaknessesToRecommendations = {
     ]
 };
 
+const threatRecommendations = [
+    {
+        "weakness": "Prone to stress, anxiety, and difficulty managing emotions.",
+        "recommendations": [
+            {
+                "threat": "Potential burnout under pressure",
+                "recommendation": "Practice regular mindfulness or meditation to manage stress.",
+                "action": "Incorporate a daily mindfulness routine or meditation practice. Use apps like Headspace or Calm to guide your sessions."
+            },
+            {
+                "threat": "Difficulty in maintaining focus during critical tasks",
+                "recommendation": "Engage in physical activities to release tension and improve mood.",
+                "action": "Schedule regular exercise, such as walking or yoga, to keep your mind and body in balance. Aim for at least 30 minutes of activity per day."
+            },
+            {
+                "threat": "Challenges in emotional regulation during stressful situations",
+                "recommendation": "Seek professional counseling or therapy if needed.",
+                "action": "If stress becomes overwhelming, consider speaking to a therapist or counselor. They can provide techniques for managing emotions effectively."
+            }
+        ]
+    },
+    {
+        "weakness": "May struggle with teamwork, communication, or empathy.",
+        "recommendations": [
+            {
+                "threat": "Conflict with colleagues in team settings",
+                "recommendation": "Participate in team-building activities to improve collaboration.",
+                "action": "Encourage regular team-building exercises and participate actively to strengthen your teamwork skills."
+            },
+            {
+                "threat": "Challenges in building strong professional relationships",
+                "recommendation": "Work on active listening and communication skills.",
+                "action": "Practice active listening during meetings by summarizing key points and asking clarifying questions. Consider communication workshops for improvement."
+            },
+            {
+                "threat": "Potential miscommunications leading to project delays",
+                "recommendation": "Try to understand and appreciate different perspectives in a team.",
+                "action": "Make a habit of considering others' viewpoints in discussions. Engage in exercises that build empathy and understanding within your team."
+            }
+        ]
+    },
+    {
+        "weakness": "May have difficulties in collaborative work and social engagement.",
+        "recommendations": [
+            {
+                "threat": "Struggles in networking opportunities",
+                "recommendation": "Join social or professional groups to enhance networking skills.",
+                "action": "Attend networking events or join professional organizations to practice and enhance your networking abilities."
+            },
+            {
+                "threat": "Limited growth in roles requiring interpersonal interaction",
+                "recommendation": "Engage in group projects to practice collaboration.",
+                "action": "Volunteer for group projects or cross-functional teams at work to gain experience in collaborative settings."
+            },
+            {
+                "threat": "Difficulty in leadership or customer-facing positions",
+                "recommendation": "Seek feedback on social interactions to improve over time.",
+                "action": "Request regular feedback from colleagues or mentors on your social and interpersonal interactions to identify areas for improvement."
+            }
+        ]
+    },
+    {
+        "weakness": "Could face issues with organization, time management, and dependability.",
+        "recommendations": [
+            {
+                "threat": "Missed deadlines and project delays",
+                "recommendation": "Use tools like planners or apps to manage tasks and deadlines.",
+                "action": "Adopt task management tools like Todoist, Asana, or a simple planner to track deadlines and prioritize tasks."
+            },
+            {
+                "threat": "Overlooked details leading to errors",
+                "recommendation": "Break down large tasks into smaller, manageable steps.",
+                "action": "Decompose larger tasks into smaller, actionable items. Use checklists to ensure all details are covered."
+            },
+            {
+                "threat": "Reduced trust from colleagues or supervisors",
+                "recommendation": "Prioritize tasks based on importance and urgency.",
+                "action": "Practice prioritization by categorizing tasks using the Eisenhower matrix (urgent vs. important). Review and adjust priorities regularly."
+            }
+        ]
+    },
+    {
+        "weakness": "May struggle with creativity, problem-solving, and adapting to new situations.",
+        "recommendations": [
+            {
+                "threat": "Stagnation in innovation-driven environments",
+                "recommendation": "Engage in creative hobbies or activities to stimulate innovation.",
+                "action": "Dedicate time to creative pursuits like painting, writing, or playing music. These activities can inspire innovative thinking."
+            },
+            {
+                "threat": "Difficulty in responding to unexpected challenges",
+                "recommendation": "Challenge yourself with puzzles or problem-solving games.",
+                "action": "Integrate problem-solving games or puzzles into your routine to improve your ability to think quickly in challenging situations."
+            },
+            {
+                "threat": "Limited adaptability in fast-paced industries",
+                "recommendation": "Be open to new experiences and learn from them.",
+                "action": "Proactively seek out new experiences and learning opportunities. Consider taking courses or attending workshops on topics outside your comfort zone."
+            }
+        ]
+    }
+];
+
 export const analyzeResponses = (questions, responses) => {
     const report = [];
 
