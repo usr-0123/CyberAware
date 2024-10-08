@@ -80,10 +80,8 @@ const AdminHomeStatistics = () => {
 
     return (
         <>
-            <h1>Admin Home Statistics</h1>
-
+            <h3>Users</h3>
             <Table
-                title={() => 'Active users'}
                 columns={columns}
                 onRow={(record) => ({
                     onClick: () => handleSelect(record.userID)

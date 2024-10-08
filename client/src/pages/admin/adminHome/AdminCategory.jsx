@@ -109,7 +109,7 @@ const AdminCategory = () => {
 
     return (
         <>
-            <h1>Categories</h1>
+            <h3>Categories</h3>
             {categoryForm &&
                 <Form
                     form={form}
@@ -151,7 +151,6 @@ const AdminCategory = () => {
 
             {!categoryForm && categories &&
                 <Table
-                    title={() => 'Assessments Categories'}
                     columns={columns}
                     onRow={(record) => ({
                         onClick: () => handleSelect(record.categoryID)
@@ -159,6 +158,7 @@ const AdminCategory = () => {
                     rowKey="categoryID"
                     dataSource={categories}
                     bordered
+                    pagination={{pageSize: 5}}
                 />
             }
 

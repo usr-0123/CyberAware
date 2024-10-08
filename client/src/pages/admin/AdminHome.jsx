@@ -10,14 +10,14 @@ import AdminCategory from './adminHome/AdminCategory';
 import AdminUserQuizes from './adminHome/AdminUserQuizes';
 
 const tabItems = [
-    {
-        key: '1',
-        label: 'General',
-        children: <AdminHomeGeneral />
-    },
+    // {
+    //     key: '1',
+    //     label: 'General',
+    //     children: <AdminHomeGeneral />
+    // },
     {
         key: '2',
-        label: 'Statistics',
+        label: 'Users',
         children: <AdminHomeStatistics />
     },
     {

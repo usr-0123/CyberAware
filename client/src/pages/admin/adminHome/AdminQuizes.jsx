@@ -73,8 +73,8 @@ const AdminHomeQuizes = () => {
 
     return (
         <>
+            <h3>Available Questions</h3>
             <Table
-                title={() => 'Available Questions'}
                 columns={columns}
                 onRow={(record) => ({
                     onClick: () => handleSelect(record.questionId)
@@ -82,6 +82,7 @@ const AdminHomeQuizes = () => {
                 rowKey="questionId"
                 dataSource={arrayData}
                 bordered
+                pagination={{ pageSize: 5 }}
             />
             <Modal
                 title="Question Details"

@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Collapse, Modal } from 'antd';
+import { Button, Card, Modal } from 'antd';
 import { decodeToken } from '../../../../helpers/token';
 import { alertService } from '../../../../service/alertService';
 import { useGetAllCategoriesQuery } from '../../../../features/api/categoriesApi';
 import { useDeleteQuizMutation, useGetQuizQuestionQuizidQuery } from '../../../../features/api/quizApi';
+import { DeleteOutlined } from '@ant-design/icons';
 
-const { Panel } = Collapse;
+const { Meta } = Card;
 
 const { showAlert } = alertService();
 
@@ -77,21 +78,26 @@ const QuizResponses = () => {
                     <h2>
                         {group.categoryName}
                     </h2>
-                    <Collapse>
+                    <div style={{ display: 'flex', flexWrap: 'wrap' }}>
                         {group.questions.map((item, index) => (
-                            <Panel
-                                header={
-                                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                        {item.questionText}
-                                        <Button onClick={() => handleDeleteConfirmation(item)}>Delete</Button>
-                                    </div>
-                                }
-                                key={String(item.quizId)}
+                            <Card
+                                style={{ width: '30%', margin: '1%' }}
+                                key={index}
+                                actions={[
+                                    <DeleteOutlined
+                                        onClick={() => handleDeleteConfirmation(item)}
+                                        key="doQuiz"
+                                    />
+                                ]}
                             >
-                                {item.response}
-                            </Panel>
+                                <p style={{fontWeight: 600, fontSize: 16}}>{item.questionText}</p>
+                                <Meta
+                                    description={item.response}
+                                />
+
+                            </Card>
                         ))}
-                    </Collapse>
+                    </div>
                 </div>
             ))}
 

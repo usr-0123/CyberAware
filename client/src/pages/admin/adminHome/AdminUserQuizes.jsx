@@ -39,12 +39,13 @@ const AdminUserQuizes = () => {
 
     return (
         <>
+            <h3>Available Questions</h3>
             <Table
-                title={() => 'Available Questions'}
                 columns={columns}
                 rowKey="questionId"
                 dataSource={arrayData}
                 bordered
+                pagination={{ pageSize: 5 }}
             />
         </>
     );
