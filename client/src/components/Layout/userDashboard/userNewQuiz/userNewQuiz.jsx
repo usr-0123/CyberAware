@@ -3,28 +3,41 @@ import { useEffect, useState } from "react";
 import UserQuizForm from "./UserQuizForm";
 import { useGetAllCategoriesQuery } from "../../../../features/api/categoriesApi";
 import { EditOutlined } from '@ant-design/icons';
+import questionsData from '../../../../questions.json';
 
 const { Meta } = Card;
 
+console.log(questionsData);
+
 const UserNewQuiz = () => {
     const [arraydata, setArrayData] = useState();
-    const { data, refetch: refetchCategories } = useGetAllCategoriesQuery();
+    // const { data, refetch: refetchCategories } = useGetAllCategoriesQuery();
     const [isQuizModalOpen, setIsQuizModalOpen] = useState(false);
     const [selectedCategoryObject, setSelectedCategoryObject] = useState(null);
 
+    // useEffect(() => {
+    //     if (data?.data) {
+    //         setArrayData(data.data)
+    //     } else {
+    //         setArrayData([]);
+    //         refetchCategories();
+    //     };
+    // }, [data, refetchCategories]);
+
     useEffect(() => {
-        if (data?.data) {
-            setArrayData(data.data)
+        if (questionsData) {
+            setArrayData(questionsData)
         } else {
             setArrayData([]);
-            refetchCategories();
         };
-    }, [data, refetchCategories]);
+    }, [questionsData]);
 
     const handleSelect = (params) => {
         setSelectedCategoryObject(params)
         setIsQuizModalOpen(true)
     };
+
+    console.log(arraydata);
 
     return (
         <>
@@ -32,18 +45,18 @@ const UserNewQuiz = () => {
                 New Quiz
             </h1>
             <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-                {arraydata?.map((item, index) => (
+                {arraydata?.keys(arraydata).map((category) => (
                     <Card
-                        onClick={() => handleSelect(item)}
+                        onClick={() => handleSelect(category)}
                         style={{ width: '30%', margin: '1%' }}
-                        key={index}
+                        key={category}
                         actions={[
                             <EditOutlined key="doQuiz" />
                         ]}
                     >
                         <Meta
-                            title={item.categoryName}
-                            description={item.categoryDescription}
+                            title={category}
+                            // description={item.categoryDescription}
                         />
                     </Card>
                 ))}

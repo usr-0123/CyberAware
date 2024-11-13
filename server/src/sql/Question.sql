@@ -24,4 +24,4 @@ FROM
 SELECT *
 FROM tbl_Questions;
 
--- delete from tbl_Questions WHERE questionWeight = 15
+delete from tbl_Questions

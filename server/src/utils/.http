@@ -19,7 +19,7 @@ Content-Type: application/json
 
 {
     "emailAddress":"kemboilewis6@gmail.com",
-    "password":"@Usr0123",
+    "usrPassword":"@Usr0123"
 }
 
 ###
@@ -40,7 +40,7 @@ Content-Type: application/json
 
 {
     "emailAddress":"kemboilewis6@gmail.com",
-    "password":"@Usr0123",
+    "password":"@Usr0123"
 }
 
 ###
@@ -54,9 +54,10 @@ Content-Type: application/json
 
 ###
 POST http://localhost:3100/api/category/create
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiJjYjRhZWFlMC1mYzczLTRlZDgtYmY0NS05MjM3YmVkNjhiODAiLCJ1c3JSb2xlIjoiQWRtaW4iLCJlbWFpbEFkZHJlc3MiOiJrZW1ib2lsZXdpczZAZ21haWwuY29tIiwidXNlck5hbWUiOiJsdXdpIiwiaWF0IjoxNzI1Mjc1NjU5LCJleHAiOjE3MjUyOTcyNTl9.MdnWXdhTYU2ABR47eaJiou-qhBw4L4zaZg0QpOjRJ6Q
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiJjYjRhZWFlMC1mYzczLTRlZDgtYmY0NS05MjM3YmVkNjhiODAiLCJ1c3JSb2xlIjoiVXNlciIsImVtYWlsQWRkcmVzcyI6ImtlbWJvaWxld2lzNkBnbWFpbC5jb20iLCJ1c2VyTmFtZSI6Imxld2lza2kiLCJpYXQiOjE3MzEzMTE5NTcsImV4cCI6MTczMTMzMzU1N30.b0OS-fCccg_t-elhKKc3fm3VdnrPLkYVC5E91sz1eb8
 Content-Type: application/json
 
-{
-    "categoryName":"Test Category"
-}
+    {
+      "categoryName": "Physical Theft of Devices",
+      "categoryDescription": "Loss or theft of devices containing sensitive data, potentially allowing unauthorized access if the device is not secured properly."
+    }

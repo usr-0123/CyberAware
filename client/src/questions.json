@@ -1,0 +1,216 @@
+{
+    "Phishing Attacks": [
+        {
+            "question": "How often do you verify the sender's email address before clicking on a link?",
+            "options": [
+                "Always",
+                "Sometimes",
+                "Rarely",
+                "Never"
+            ]
+        },
+        {
+            "question": "When you receive a suspicious link or file in a message, how do you usually respond?",
+            "options": [
+                "Delete without opening",
+                "Ask the sender to verify",
+                "Open cautiously",
+                "Open without much concern"
+            ]
+        },
+        {
+            "question": "How familiar are you with identifying phishing attacks?",
+            "options": [
+                "Very familiar",
+                "Somewhat familiar",
+                "Slightly familiar",
+                "Not familiar"
+            ]
+        }
+    ],
+    "Ransomware": [
+        {
+            "question": "Do you regularly back up your important files?",
+            "options": [
+                "Yes, weekly",
+                "Yes, monthly",
+                "Yes, occasionally",
+                "No, never"
+            ]
+        }
+    ],
+    "Malware and Viruses": [
+        {
+            "question": "How frequently do you run antivirus or anti-malware scans on your devices?",
+            "options": [
+                "Daily",
+                "Weekly",
+                "Monthly",
+                "Rarely",
+                "Never"
+            ]
+        }
+    ],
+    "Social Engineering": [
+        {
+            "question": "Have you enabled two-factor authentication on any of your accounts?",
+            "options": [
+                "Yes, on all critical accounts",
+                "Yes, on some accounts",
+                "No, but I know about it",
+                "No, I'm not familiar with it"
+            ]
+        }
+    ],
+    "Public Wi-Fi Vulnerabilities": [
+        {
+            "question": "Do you use public Wi-Fi for accessing sensitive information (e.g., banking, email)?",
+            "options": [
+                "Never",
+                "Rarely",
+                "Sometimes",
+                "Often",
+                "Always"
+            ]
+        },
+        {
+            "question": "Do you use a VPN when accessing public Wi-Fi?",
+            "options": [
+                "Always",
+                "Sometimes",
+                "Rarely",
+                "Never"
+            ]
+        }
+    ],
+    "Data Breaches and Unauthorized Access": [
+        {
+            "question": "How often do you update the passwords for your online accounts?",
+            "options": [
+                "Every 1-3 months",
+                "Every 6 months",
+                "Once a year",
+                "Rarely or never"
+            ]
+        }
+    ],
+    "Password Theft and Account Hijacking": [
+        {
+            "question": "Do you use a password manager to store and generate unique passwords?",
+            "options": [
+                "Yes, I use a password manager",
+                "No, but I use unique passwords",
+                "No, I reuse some passwords",
+                "No, I reuse passwords frequently"
+            ]
+        }
+    ],
+    "Spyware and Keyloggers": [
+        {
+            "question": "How cautious are you when downloading software from the internet?",
+            "options": [
+                "I only download from trusted sources",
+                "I verify but occasionally take risks",
+                "I rarely verify",
+                "I often download without checking"
+            ]
+        }
+    ],
+    "Unsecured IoT Devices": [
+        {
+            "question": "Are your IoT devices (e.g., smart speakers, cameras) secured with strong passwords and updated software?",
+            "options": [
+                "Yes, all are secured",
+                "Some are secured",
+                "No, but I intend to secure them",
+                "No, they are not secured"
+            ]
+        }
+    ],
+    "Fake or Malicious Software Downloads": [
+        {
+            "question": "How cautious are you when downloading software from the internet?",
+            "options": [
+                "I only download from trusted sources",
+                "I verify but occasionally take risks",
+                "I rarely verify",
+                "I often download without checking"
+            ]
+        }
+    ],
+    "Zero-Day Exploits": [
+        {
+            "question": "Are your software and applications up to date with the latest security patches?",
+            "options": [
+                "Yes, always",
+                "Yes, regularly",
+                "I check occasionally",
+                "No, never"
+            ]
+        }
+    ],
+    "Denial of Service (DoS) or Distributed Denial of Service (DDoS) Attacks": [
+        {
+            "question": "Do you have any measures in place to protect your online services or website from DDoS attacks?",
+            "options": [
+                "Yes, I have DDoS protection",
+                "I plan to implement DDoS protection",
+                "No, I do not have protection",
+                "Not sure"
+            ]
+        }
+    ],
+    "Identity Theft and Impersonation": [
+        {
+            "question": "Do you use identity theft protection services or credit monitoring?",
+            "options": [
+                "Yes, I use them",
+                "I plan to use them",
+                "No, but I am considering it",
+                "No, I do not use them"
+            ]
+        }
+    ],
+    "Cloud Security Vulnerabilities": [
+        {
+            "question": "Do you store sensitive data in cloud services, and do you ensure proper encryption and access control?",
+            "options": [
+                "Yes, always secure",
+                "Yes, but sometimes insecure",
+                "No, I avoid cloud storage",
+                "I’m not sure how secure it is"
+            ]
+        }
+    ],
+    "Mobile Device Threats": [
+        {
+            "question": "Do you regularly update the apps and operating system on your mobile device?",
+            "options": [
+                "Yes, automatically",
+                "Yes, manually",
+                "Sometimes",
+                "Never"
+            ]
+        },
+        {
+            "question": "How often do you check the permissions you grant to mobile apps?",
+            "options": [
+                "Always",
+                "Sometimes",
+                "Rarely",
+                "Never"
+            ]
+        }
+    ],
+    "Physical Theft of Devices": [
+        {
+            "question": "Do you have a way to track or remotely wipe your mobile device in case it’s lost or stolen?",
+            "options": [
+                "Yes, I have tracking/wiping enabled",
+                "I plan to enable it",
+                "No, but I'm aware of it",
+                "No, I'm not aware of it"
+            ]
+        }
+    ]
+}
