@@ -14,23 +14,10 @@ CREATE TABLE tbl_Users (
     profileURL VarChar(255)
 );
 
--- DROP TABLE tbl_Users;
--- DELETE FROM tbl_Users;
-SELECT * FROM tbl_Users;
+INSERT INTO tbl_Users (userID, usrRole, firstName, lastName, surName, userName, gender, emailAddress, usrPassword, phoneNumber, dateOfBirth, street, profileURL) 
+VALUES 
+('2a649e7f-0a63-418a-8bad-7f18dd13433f', 'Admin', 'John', 'Doe', 'JohnDoe', 'jd', 1, 'johnDoe@gmail.com', '$2b$08$dZEmkJneMMCTIRhbbfJFt.apR/nyD79WrCXZLXAyN8DP6NZ6REP6q', '0722000000', NULL, 'Street', '');
 
-DELETE FROM tbl_Users
-WHERE userID = '2a649e7f-0a63-418a-8bad-7f18dd13433f'
-
--- SELECT * FROM tbl_Users WHERE userID = '052cd733-5914-44d8-a668-605f5c4b0766'
-
-UPDATE tbl_Users 
-SET  
-    firstName = "Johnte", 
-    lastName = "DoeDoe", 
-    surName = "Does", 
-    userName = "jid5", 
-    emailAddress = "jdoe@examplee.com", 
-    usrPassword = "12345", 
-    phoneNumber = "0782354733", 
-    gender = "1"
-WHERE userID = "2a649e7f-0a63-418a-8bad-7f18dd13433f"
+-- For this user:
+-- email: johnDoe@gmail.com
+-- password: @Usr0123

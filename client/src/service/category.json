@@ -1,0 +1,84 @@
+{
+    "categories": [
+        {
+            "id": 1,
+            "name": "Phishing Attacks",
+            "description": "Attempts to trick individuals into revealing sensitive information such as passwords or credit card details, often through fake emails or websites."
+        },
+        {
+            "id": 2,
+            "name": "Ransomware",
+            "description": "Malicious software that encrypts data and demands payment in exchange for restoring access to the data."
+        },
+        {
+            "id": 3,
+            "name": "Malware and Viruses",
+            "description": "Harmful software designed to damage, disrupt, or gain unauthorized access to systems and data."
+        },
+        {
+            "id": 4,
+            "name": "Social Engineering",
+            "description": "Manipulative tactics used to deceive individuals into divulging confidential information or performing actions that compromise security."
+        },
+        {
+            "id": 5,
+            "name": "Public Wi-Fi Vulnerabilities",
+            "description": "Risks associated with using unsecured public wireless networks, which can expose devices to interception or attacks."
+        },
+        {
+            "id": 6,
+            "name": "Data Breaches and Unauthorized Access",
+            "description": "Incidents where sensitive data is exposed or accessed without authorization, potentially leading to identity theft or financial loss."
+        },
+        {
+            "id": 7,
+            "name": "Password Theft and Account Hijacking",
+            "description": "The stealing of login credentials to gain unauthorized access to personal or professional accounts."
+        },
+        {
+            "id": 8,
+            "name": "Spyware and Keyloggers",
+            "description": "Malicious software that secretly monitors and records user activities, often stealing sensitive information such as passwords."
+        },
+        {
+            "id": 9,
+            "name": "Unsecured IoT Devices",
+            "description": "Security risks arising from poorly protected Internet of Things devices, which can be exploited by attackers to access networks or data."
+        },
+        {
+            "id": 10,
+            "name": "Fake or Malicious Software Downloads",
+            "description": "Software that appears legitimate but is actually designed to compromise security, steal data, or harm systems."
+        },
+        {
+            "id": 11,
+            "name": "Zero-Day Exploits",
+            "description": "Attacks that exploit vulnerabilities in software that are unknown to the vendor and have no available fix."
+        },
+        {
+            "id": 12,
+            "name": "Denial of Service (DoS) or Distributed Denial of Service (DDoS) Attacks",
+            "description": "Attacks that overwhelm systems or networks with excessive traffic, rendering them inaccessible to legitimate users."
+        },
+        {
+            "id": 13,
+            "name": "Identity Theft and Impersonation",
+            "description": "The unauthorized use of someone's personal information to commit fraud or other malicious activities."
+        },
+        {
+            "id": 14,
+            "name": "Cloud Security Vulnerabilities",
+            "description": "Risks associated with storing or processing data in the cloud, including unauthorized access, data loss, or breaches."
+        },
+        {
+            "id": 15,
+            "name": "Mobile Device Threats",
+            "description": "Security risks targeting smartphones and tablets, such as malicious apps, unsecured networks, or theft of data."
+        },
+        {
+            "id": 16,
+            "name": "Physical Theft of Devices",
+            "description": "The risk of devices being stolen, leading to potential data breaches or unauthorized access to sensitive information."
+        }
+    ]
+}

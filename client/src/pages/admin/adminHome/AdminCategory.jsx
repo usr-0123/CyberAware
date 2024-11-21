@@ -158,6 +158,7 @@ const AdminCategory = () => {
                     })}
                     rowKey="categoryID"
                     dataSource={categories}
+                    pagination={{ pageSize: 5 }}
                     bordered
                 />
             }

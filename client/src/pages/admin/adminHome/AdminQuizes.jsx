@@ -81,6 +81,7 @@ const AdminHomeQuizes = () => {
                 })}
                 rowKey="questionId"
                 dataSource={arrayData}
+                pagination={{pageSize: 5}}
                 bordered
             />
             <Modal
