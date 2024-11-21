@@ -117,7 +117,7 @@ const UserQuizForm = ({ selectedCategoryObject }) => {
                 <p style={{ color: '#666' }}>Test category: {selectedCategoryObject.categoryName}</p>
                 <p style={{ color: '#666' }}>Description: {selectedCategoryObject.categoryDescription}</p>
             </>}
-            <Collapse accordion style={{ maxHeight: '300px', overflow: 'auto' }}>
+            <Collapse style={{ maxHeight: '300px', overflow: 'auto' }}>
                 {arrayData?.map((item, index) => (
                     <Panel header={item.questionText} key={item.questionId}>
 

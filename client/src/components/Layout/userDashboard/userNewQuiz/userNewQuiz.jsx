@@ -1,66 +1,55 @@
-import { Card, Modal } from "antd";
+import { Carousel, Modal } from "antd";
 import { useEffect, useState } from "react";
 import UserQuizForm from "./UserQuizForm";
 import { useGetAllCategoriesQuery } from "../../../../features/api/categoriesApi";
-import { EditOutlined } from '@ant-design/icons';
-import questionsData from '../../../../questions.json';
 
-const { Meta } = Card;
-
-console.log(questionsData);
+const customStyle = {
+    border: '1px solid #ddd',
+    margin: '10px',
+    padding: '20px',
+    backgroundColor: '#000',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+    borderRadius: '10px',
+    textAlign: 'center',
+}
 
 const UserNewQuiz = () => {
     const [arraydata, setArrayData] = useState();
-    // const { data, refetch: refetchCategories } = useGetAllCategoriesQuery();
+    const { data, refetch: refetchCategories } = useGetAllCategoriesQuery();
     const [isQuizModalOpen, setIsQuizModalOpen] = useState(false);
     const [selectedCategoryObject, setSelectedCategoryObject] = useState(null);
 
-    // useEffect(() => {
-    //     if (data?.data) {
-    //         setArrayData(data.data)
-    //     } else {
-    //         setArrayData([]);
-    //         refetchCategories();
-    //     };
-    // }, [data, refetchCategories]);
-
     useEffect(() => {
-        if (questionsData) {
-            setArrayData(questionsData)
+        if (data?.data) {
+            setArrayData(data.data)
         } else {
             setArrayData([]);
+            refetchCategories();
         };
-    }, [questionsData]);
+    }, [data, refetchCategories]);
 
     const handleSelect = (params) => {
         setSelectedCategoryObject(params)
         setIsQuizModalOpen(true)
     };
 
-    console.log(arraydata);
-
     return (
         <>
             <h1>
                 New Quiz
             </h1>
-            <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-                {arraydata?.keys(arraydata).map((category) => (
-                    <Card
-                        onClick={() => handleSelect(category)}
-                        style={{ width: '30%', margin: '1%' }}
-                        key={category}
-                        actions={[
-                            <EditOutlined key="doQuiz" />
-                        ]}
+            <Carousel style={{cursor: 'pointer'}} arrows autoplay easing="linear" infinite={true}>
+                {arraydata?.map((item, index) => (
+                    <div
+                        style={customStyle}
+                        onClick={() => handleSelect(item)}
+                        key={index}
                     >
-                        <Meta
-                            title={category}
-                            // description={item.categoryDescription}
-                        />
-                    </Card>
+                        <h3>{item.categoryName}</h3>
+                        <p>{item.categoryDescription}</p>
+                    </div>
                 ))}
-            </div>
+            </Carousel>
             <Modal
                 title="Personality quiz test"
                 centered

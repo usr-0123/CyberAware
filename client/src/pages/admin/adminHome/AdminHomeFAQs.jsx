@@ -28,7 +28,7 @@ const AdminHomeFAQs = () => {
 
     return (
         <>
-            <h3>Frequently Asked Questions</h3>
+            <h1>Frequently Asked Questions</h1>
             <Collapse>
                 {collapseItems?.map((item) => (
                     <Panel header={item.label} key={item.key}>

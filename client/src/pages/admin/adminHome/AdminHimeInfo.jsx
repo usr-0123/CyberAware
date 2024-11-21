@@ -24,12 +24,8 @@ const AdminHomeInfo = () => {
 
     return (
         <>
-            <h3>Educational Information Content</h3>
-            <Table
-                columns={columns}
-                dataSource={data?.body}
-                bordered rowKey="title"
-                pagination={{ pageSize: 5 }} />
+            <h1>Admin Home Info</h1>
+            <Table title={() => 'Educational Information Content'} columns={columns} dataSource={data?.body} bordered rowKey="title" />
         </>
     );
 };
