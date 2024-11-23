@@ -81,8 +81,8 @@ export const fetchQuestionsWithCategoryController = async (req, res) => {
 
 export const fetchQuestionsWithCategoryByIdController = async (req, res) => {
     let params;
-
-    params = { questionId: req.params.questionId };
+    
+    params = { categoryID: req.params.categoryID };
 
     try {
         const result = await fetchQuestionsWithCategoryService(params);

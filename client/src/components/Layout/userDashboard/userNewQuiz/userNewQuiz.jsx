@@ -1,17 +1,10 @@
-import { Carousel, Modal } from "antd";
+import { Card, Modal } from "antd";
 import { useEffect, useState } from "react";
 import UserQuizForm from "./UserQuizForm";
 import { useGetAllCategoriesQuery } from "../../../../features/api/categoriesApi";
+import { EditOutlined } from '@ant-design/icons';
 
-const customStyle = {
-    border: '1px solid #ddd',
-    margin: '10px',
-    padding: '20px',
-    backgroundColor: '#000',
-    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-    borderRadius: '10px',
-    textAlign: 'center',
-}
+const { Meta } = Card;
 
 const UserNewQuiz = () => {
     const [arraydata, setArrayData] = useState();
@@ -29,6 +22,7 @@ const UserNewQuiz = () => {
     }, [data, refetchCategories]);
 
     const handleSelect = (params) => {
+        
         setSelectedCategoryObject(params)
         setIsQuizModalOpen(true)
     };
@@ -36,20 +30,26 @@ const UserNewQuiz = () => {
     return (
         <>
             <h1>
-                New Quiz
+                Questions Categories
             </h1>
-            <Carousel style={{cursor: 'pointer'}} arrows autoplay easing="linear" infinite={true}>
+            <div style={{ display: 'flex', flexWrap: 'wrap' }}>
                 {arraydata?.map((item, index) => (
-                    <div
-                        style={customStyle}
+                    <Card
                         onClick={() => handleSelect(item)}
+                        style={{ width: '30%', margin: '1%' }}
                         key={index}
+                        actions={[
+                            <EditOutlined key="doQuiz" />
+                        ]}
                     >
-                        <h3>{item.categoryName}</h3>
-                        <p>{item.categoryDescription}</p>
-                    </div>
+                        <Meta
+                            title={item.categoryName}
+                            description={item.categoryDescription}
+                        />
+                    </Card>
                 ))}
-            </Carousel>
+            </div>
+
             <Modal
                 title="Personality quiz test"
                 centered

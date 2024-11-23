@@ -21,3 +21,5 @@ VALUES
 -- For this user:
 -- email: johnDoe@gmail.com
 -- password: @Usr0123
+
+select * from tbl_Users

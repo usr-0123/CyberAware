@@ -41,7 +41,7 @@ export const questionsApi = createApi({
         }),
 
         getQuestionCategoryByQuestionId: builder.query({
-            query: (questionId) => `question/category/id/${questionId}`,
+            query: ({categoryID}) => `question/category/id/${categoryID}`,
             providesTags: ["Questions"],
         }),
 

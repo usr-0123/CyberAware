@@ -45,7 +45,7 @@ export const fetchQuestionsWithCategoryService = async (params) => {
     if (!params) {
         query = fetchQuestionsWithCategoryQuery;
     } else {
-        query = fetchQuestionsWithCategoryQuery + ` WHERE q.questionId = '${params.questionId}'`;
+        query = fetchQuestionsWithCategoryQuery + ` WHERE c.categoryID = '${params.categoryID}'`;
     };
 
     try {

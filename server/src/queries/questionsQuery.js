@@ -7,6 +7,7 @@ export const fetchQuestionsWithCategoryQuery = `SELECT
     q.createdDate, 
     q.questionWeight, 
     q.questionText, 
+    c.categoryID,
     c.categoryName 
 FROM 
     tbl_Questions q

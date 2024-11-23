@@ -2,7 +2,7 @@ import { Button, Collapse, Radio } from "antd";
 import { useEffect, useState } from "react";
 import { decodeToken } from "../../../../helpers/token";
 import { alertService } from "../../../../service/alertService";
-import { useGetAllQuestionsCategoryQuery } from "../../../../features/api/questionsApi";
+import { useGetQuestionCategoryByQuestionIdQuery } from "../../../../features/api/questionsApi";
 import { useCreateNewQuizMutation } from "../../../../features/api/quizApi";
 
 const { Panel } = Collapse;
@@ -12,9 +12,9 @@ const { showAlert } = alertService();
 const UserQuizForm = ({ selectedCategoryObject }) => {
     const [selectedValues, setSelectedValues] = useState();
     const [arrayData, setArrayData] = useState([]);
-    const { data, refetch } = useGetAllQuestionsCategoryQuery();
+    const { data, refetch } = useGetQuestionCategoryByQuestionIdQuery({categoryID:selectedCategoryObject.categoryID});
     const [quiz, { isLoading: createQuestionLoading }] = useCreateNewQuizMutation();
-
+    
     const handleRadioChange = (questionId, e) => {
         setSelectedValues((prev) => {
             const responses = Array.isArray(prev) ? prev : [];
