@@ -269,6 +269,8 @@ const threatRecommendations = [
 ];
 
 export const analyzeResponses = (questions, responses) => {
+  // console.log(questions, responses);
+  
   const report = [];
 
   responses.forEach((response) => {
@@ -1029,7 +1031,7 @@ const userResponses = {
 
 // Generate the threat report based on user responses
 const threatReport = threatAssessment.assessThreat(userResponses);
-console.log(threatReport);
+// console.log(threatReport);
 
 
 

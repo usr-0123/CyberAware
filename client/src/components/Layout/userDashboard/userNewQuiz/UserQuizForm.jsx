@@ -9,12 +9,40 @@ const { Panel } = Collapse;
 
 const { showAlert } = alertService();
 
+import questions from '../../../../service/questions.json'
+
 const UserQuizForm = ({ selectedCategoryObject }) => {
     const [selectedValues, setSelectedValues] = useState();
     const [arrayData, setArrayData] = useState([]);
     const { data, refetch } = useGetQuestionCategoryByQuestionIdQuery({categoryID:selectedCategoryObject.categoryID});
     const [quiz, { isLoading: createQuestionLoading }] = useCreateNewQuizMutation();
     
+    const getOptionsStats = () => {
+        const option = questions?.questions.filter(object => object.category === selectedCategoryObject.categoryName)
+        if (option.length > 0) {
+            return option[0].questions
+        }
+        return
+    }
+
+    const getOptions = (params) => {
+        if (!params || params === '') {
+            return
+        }
+
+        const questions = getOptionsStats();
+
+        if (questions) {
+            const questionOption = questions.filter(object => object.question === params)
+
+            if (questionOption.length > 0) {
+                return questionOption[0].options
+            }
+            return
+        }
+        return
+    }
+
     const handleRadioChange = (questionId, e) => {
         setSelectedValues((prev) => {
             const responses = Array.isArray(prev) ? prev : [];
@@ -127,7 +155,7 @@ const UserQuizForm = ({ selectedCategoryObject }) => {
                             <Radio.Group
                                 onChange={(e) => handleRadioChange(item.questionId, e)}
                                 value={selectedValues?.find((response) => response.questionId === item.questionId)?.answer}
-                                options={options}
+                                options={getOptions(item.questionText) || options}
                                 optionType="button"
                                 buttonStyle="solid"
                             />
