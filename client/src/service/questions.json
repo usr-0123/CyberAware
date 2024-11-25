@@ -4,7 +4,7 @@
             "category": "Phishing Attacks",
             "questions": [
                 {
-                    "question": "How often do you verify the sender's email address before clicking on a link?",
+                    "question": "How often do you verify the senders email address before clicking on a link?",
                     "options": [
                         { "label": "Always", "value": "Always" },
                         { "label": "Sometimes", "value": "Sometimes" },
@@ -70,7 +70,7 @@
                         { "label": "Yes, on all critical accounts", "value": "Yes, on all critical accounts" },
                         { "label": "Yes, on some accounts", "value": "Yes, on some accounts" },
                         { "label": "No, but I know about it", "value": "No, but I know about it" },
-                        { "label": "No, I'm not familiar with it", "value": "No, I'm not familiar with it" }
+                        { "label": "No, I'm not familiar with it", "value": "No, Im not familiar with it" }
                     ]
                 }
             ]
@@ -251,8 +251,8 @@
                     "options": [
                         { "label": "Yes, I have tracking/wiping enabled", "value": "Yes, I have tracking/wiping enabled" },
                         { "label": "I plan to enable it", "value": "I plan to enable it" },
-                        { "label": "No, but I'm aware of it", "value": "No, but I'm aware of it" },
-                        { "label": "No, I'm not aware of it", "value": "No, I'm not aware of it" }
+                        { "label": "No, but I'm aware of it", "value": "No, but Im aware of it" },
+                        { "label": "No, I'm not aware of it", "value": "No, Im not aware of it" }
                     ]
                 }
             ]

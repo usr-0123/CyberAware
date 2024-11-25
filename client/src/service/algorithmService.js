@@ -4,7 +4,7 @@ const questions_with_categories = {
   "Phishing Attacks": [
     {
       question:
-        "How often do you verify the sender email address before clicking on a link?",
+        "How often do you verify the senders email address before clicking on a link?",
       options: [
         {
           response: "Always",
@@ -603,7 +603,7 @@ const questions_with_categories = {
           "recommendation": "Activate tracking and remote wipe features to mitigate risks related to device loss or theft."
         },
         {
-          "response": "No, I’m not aware of it",
+          "response": "No, Im not aware of it",
           "possible_threat": "Critical risk of data exposure and identity theft from untracked and unprotected devices.",
           "recommendation": "Educate yourself about device security features and implement tracking and wiping tools without delay."
         }
