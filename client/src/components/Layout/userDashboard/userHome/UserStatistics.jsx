@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { fetchRecommendations } from "../../../../service/algorithmService";
+// import { fetchRecommendations } from "../../../../service/algorithmService";
 import { Collapse, List } from "antd";
 
 const { Panel } = Collapse;
@@ -7,18 +7,18 @@ const { Panel } = Collapse;
 const UserStatistics = ({ params }) => {
     const [recommendations, setRecommendations] = useState([]);
 
-    useEffect(() => {
-        const getRecommendations = async () => {
-            try {
-                const recommendationsResponse = await fetchRecommendations(params);
-                setRecommendations(recommendationsResponse);
-            } catch (error) {
-                console.error("Failed to fetch recommendations:", error);
-            }
-        };
+    // useEffect(() => {
+    //     const getRecommendations = async () => {
+    //         try {
+    //             const recommendationsResponse = await fetchRecommendations(params);
+    //             setRecommendations(recommendationsResponse);
+    //         } catch (error) {
+    //             console.error("Failed to fetch recommendations:", error);
+    //         }
+    //     };
 
-        getRecommendations();
-    }, [params]);
+    //     getRecommendations();
+    // }, [params]);
 
     return (
         <>
