@@ -292,28 +292,28 @@ const questions_with_categories = {
       question: "Do you monitor your online accounts for unauthorized access?",
       options: [
         {
-          response: "Yes, regularly",
+          response: "Every 1-3 months",
           possible_threat:
             "Low risk. Regular monitoring helps detect unauthorized access early, reducing potential damage.",
           recommendation:
             "Keep monitoring your accounts regularly and enable security alerts for unusual activities.",
         },
         {
-          response: "Occasionally",
+          response: "Every 6 months",
           possible_threat:
             "Moderate risk. Infrequent monitoring may delay the discovery of unauthorized access.",
           recommendation:
             "Increase the frequency of account monitoring and activate alerts for suspicious activities.",
         },
         {
-          response: "Rarely",
+          response: "Once a year",
           possible_threat:
             "High risk. Rarely monitoring accounts increases the chances of undetected breaches.",
           recommendation:
             "Regularly review account activity and secure your accounts with additional authentication measures.",
         },
         {
-          response: "Never",
+          response: "Rarely or never",
           possible_threat:
             "Very high risk. Not monitoring accounts leaves you unaware of potential unauthorized access or breaches.",
           recommendation:
@@ -481,23 +481,23 @@ const questions_with_categories = {
       "options": [
         {
           "response": "I only download from trusted sources",
-          "possible_threat": "Low risk. Downloading from trusted sources ensures that the software is safe and free from malicious content.",
-          "recommendation": "Continue downloading only from trusted and verified sources to minimize risk."
+          "possible_threat": "Minimal exposure to fake or malicious software, as trusted sources often provide verified software.",
+          "recommendation": "Maintain your vigilance by downloading only from verified sources, and consider using antivirus software for additional protection."
         },
         {
           "response": "I verify but occasionally take risks",
-          "possible_threat": "Moderate risk. Occasionally downloading from unverified sources increases the chance of downloading malicious software.",
-          "recommendation": "Make it a habit to only download from well-known, trusted sources to reduce the risk of malware."
+          "possible_threat": "Moderate risk of exposure to malware, ransomware, or spyware due to occasional risky downloads.",
+          "recommendation": "Avoid taking unnecessary risks and always ensure software is downloaded from reputable sources."
         },
         {
           "response": "I rarely verify",
-          "possible_threat": "High risk. Rarely verifying sources exposes you to downloading malicious or fake software, which could compromise your system.",
-          "recommendation": "Verify the sources before downloading software, even if it takes extra time, to ensure you don’t accidentally install malicious software."
+          "possible_threat": "High risk of encountering malicious software that can compromise personal or organizational data.",
+          "recommendation": "Adopt strict verification practices for all downloads and leverage tools like digital signatures or certificates to confirm authenticity."
         },
         {
           "response": "I often download without checking",
-          "possible_threat": "Very high risk. Downloading software without checking can lead to serious security threats, including malware, ransomware, or data theft.",
-          "recommendation": "Stop downloading software without verification. Always check the source and the legitimacy of the software before downloading to protect your device."
+          "possible_threat": "Critical risk of infection by malware, spyware, or ransomware, leading to data breaches or system compromise.",
+          "recommendation": "Immediately cease downloading unverified software and adopt tools like endpoint security solutions to protect your devices."
         }
       ]
     }
@@ -508,23 +508,23 @@ const questions_with_categories = {
       "options": [
         {
           "response": "Yes, I use them",
-          "possible_threat": "Low risk. Using identity theft protection services or credit monitoring significantly reduces the chance of falling victim to identity theft or fraud.",
-          "recommendation": "Continue using these services for added security and peace of mind."
+          "possible_threat": "Low likelihood of falling victim to identity theft due to proactive monitoring and protection measures.",
+          "recommendation": "Continue utilizing identity protection tools and monitor for suspicious activities in financial accounts."
         },
         {
           "response": "I plan to use them",
-          "possible_threat": "Moderate risk. While you plan to use them, you’re currently not protected, which exposes you to potential identity theft risks.",
-          "recommendation": "Consider setting up identity theft protection services or credit monitoring soon to reduce the risk of fraud."
+          "possible_threat": "Increased vulnerability to identity theft until services are implemented.",
+          "recommendation": "Activate identity protection services promptly to mitigate risks related to unauthorized access or fraud."
         },
         {
           "response": "No, but I am considering it",
-          "possible_threat": "High risk. Not using protection services but considering them leaves you vulnerable to identity theft or fraud.",
-          "recommendation": "Start using identity theft protection services or credit monitoring to protect your personal information."
+          "possible_threat": "Elevated risk of identity fraud or phishing attacks due to a lack of monitoring and protection.",
+          "recommendation": "Prioritize setting up identity protection to safeguard sensitive personal information."
         },
         {
           "response": "No, I do not use them",
-          "possible_threat": "Very high risk. Not using any form of identity theft protection or credit monitoring increases your chances of being targeted by fraudsters.",
-          "recommendation": "Set up identity theft protection services or credit monitoring as soon as possible to reduce the risk of your personal information being stolen."
+          "possible_threat": "Severe risk of identity theft, fraud, and data compromise from unmonitored and unsecured personal information.",
+          "recommendation": "Implement identity theft protection or credit monitoring immediately to prevent potential exploitation."
         }
       ]
     }
@@ -535,23 +535,23 @@ const questions_with_categories = {
       "options": [
         {
           "response": "Yes, always",
-          "possible_threat": "Low risk. Keeping your software up to date ensures protection from known vulnerabilities and reduces the chances of a zero-day exploit.",
-          "recommendation": "Continue regularly updating your software and applications to maintain optimal security."
+          "possible_threat": "Low risk of exploitation via known vulnerabilities due to timely application of security patches.",
+          "recommendation": "Maintain a routine of updating software and enable automatic updates for quicker response to threats."
         },
         {
           "response": "Yes, regularly",
-          "possible_threat": "Moderate risk. Updating software regularly is good, but if updates are delayed, new vulnerabilities might be exploited before they are patched.",
-          "recommendation": "Aim to keep your software updated as soon as security patches are released to minimize exposure to zero-day exploits."
+          "possible_threat": "Moderate risk, as delays between patch release and installation can leave systems temporarily vulnerable.",
+          "recommendation": "Minimize update delays and prioritize critical patches for sensitive systems or applications."
         },
         {
           "response": "I check occasionally",
-          "possible_threat": "High risk. Checking for updates occasionally can leave your software vulnerable to newly discovered exploits before they are patched.",
-          "recommendation": "Consider setting up automatic updates to ensure timely installation of critical security patches."
+          "possible_threat": "High risk of exposure to zero-day vulnerabilities during periods of outdated software.",
+          "recommendation": "Schedule regular updates and implement automated tools to identify and install necessary patches."
         },
         {
           "response": "No, never",
-          "possible_threat": "Very high risk. Not updating your software exposes your system to known vulnerabilities that could be exploited by attackers using zero-day exploits.",
-          "recommendation": "Make it a priority to start updating your software and applications regularly to protect against security breaches."
+          "possible_threat": "Extreme risk of compromise through unpatched vulnerabilities, often targeted by attackers.",
+          "recommendation": "Immediately establish an update protocol to address existing vulnerabilities and protect against future threats."
         }
       ]
     }
@@ -562,23 +562,23 @@ const questions_with_categories = {
       "options": [
         {
           "response": "Yes, always secure",
-          "possible_threat": "Low risk. Using cloud services with proper encryption and access controls ensures the security of sensitive data and mitigates the risk of unauthorized access.",
-          "recommendation": "Continue using strong encryption and ensure access control policies are strictly followed."
+          "possible_threat": "Minimal risk of unauthorized access or data breach due to stringent security measures.",
+          "recommendation": "Continue to implement strong encryption and enforce access control policies regularly."
         },
         {
           "response": "Yes, but sometimes insecure",
-          "possible_threat": "Moderate risk. Inconsistent security practices may lead to potential vulnerabilities, such as unauthorized access or data breaches.",
-          "recommendation": "Establish a consistent security policy for cloud storage, including always using encryption and restricting access based on least privilege."
+          "possible_threat": "Moderate risk of breaches or unauthorized access due to inconsistent security practices.",
+          "recommendation": "Adopt uniform security measures, including end-to-end encryption and least-privilege access control."
         },
         {
           "response": "No, I avoid cloud storage",
-          "possible_threat": "No direct risk, but avoiding cloud storage can create other security challenges, such as the complexity of maintaining local storage and backups.",
-          "recommendation": "Consider using secure cloud solutions with encryption and access control if you need to scale or store data remotely, ensuring security measures are in place."
+          "possible_threat": "Potential security challenges from managing local storage and backups without leveraging secure cloud options.",
+          "recommendation": "Consider using reliable cloud services with robust security features for scalable and safe data management."
         },
         {
           "response": "I’m not sure how secure it is",
-          "possible_threat": "High risk. Uncertainty about cloud security can leave sensitive data exposed to unauthorized access or breaches.",
-          "recommendation": "Research the security measures provided by cloud services you use, and implement best practices like encryption and strong access control to secure your sensitive data."
+          "possible_threat": "High risk of data exposure from inadequate or misconfigured cloud security settings.",
+          "recommendation": "Assess and upgrade the security protocols of your cloud services to ensure sensitive data is safeguarded."
         }
       ]
     }
@@ -589,23 +589,23 @@ const questions_with_categories = {
       "options": [
         {
           "response": "Yes, I have tracking/wiping enabled",
-          "possible_threat": "Low risk. Enabling tracking and remote wiping features ensures that in case your device is lost or stolen, you can protect your personal data.",
-          "recommendation": "Keep your tracking and wiping features active and ensure they are properly set up to work effectively."
+          "possible_threat": "Low risk of data exposure in the event of device theft due to proactive security measures.",
+          "recommendation": "Maintain tracking and remote wipe features and periodically test their functionality."
         },
         {
           "response": "I plan to enable it",
-          "possible_threat": "Moderate risk. Not having tracking and remote wipe enabled leaves your device vulnerable if it is lost or stolen.",
-          "recommendation": "Enable tracking and remote wiping features as soon as possible to minimize the risk of data loss in case your device is compromised."
+          "possible_threat": "Moderate risk, as devices remain vulnerable until these measures are activated.",
+          "recommendation": "Enable tracking and remote wiping features immediately to enhance device security."
         },
         {
-          "response": "No, but Im aware of it",
-          "possible_threat": "Moderate to high risk. Being aware of tracking and wiping options but not using them leaves your device unprotected in case of loss or theft.",
-          "recommendation": "Enable tracking and wiping features and make sure to activate them immediately if your device is lost or stolen."
+          "response": "No, but I’m aware of it",
+          "possible_threat": "High risk of data theft and misuse due to unprotected devices.",
+          "recommendation": "Activate tracking and remote wipe features to mitigate risks related to device loss or theft."
         },
         {
-          "response": "No, Im not aware of it",
-          "possible_threat": "High risk. Not being aware of tracking and wiping features leaves your device exposed to potential data theft in the event of loss or theft.",
-          "recommendation": "Familiarize yourself with the tracking and remote wiping options available on your device and enable them for enhanced security."
+          "response": "No, I’m not aware of it",
+          "possible_threat": "Critical risk of data exposure and identity theft from untracked and unprotected devices.",
+          "recommendation": "Educate yourself about device security features and implement tracking and wiping tools without delay."
         }
       ]
     }
@@ -616,23 +616,23 @@ const questions_with_categories = {
       "options": [
         {
           "response": "I only download from trusted sources",
-          "possible_threat": "Low risk. Downloading from trusted sources minimizes the chance of encountering spyware or keyloggers.",
-          "recommendation": "Continue downloading only from trusted sources to avoid malware, spyware, and keyloggers."
+          "possible_threat": "Minimal risk of infection with spyware or keyloggers from verified sources.",
+          "recommendation": "Continue using only trusted sources and regularly scan downloads for malware."
         },
         {
           "response": "I verify but occasionally take risks",
-          "possible_threat": "Moderate risk. While you verify downloads, occasionally taking risks can expose your device to spyware or keyloggers.",
-          "recommendation": "Limit risky downloads, especially from unknown or unverified sources, to reduce exposure to spyware and keyloggers."
+          "possible_threat": "Moderate risk of accidental installation of spyware or keyloggers from unverified downloads.",
+          "recommendation": "Adopt stricter verification practices to minimize exposure to malicious software."
         },
         {
           "response": "I rarely verify",
-          "possible_threat": "High risk. Not verifying downloads regularly increases the likelihood of downloading malicious software, such as spyware or keyloggers.",
-          "recommendation": "Make it a habit to verify the legitimacy of software downloads to protect your device from spyware and keyloggers."
+          "possible_threat": "High risk of unknowingly installing spyware or keyloggers, compromising sensitive data.",
+          "recommendation": "Regularly verify download sources and use anti-spyware tools for added security."
         },
         {
           "response": "I often download without checking",
-          "possible_threat": "Very high risk. Downloading software without checking exposes your device to significant risks, including spyware and keyloggers.",
-          "recommendation": "Always verify the source and legitimacy of software before downloading to prevent malware infections."
+          "possible_threat": "Critical risk of system compromise by spyware or keyloggers, leading to data theft.",
+          "recommendation": "Immediately stop unverified downloads and implement robust cybersecurity measures."
         }
       ]
     }
@@ -643,23 +643,23 @@ const questions_with_categories = {
       "options": [
         {
           "response": "Yes, I have DDoS protection",
-          "possible_threat": "Low risk. Having DDoS protection in place significantly reduces the likelihood of service disruptions from such attacks.",
-          "recommendation": "Keep your DDoS protection up to date and monitor for any signs of malicious activity to ensure continuous protection."
+          "possible_threat": "Low risk of service disruptions due to comprehensive protection against DDoS attacks.",
+          "recommendation": "Regularly review and upgrade your DDoS mitigation strategies to stay ahead of evolving threats."
         },
         {
           "response": "I plan to implement DDoS protection",
-          "possible_threat": "Moderate risk. Planning to implement DDoS protection is a good first step, but until its active, your website or services are vulnerable.",
-          "recommendation": "Implement DDoS protection as soon as possible to prevent potential disruptions to your online services or website."
+          "possible_threat": "Moderate risk, as services remain exposed until protective measures are implemented.",
+          "recommendation": "Deploy DDoS protection measures promptly to secure your online services."
         },
         {
           "response": "No, I do not have protection",
-          "possible_threat": "High risk. Without DDoS protection, your services or website are highly susceptible to disruption by DDoS attacks.",
-          "recommendation": "Implement DDoS protection immediately to safeguard against potential attacks that can impact your services or website availability."
+          "possible_threat": "High risk of significant service disruptions and financial losses from unmitigated attacks.",
+          "recommendation": "Immediately implement robust DDoS protection strategies to safeguard online infrastructure."
         },
         {
           "response": "Not sure",
-          "possible_threat": "High risk. If you're unsure about DDoS protection, it's crucial to assess whether your services or website are vulnerable.",
-          "recommendation": "Evaluate your current security measures and implement DDoS protection to protect your online services from potential disruptions."
+          "possible_threat": "High risk due to uncertainty and potential exposure to DDoS threats.",
+          "recommendation": "Evaluate your security posture and ensure DDoS protections are in place and effective."
         }
       ]
     }
@@ -670,23 +670,23 @@ const questions_with_categories = {
       "options": [
         {
           "response": "Yes, all are secured",
-          "possible_threat": "Low risk. Securing all IoT devices with strong passwords and keeping their software updated significantly reduces the risk of unauthorized access and attacks.",
-          "recommendation": "Continue monitoring and updating your IoT devices regularly to maintain a high level of security."
+          "possible_threat": "Minimal risk of unauthorized access or exploitation due to strong security practices.",
+          "recommendation": "Regularly update software and periodically change passwords to maintain security."
         },
         {
           "response": "Some are secured",
-          "possible_threat": "Moderate risk. If only some IoT devices are secured, other devices might be vulnerable to hacking or unauthorized access.",
-          "recommendation": "Ensure all IoT devices are secured with strong passwords and updated software to minimize vulnerabilities."
+          "possible_threat": "Moderate risk, as unsecured devices can be exploited as entry points into your network.",
+          "recommendation": "Ensure all IoT devices are secured with strong passwords and the latest firmware updates."
         },
         {
-          "response": "No, but I intend to secure them",
-          "possible_threat": "High risk. Until all IoT devices are secured, they remain vulnerable to attacks, which could lead to unauthorized access and potential exploitation.",
-          "recommendation": "Prioritize securing all IoT devices as soon as possible by setting strong passwords and ensuring software updates are applied."
+          "response": "Most are unsecured",
+          "possible_threat": "High risk of compromise, leading to unauthorized access or data breaches.",
+          "recommendation": "Audit and secure all IoT devices to eliminate vulnerabilities within your network."
         },
         {
-          "response": "No, they are not secured",
-          "possible_threat": "Very high risk. Unsecured IoT devices are prime targets for attackers, which could lead to security breaches, privacy violations, and other risks.",
-          "recommendation": "Immediately secure all IoT devices with strong passwords and ensure they are updated to the latest software versions to protect against potential threats."
+          "response": "I’m unsure",
+          "possible_threat": "Critical risk due to lack of awareness and unprotected devices.",
+          "recommendation": "Assess and secure your IoT devices with strong passwords and regular updates."
         }
       ]
     }
